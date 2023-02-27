@@ -1,3 +1,7 @@
+header {
+  display:  flex;
+  background-color: #04AA6D;
+}
 ul {
   list-style-type: none;
   margin: 0;
@@ -19,6 +23,15 @@ li a {
 .nav-li{
   background-color: #04AA6D;
   
+}
+
+input[type=text] {
+  float: right;
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
 }
 
 /* Change the link color to #111 (black) on hover */
