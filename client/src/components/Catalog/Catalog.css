@@ -1,0 +1,102 @@
+section {
+    padding:  50px 10%;
+}
+
+.catalog{
+    width:  100%;
+    min-height: 100vh;
+    background-image: url(../../../public/images/catalogImg2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+}
+
+.welcome-container {
+  display: block;
+  position: absolute ;
+  top: 20%;
+  left: 5%;
+
+}
+.catalog-text {
+    cursor:default
+}
+.catalog-text h1 {
+    font-size: 2.7rem;
+    color: white;
+
+}
+
+.catalog-text span {
+    color: #7FC37E;
+}
+
+.introduction-container {
+  display: block;
+  cursor:default;
+  background-color: #7FC37E;
+  background-size: cover;
+  border-radius: 25px;
+  position: absolute ;
+  width: 50%;
+  top: 40%;
+  left: 5%;
+  padding-bottom: 40px;
+}
+
+.introduction-container p{
+    font-size: 1.5rem;
+    color: white;
+    text-align: left;
+    padding: 10px 50px;
+  }
+
+  .explore-btn {
+    padding: 10px;
+    border-radius: 0.3rem;
+    font-size: 14px;
+    background-color: aliceblue;
+  }
+
+  .explore-btn:hover {
+    transition: all 0.3s ease 0s;
+    background-color: #0088a9;
+    color: white;
+  }
+
+
+  .resell-container {
+    display: block;
+    cursor:default;
+    background-color: #7FC37E;
+    background-size: cover;
+    border-radius: 25px;
+    position: absolute ;
+    width: 90%;
+    top: 75%;
+    left: 5%;
+    padding-bottom: 40px;
+  }
+
+  .resell-container  p{
+    font-size: 1.5rem;
+    color: white;
+    text-align: left;
+    padding: 10px 50px;
+  } 
+
+  .sell-btn {
+    padding: 10px;
+    border-radius: 0.3rem;
+    font-size: 14px;
+    background-color: aliceblue;
+  }
+
+  .sell-btn:hover {
+    transition: all 0.3s ease 0s;
+    background-color: #0088a9;
+    color: white;
+  }

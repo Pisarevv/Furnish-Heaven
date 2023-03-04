@@ -6,11 +6,11 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 
 
-export default function Navigation() {
+const Navigation = () => {
     return (
 
         <header>
-            <img className="logo" src="/fhlogo.png" alt="image" />
+            <img className="logo" src="/images/fhlogo.png" alt="image" />
             <nav>
                 <ul className="nav_links">
                     <li><NavLink to="/">Home</NavLink></li>
@@ -31,35 +31,4 @@ export default function Navigation() {
     )
 }
 
-// export default function Navigation() {
-//     return (
-
-//         <header>
-//             <nav>
-//                 <ul>
-//                     <div className="topnav-left">
-//                     <li className='nav-li'><NavLink to="/">Home</NavLink></li>
-//                     <li className="dropLi">
-//                         <div className="dropdown">
-//                             <button className="dropbtn">Menu</button>
-//                             <div className="dropdown-content">
-//                                 <ul>
-//                                     <li><NavLink to="/">Products</NavLink></li>
-//                                     <li><NavLink to="/">Deals</NavLink></li>
-//                                     <li><NavLink to="/">Recycle your furniture</NavLink></li>
-//                                 </ul>
-//                             </div>
-//                         </div>
-//                     </li>
-//                     <li><input type="text" placeholder="Search.."></input></li>
-//                     </div>
-//                     <div className="topnav-right">
-//                         <li className='nav-li'><NavLink to="/">Login</NavLink></li>
-//                         <li className='nav-li'><NavLink to="/">Register</NavLink></li>
-//                         <li className='nav-li'><NavLink to="/">Cart <FontAwesomeIcon icon={faCartShopping} /></NavLink></li>
-//                     </div>
-//                 </ul>
-//             </nav>
-//         </header>
-//     )
-// }
+export default Navigation;
