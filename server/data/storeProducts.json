@@ -1,0 +1,43 @@
+{
+    "storeProducts" : {
+        "53d4dbf5-7f41-47ba-b485-43eccb91cb95": {            
+            "category" : "Furniture",
+            "make": "Table",
+            "model": "Swedish",
+            "year": 2015,
+            "description": "Medium table",
+            "price": 235,
+            "imgUrl": "./images/table.png",
+            "material": "Hardwood",
+            "rating" : 9.5,
+            "_createdOn": 1615545143015,
+            "_id": "53d4dbf5-7f41-47ba-b485-43eccb91cb95"
+        },
+        "22d4dbf5-7f41-47ba-b485-43eccb91cb95": {
+            "category" : "Bedroom",
+            "make": "Table",
+            "model": "Swedish",
+            "year": 2015,
+            "description": "Medium table",
+            "price": 235,
+            "imgUrl": "./images/table.png",
+            "material": "Hardwood",
+            "rating" : 8.8,
+            "_createdOn": 1615545143015,
+            "_id": "22d4dbf5-7f41-47ba-b485-43eccb91cb95"
+        },
+        "23s4dbf5-7f41-47ba-b485-43eccb91cb95": {
+            "category" : "Kitchen",
+            "make": "Table",
+            "model": "Swedish",
+            "year": 2015,
+            "description": "Medium table",
+            "price": 235,
+            "imgUrl": "./images/table.png",
+            "material": "Hardwood",
+            "rating" : 4,
+            "_createdOn": 1615545143015,
+            "_id": "22d4dbf5-7f41-47ba-b485-43eccb91cb95"
+        }
+    }
+}
