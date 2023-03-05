@@ -14,10 +14,18 @@ section {
     align-items: center;
 }
 
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3em;
+}
+
 .welcome-container {
-  display: block;
-  position: absolute ;
-  top: 20%;
+  /* display: block; */
+  /* position: absolute ; */
+  /* top: 20%; */
   left: 5%;
 
 }
@@ -26,7 +34,7 @@ section {
 }
 .catalog-text h1 {
     font-size: 2.7rem;
-    color: white;
+    color: rgb(39, 37, 37);
 
 }
 
@@ -35,14 +43,15 @@ section {
 }
 
 .introduction-container {
-  display: block;
+  /* display: block; */
   cursor:default;
-  background-color: #7FC37E;
+  background-color: #8fc48e;
   background-size: cover;
   border-radius: 25px;
-  position: absolute ;
+  opacity: 90%;
+  /* position: absolute ; */
   width: 50%;
-  top: 40%;
+  /* top: 40%; */
   left: 5%;
   padding-bottom: 40px;
 }
@@ -69,14 +78,15 @@ section {
 
 
   .resell-container {
-    display: block;
+    /* display: block; */
     cursor:default;
     background-color: #7FC37E;
+    opacity: 90%;
     background-size: cover;
     border-radius: 25px;
-    position: absolute ;
+    /* position: absolute ; */
     width: 90%;
-    top: 75%;
+    /* top: 75%; */
     left: 5%;
     padding-bottom: 40px;
   }

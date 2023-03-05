@@ -4,6 +4,7 @@ import './Catalog.css'
 const Catalog = () => {
     return (
         <section className="catalog">
+            <div className="container">
             <div className="welcome-container">
                 <div className="catalog-text">
                     <h1 className="welcome-msg"><span>Your</span> home should tell the story of who you are,
@@ -11,6 +12,7 @@ const Catalog = () => {
                 </div>
                 
             </div>
+
             <div className="introduction-container">
                 <p>Where we bring you the finest collection of furniture pieces that will transform your home into a sophisticated haven of style and comfort.</p>
                 <p>Our exclusive collection features the finest handcrafted furniture made from the highest quality materials and designed by world-renowned artisans.</p>
@@ -27,6 +29,7 @@ const Catalog = () => {
                 <p>Thank you for supporting our mission to create a greener and more sustainable future.</p>
                 <p></p>
                 <NavLink className="sell-btn" to="/">Retail your old furniture</NavLink>
+            </div>
             </div>
         </section>
     )
