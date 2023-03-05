@@ -1333,8 +1333,73 @@
         }
     };
     var seedData = {
-        comments: {
-        
+        storeProducts : {
+            "53d4dbf5-7f41-47ba-b485-43eccb91cb95": {            
+                category : "Furniture",
+                type: "Table",
+                model: "Opulent Oaken Boardroom Table",
+                year: 2023,
+                description: "The Opulent Oaken Boardroom Table exudes an air of sophistication and luxury. Crafted from the finest oak wood, its smooth surface is polished to a glossy finish that radiates a warm, golden hue. Its sturdy legs are intricately carved, featuring elegant curves and ornate details that add a touch of glamour to any corporate setting. This table is designed to impress and command attention, providing a regal centerpiece for important meetings and high-level negotiations. With its impeccable craftsmanship and timeless design, the Opulent Oaken Boardroom Table is sure to make a lasting impression on all who gather around it.",
+                price: 1235,
+                imgUrl: "https://www.bentleydesigns.com/images/products/large/3074_10186.jpg",
+                material: "Oak",
+                rating : 9.5,
+                _createdOn: 1615545143015,
+                _id: "53d4dbf5-7f41-47ba-b485-43eccb91cb95"
+            },
+            "22d4dbf5-7f41-47ba-b485-43eccb91cb95": {
+                category : "Bedroom",
+                type: "Bed",
+                model: "Regal Slumber Haven",
+                year: 2022,
+                description: "The Regal Slumber Haven is a masterpiece of comfort and luxury, designed for those who seek the ultimate in sleeping experiences. Its plush mattress is generously filled with the finest materials, providing a cloud-like softness that cradles the body in a cocoon of relaxation. The headboard is a work of art, upholstered in sumptuous fabric and adorned with intricate details that catch the eye and draw the attention. The frame is crafted from the finest hardwood, finished to a high gloss that enhances its natural beauty and strength. Whether one is seeking a peaceful night's rest or simply a place to relax and unwind, the Regal Slumber Haven is the perfect sanctuary. ",
+                price: 2235,
+                imgUrl: "https://www.idfdesign.com/images/luxury-classic-bed-and-canopy-bed/r45-bed-carved-beds-3.jpg",
+                material: "Hardwood",
+                rating : 8.8,
+                _createdOn: 1615545143015,
+                _id: "22d4dbf5-7f41-47ba-b485-43eccb91cb95"
+            },
+            "23s4dbf5-7f41-47ba-b485-43eccb91cb95": {
+                category : "Kitchen",
+                type: "Sink",
+                model: "Luminous Cascade",
+                year: 2015,
+                description: "This sink boasts a sleek and modern design that resembles the stunning display of the northern lights. Its flowing water stream creates a mesmerizing visual effect that will elevate the look of any kitchen.",
+                price: 235,
+                imgUrl: "https://www.ikea.com/us/en/images/products/havsen-apron-front-double-bowl-sink-white__0866246_pe671652_s5.jpg?f=s",
+                material: "Hardwood",
+                rating : 4,
+                _createdOn: 1615545143015,
+                _id: "22d4dbf5-7f41-47ba-b485-43eccb91cb95"
+            },
+            "23s4dbf5-7f41-47ba-b485-43esdd91cb95": {
+                category: "Bathroom",
+                type: "Sink",
+                model: "Elegance Flow",
+                year: 2023,
+                description: "The Elegance Flow sink is a luxurious addition to any bathroom. Its sleek and modern design is accented by a luminous chrome finish that exudes sophistication. The gentle flow of water creates a soothing ambiance that transforms any bathroom into a spa-like oasis. The sink is crafted from high-quality materials that ensure durability and longevity, making it a smart investment for any homeowner.",
+                price: 890,
+                imgUrl: "https://www.lussostone.com/images/elegance-pull-out-kitchen-mixer-tap-vello-undermount-sink-in-brushed-gold-p4926-26635_medium.jpg",
+                material: "Chrome",
+                rating: 9.2,
+                _createdOn: 1646520438593,
+                _id: "d1e7fa1c-2b0f-4ccf-8ed7-1b2e00e192a8"
+                }, 
+              "66s1dbf5-7f41-47ba-b485-43esdd91cb95" : {
+                product_name: "Cozy Sofa",
+                product_id: "XYZ789",
+                category: "furniture",
+                type: "sofa",
+                price: 999.99,
+                description: "The Cozy Sofa is the perfect addition to any living room. Its plush cushions and soft fabric make it the ultimate spot for relaxation. The sturdy wooden frame ensures durability, while the sleek design adds a touch of elegance to your space.",
+                imgUrl: "https://content.cylindo.com/api/v2/4980/products/20017SOFAS-LA/frames/3/20017SOFAS-LA.JPG?background=FFFFFF&feature=COLOUR:345&feature=LEGS:STANDARD",
+                material: "Fabric",
+                rating: 9.5,
+                _createdOn: 1646532421000,
+                _id: "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6"
+              }
+              
         }
     };
     var rules$1 = {

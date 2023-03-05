@@ -1,7 +1,18 @@
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { getTrendingProducts } from '../../services/storeProducts';
 import './Catalog.css'
 
 const Catalog = () => {
+
+    const [trendingProducts,setTrendingProducts] = useState({});
+
+    useEffect(() => {
+      let result = getTrendingProducts();
+      console.log(result);
+    },[])
+
+
     return (
         <section className="catalog">
             <div className="container">

@@ -13,9 +13,9 @@ async function request(method,url,data){
 
     //let token = getAccessToken();
 
-    if(token){
-        options.headers['X-Authorization'] = token;
-    }
+    // if(token){
+    //     options.headers['X-Authorization'] = token;
+    // }
 
     try{
         let response = await fetch(target + url,options);
