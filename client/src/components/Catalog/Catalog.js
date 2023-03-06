@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getTrendingProducts } from '../../services/storeProducts';
 import './Catalog.css'
+import TrendingProductCard from './TrendingProductCard';
 
 const Catalog = () => {
 
@@ -32,6 +33,17 @@ const Catalog = () => {
                 <p> Each piece is a masterpiece that exudes elegance, luxury, and sophistication.</p>
                 <p></p>
                 <NavLink className="explore-btn" to="/">Explore our collections</NavLink>
+            </div>
+ 
+            <div className="trending-container">
+                <div className='trendingProducts-container'>
+                    <TrendingProductCard/>
+                    <TrendingProductCard/>
+                    <TrendingProductCard/>
+                    <TrendingProductCard/>
+                    
+                    
+                </div>
             </div>
 
             <div className="resell-container">
