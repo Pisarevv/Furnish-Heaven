@@ -8,8 +8,10 @@ const Catalog = () => {
     const [trendingProducts,setTrendingProducts] = useState({});
 
     useEffect(() => {
-      let result = getTrendingProducts();
-      console.log(result);
+      (async () => {
+        const result = await getTrendingProducts();
+        console.log(result);
+      })()
     },[])
 
 

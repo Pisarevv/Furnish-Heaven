@@ -1386,19 +1386,7 @@
                 _createdOn: 1646520438593,
                 _id: "d1e7fa1c-2b0f-4ccf-8ed7-1b2e00e192a8"
                 }, 
-              "66s1dbf5-7f41-47ba-b485-43esdd91cb95" : {
-                product_name: "Cozy Sofa",
-                product_id: "XYZ789",
-                category: "furniture",
-                type: "sofa",
-                price: 999.99,
-                description: "The Cozy Sofa is the perfect addition to any living room. Its plush cushions and soft fabric make it the ultimate spot for relaxation. The sturdy wooden frame ensures durability, while the sleek design adds a touch of elegance to your space.",
-                imgUrl: "https://content.cylindo.com/api/v2/4980/products/20017SOFAS-LA/frames/3/20017SOFAS-LA.JPG?background=FFFFFF&feature=COLOUR:345&feature=LEGS:STANDARD",
-                material: "Fabric",
-                rating: 9.5,
-                _createdOn: 1646532421000,
-                _id: "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6"
-              }
+              
               
         }
     };
