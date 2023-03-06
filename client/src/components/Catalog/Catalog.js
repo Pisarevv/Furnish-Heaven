@@ -36,13 +36,13 @@ const Catalog = () => {
             </div>
  
             <div className="trending-container">
+                <h3>Trending products:</h3>
                 <div className='trendingProducts-container'>
                     <TrendingProductCard/>
                     <TrendingProductCard/>
                     <TrendingProductCard/>
                     <TrendingProductCard/>
-                    
-                    
+        
                 </div>
             </div>
 

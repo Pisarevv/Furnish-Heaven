@@ -1,7 +1,7 @@
 import './TrendingProductCard.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faArrowTrendUp, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 
 
@@ -30,7 +30,7 @@ const ProductTrending = () => {
     </div>
   </div>
   <div className="inside">
-    <div className="icon"><i className="material-icons">info_outline</i></div>
+    <div className="icon"><i className="material-icons"><FontAwesomeIcon icon={faArrowTrendUp}/></i></div>
     <div className="contents">
       <table>
         <tbody>

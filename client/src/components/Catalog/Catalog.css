@@ -34,9 +34,6 @@ section {
 }
 
 .welcome-container {
-  /* display: block; */
-  /* position: absolute ; */
-  /* top: 20%; */
   left: 5%;
 
 }
@@ -123,9 +120,17 @@ section {
     flex-grow: 1;
   }
 
+  .trending-container h3{
+    font-size: 2.0rem;
+    color: rgb(39, 37, 37);
+    animation: slideInLeft 1.5s ease-in;
+  }
+
   .trendingProducts-container{
+
     display: flex;
-    align-items: center;
-    gap:7em;
-    justify-content: space-between;
+    gap:6em;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    animation: slideInLeft 1.5s ease-in;
   }
