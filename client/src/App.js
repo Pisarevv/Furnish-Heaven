@@ -5,6 +5,8 @@ import Navigation from './components/Navigation/Navigation'
 import Catalog from './components/Catalog/Catalog'
 
 import './assets/App.css';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
 
 
 function App() {
@@ -14,6 +16,8 @@ function App() {
      <main id="main-content">
      <Routes>
         <Route path='/' element ={<Catalog/>}/> 
+        <Route path='/login' element = {<Login/>}/>
+        <Route path='/register' element = {<Register/>}/>
      </Routes>
      </main>
     </div>

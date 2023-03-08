@@ -10,18 +10,19 @@
 
 section {
     padding:  50px 10%;
+    
 }
 
 .catalog{
-    width:  100%;
-    min-height: 100vh;
-    background-image: url(../../../public/images/catalogImg2.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: right;
-    background-attachment: fixed;
-    display: flex;
-    align-items: center;
+  width:  100%;
+  min-height: 100vh;
+  background-image: url(../../../public/images/catalogImg2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
     
 }
 
@@ -59,7 +60,7 @@ section {
   width: 50%;
   left: 5%;
   padding-bottom: 40px;
-  animation: slideInLeft 1s ease-in;
+  /* animation: slideInLeft 1s ease-in; */
 }
 
 .introduction-container p{
@@ -92,7 +93,7 @@ section {
     width: 90%;
     left: 5%;
     padding-bottom: 40px;
-    animation: slideInLeft 1.5s ease-in;
+    /* animation: slideInLeft 1.5s ease-in; */
   }
 
   .resell-container  p{
@@ -123,7 +124,7 @@ section {
   .trending-container h3{
     font-size: 2.0rem;
     color: rgb(39, 37, 37);
-    animation: slideInLeft 1.5s ease-in;
+    /* animation: slideInLeft 1.5s ease-in; */
   }
 
   .trendingProducts-container{
@@ -132,5 +133,5 @@ section {
     gap:6em;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    animation: slideInLeft 1.5s ease-in;
+    /* animation: slideInLeft 1.5s ease-in; */
   }
