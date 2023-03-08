@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink , Link} from 'react-router-dom';
 import './Login.css'
 
 const Login = () => {
 
-   const[username,setUsername] = useState("");
+   const[email,setEmail] = useState("");
    const[password,setPassword] = useState("");
    
-   const onUsernameChange = (e) => {
-      setUsername(e.target.value);
+   const onEmailChange = (e) => {
+      setEmail(e.target.value);
    }
 
    const onPasswordChange = (e) => {
@@ -22,8 +22,8 @@ const Login = () => {
                     <div className="heading">
                         <h2>Sign in</h2>
                         <form action="#">
-                            <div className="input-group input-group-lg">
-                                <input className="form-control" type="text"  placeholder="Username" name="username" value={username} onChange = {onUsernameChange}/>
+                           <div className="input-group input-group-lg">
+                                <input className="form-control" type="text"  placeholder="Email" name="email" value={email} onChange = {onEmailChange}/>
                             </div>
 
                             <div className="input-group input-group-lg">                          
@@ -31,7 +31,8 @@ const Login = () => {
                             </div>
 
                             <button type="submit" className="float">Login</button>
-                            <p className= "sign-up">Don't have an account? Sign up <NavLink to = "\register">here</NavLink>.</p>
+                            {/* TODO: Fix register path */}
+                            <p className= "sign-up">Don't have an account? Sign up <NavLink to = "\register" >here</NavLink>.</p>
                         </form>
                     </div>
                 </div>

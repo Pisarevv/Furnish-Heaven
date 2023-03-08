@@ -26,6 +26,14 @@ section {
     
 }
 
+.catalog a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: #7FC37E;
+  text-decoration: none;  
+  border-radius: 25px;
+}
 .container {
   display: flex;
   flex-direction: column;

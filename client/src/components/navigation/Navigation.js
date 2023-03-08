@@ -21,7 +21,7 @@ const Navigation = () => {
             </nav>
             <ul className="nav_links">
                 <li><NavLink to="/login">Login</NavLink></li>
-                <li><NavLink to="/">Register</NavLink></li>
+                <li><NavLink to="/register">Register</NavLink></li>
                 <NavLink className="cta" to="/">Wish list  <FontAwesomeIcon icon={faHeart} /></NavLink>
             </ul>
 
