@@ -4,18 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowTrendUp, faHeart } from '@fortawesome/free-solid-svg-icons'
 
 
-
-const ProductTrending = () => {
-
+const ProductTrending = ({productInfo}) => { 
     return (
         <div className="wrapper">
   <div className="container">
-    <div className="top"></div>
+    <div className="top">
+      <img src = {productInfo.imgUrl}></img>
+    </div>
     <div className="bottom">
       <div className="left">
         <div className="details">
-          <h1>Chair</h1>
-          <p>£250</p>
+          <p>{productInfo.model}</p>
+          <p>{productInfo.price}$</p>
         </div>
         <div className="buy"><i className="material-icons"><FontAwesomeIcon icon={faHeart} /></i></div>
       </div>

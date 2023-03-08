@@ -1386,7 +1386,19 @@
                 _createdOn: 1646520438593,
                 _id: "d1e7fa1c-2b0f-4ccf-8ed7-1b2e00e192a8"
                 }, 
-              
+             "f9c54df6-2d99-4bfe-b7dc-4d4b4e4f6f8c" : {
+                category: "Furniture",
+                type: "Table",
+                model: "Rustic Farmhouse",
+                year: 2022,
+                description: "The Rustic Farmhouse dining table is a stunning centerpiece for any dining room. Its solid wood construction and distressed finish create a warm, inviting atmosphere that is perfect for family gatherings and dinner parties. The table is designed to comfortably seat six to eight people, and its sturdy construction ensures that it will last for generations. The unique design features a trestle-style base with a simple, yet elegant silhouette that complements a variety of decor styles. This table is a true statement piece that will elevate any dining room.",
+                price: 1250,
+                imgUrl: "https://static.povison.com/media/catalog/product/1/-/1-1000_10.jpg",
+                material: "Solid Wood",
+                rating: 6.2,
+                _createdOn: 1646786949000,
+                _id: "f9c54df6-249d-4bfe-b7dc-4d4b4e4f6f8c"
+             }
               
         }
     };

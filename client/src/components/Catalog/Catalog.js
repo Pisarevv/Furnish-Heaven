@@ -6,14 +6,23 @@ import TrendingProductCard from './TrendingProductCard';
 
 const Catalog = () => {
 
-    const [trendingProducts,setTrendingProducts] = useState({});
+    const [trendingProducts,setTrendingProducts] = useState([]);
 
     useEffect(() => {
       (async () => {
         const result = await getTrendingProducts();
-        console.log(result);
+        setTrendingProducts(trendingProducts => result);
       })()
     },[])
+
+    // useEffect(() => {
+    //     getTrendingProducts()
+    //         .then(result => {
+    //             setTrendingProducts(result);
+    //         });
+    // }, []);
+    
+    console.log(trendingProducts);
 
 
     return (
@@ -38,10 +47,10 @@ const Catalog = () => {
             <div className="trending-container">
                 <h3>Trending products:</h3>
                 <div className='trendingProducts-container'>
+                    {trendingProducts.map(x => <TrendingProductCard key={x._id} productInfo = {x}/>)}
+                    {/* <TrendingProductCard/>
                     <TrendingProductCard/>
-                    <TrendingProductCard/>
-                    <TrendingProductCard/>
-                    <TrendingProductCard/>
+                    <TrendingProductCard/> */}
         
                 </div>
             </div>
