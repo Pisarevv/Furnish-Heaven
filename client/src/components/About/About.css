@@ -1,0 +1,46 @@
+.about{
+    width:  100%;
+    min-height: 100vh;
+    background-image: url(../../../public/images/catalogImg2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+      
+  }
+  
+  .about a {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    color: #7FC37E;
+    text-decoration: none;  
+    border-radius: 25px;
+  }
+
+  .about h1 {
+    padding-bottom: 20px;
+  }
+
+  .about-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 3em;
+    background-color: #7FC37E;
+    opacity: 90%;
+    border-radius: 1%;
+    padding: 40px;
+  }
+
+  .catalog-text {
+      cursor:default
+  }
+  .catalog-text p {
+      font-size: 1.7rem;
+      color: rgb(39, 37, 37);
+  
+  }

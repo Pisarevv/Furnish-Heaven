@@ -19,7 +19,7 @@ const Register = () => {
 
    const onRePasswordChange = (e) => {
     setRePassword(e.target.value);
- }
+    }
 
     return (
         <section className="reg">

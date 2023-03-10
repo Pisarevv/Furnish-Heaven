@@ -7,6 +7,8 @@ import Catalog from './components/Catalog/Catalog'
 import './assets/App.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
+import Footer from './components/Footer/Footer';
+import About from './components/About/About';
 
 
 function App() {
@@ -18,8 +20,10 @@ function App() {
         <Route path='/' element ={<Catalog/>}/> 
         <Route path='/login' element = {<Login/>}/>
         <Route path='/register' element = {<Register/>}/>
+        <Route path='/about' element = {<About/>}/>
      </Routes>
      </main>
+     <Footer/>
     </div>
   );
 }
