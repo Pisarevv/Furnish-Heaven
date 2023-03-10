@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Footer from './components/Footer/Footer';
 import About from './components/About/About';
+import Faq from './components/Faq/Faq';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/login' element = {<Login/>}/>
         <Route path='/register' element = {<Register/>}/>
         <Route path='/about' element = {<About/>}/>
+        <Route path='/faq' element = {<Faq/>}/>
      </Routes>
      </main>
      <Footer/>
