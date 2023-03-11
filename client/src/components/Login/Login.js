@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react';
-import { NavLink , Link} from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { NavLink , Link, useNavigate} from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthContext';
+import { login } from '../../services/authService';
 import './Login.css'
+
 
 const Login = () => {
 
+   const {userLogin} = useContext(AuthContext);
+   const navigate = useNavigate();
+
    const[email,setEmail] = useState("");
    const[password,setPassword] = useState("");
+   const[error,setError] = useState();
    
    const onEmailChange = (e) => {
       setEmail(e.target.value);
@@ -15,13 +22,21 @@ const Login = () => {
       setPassword(e.target.value);
    }
 
+   const loginHandler = async(e) => {
+    e.preventDefault();
+    console.log(email,password);
+    let result = await login(email,password);
+    userLogin(result);
+    navigate('/');
+   }
+
     return (
         <section className="log">
             <div className="containerLog">
                 <div className="login">
                     <div className="heading">
                         <h2>Sign in</h2>
-                        <form action="#">
+                        <form onSubmit={loginHandler}>
                            <div className="input-group input-group-lg">
                                 <input className="form-control" type="text"  placeholder="Email" name="email" value={email} onChange = {onEmailChange}/>
                             </div>

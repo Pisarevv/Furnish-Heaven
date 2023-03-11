@@ -2,13 +2,17 @@ import './Navigation.css'
 import { NavLink } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { useContext } from 'react'
+import { AuthContext } from '../../contexts/AuthContext'
 
 
 
 
 const Navigation = () => {
-    return (
+    const {user} = useContext(AuthContext);
 
+
+    return (
         <header>
             <img className="logo" src="/images/fhlogo.png" alt="image" />
             <nav>
@@ -20,8 +24,14 @@ const Navigation = () => {
                 </ul>
             </nav>
             <ul className="nav_links">
-                <li><NavLink to="/login">Login</NavLink></li>
-                <li><NavLink to="/register">Register</NavLink></li>
+                {
+                user 
+                ?
+                 <li><NavLink to="/logout">Logout</NavLink></li> 
+                :
+                 [<li><NavLink to="/register">Register</NavLink></li>,
+                 <li><NavLink to="/login">Login</NavLink></li>] 
+                 } 
                 <NavLink className="cta" to="/">Wish list  <FontAwesomeIcon icon={faHeart} /></NavLink>
             </ul>
 

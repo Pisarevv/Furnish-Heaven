@@ -1,3 +1,5 @@
+import useLocalStorage from "../hooks/useLocalStorage";
+
 let target = "http://localhost:3030"
 
 async function request(method,url,data){
@@ -11,7 +13,7 @@ async function request(method,url,data){
         options.body = JSON.stringify(data);
     }
 
-    //let token = getAccessToken();
+    //let token = getItem("token");
 
     // if(token){
     //     options.headers['X-Authorization'] = token;
@@ -37,7 +39,7 @@ async function request(method,url,data){
         return result;
     }
     catch(error){
-        alert(error.message);
+        //alert(error.message);
         throw new Error();
     }
 

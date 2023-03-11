@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getTrendingProducts } from '../../services/storeProducts';
+import { getTrendingProducts } from '../../services/storeProductsService';
 import './Catalog.css'
 import TrendingProductCard from './TrendingProductCard';
 
