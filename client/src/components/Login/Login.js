@@ -32,7 +32,7 @@ const Login = () => {
 
                             <button type="submit" className="float">Login</button>
                             {/* TODO: Fix register path */}
-                            <p className= "sign-up">Don't have an account? Sign up <NavLink to = "\register" >here</NavLink>.</p>
+                            <p className= "sign-up">Don't have an account? Sign up <NavLink to = "/register" >here</NavLink>.</p>
                         </form>
                     </div>
                 </div>
