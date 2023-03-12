@@ -12,6 +12,8 @@ const Register = () => {
    const password = useRef();
    const rePassword = useRef();
 
+   const [isEmailValid,setIsEmailValid] = useState();
+
 
    const onEmailChange = (e) => {
     email.current = e.target.value;
@@ -32,9 +34,9 @@ const Register = () => {
         const emailRegex = new RegExp(
             '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
          );
-        console.log(email);
-        const found = emailRegex.test(email.current)
-        console.log(found)
+        const match = emailRegex.test(email.current)
+        setIsEmailValid(isEmailValid => match);
+        
     }
 
     return (
@@ -46,6 +48,7 @@ const Register = () => {
                         <form action="#">
                             <div className="input-group input-group-lg">
                             <input className="form-control" type="text"  placeholder="Email" name="email" refer={email} onChange = {onEmailChange} onBlur = {() => validateEmailInput() }/>
+                            {!isEmailValid && email.current.length > 0 &&<p>Invalid email</p>}
                                 {/* <input className="form-control" type="text"  placeholder="Email" name="email" value={email} onChange = {onEmailChange} /> */}
                             </div>  
                     
