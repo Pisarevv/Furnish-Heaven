@@ -14,13 +14,6 @@ const Catalog = () => {
         setTrendingProducts(trendingProducts => result);
       })()
     },[])
-
-    // useEffect(() => {
-    //     getTrendingProducts()
-    //         .then(result => {
-    //             setTrendingProducts(result);
-    //         });
-    // }, []);
     
     console.log(trendingProducts);
 
@@ -48,10 +41,7 @@ const Catalog = () => {
                 <h3>Trending products:</h3>
                 <div className='trendingProducts-container'>
                     {trendingProducts.map(x => <TrendingProductCard key={x._id} productInfo = {x}/>)}
-                    {/* <TrendingProductCard/>
-                    <TrendingProductCard/>
-                    <TrendingProductCard/> */}
-        
+                 
                 </div>
             </div>
 

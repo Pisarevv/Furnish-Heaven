@@ -23,13 +23,13 @@ async function request(method,url,data){
     try{
         let response = await fetch(target + url,options);
 
-        if(response.status == 204){
+        if(response.status === 204){
             return response;
         }
 
         let result = await response.json();
 
-        if(response.ok != true){
+        if(response.ok !== true){
             // if(response.status == 403){
             //     deleteUser();
             // }

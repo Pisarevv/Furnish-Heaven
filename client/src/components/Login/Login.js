@@ -12,7 +12,7 @@ const Login = () => {
 
    const[email,setEmail] = useState("");
    const[password,setPassword] = useState("");
-   const[error,setError] = useState();
+   const[error,setError] = useState({});
    
    const onEmailChange = (e) => {
       setEmail(e.target.value);
@@ -38,7 +38,7 @@ const Login = () => {
                         <h2>Sign in</h2>
                         <form onSubmit={loginHandler}>
                            <div className="input-group input-group-lg">
-                                <input className="form-control" type="text"  placeholder="Email" name="email" value={email} onChange = {onEmailChange}/>
+                                <input className="form-control" type="text"  placeholder="Email" name="email" value={email} onChange = {onEmailChange} />
                             </div>
 
                             <div className="input-group input-group-lg">                          

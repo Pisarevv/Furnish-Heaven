@@ -1,24 +1,31 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useRef } from 'react';
 import './Register.css'
 
 const Register = () => {
 
-   const[email,setEmail] = useState("");
-   const[password,setPassword] = useState("");
-   const[rePassword,setRePassword] = useState("");
-   
+//    const[email,setEmail] = useState("" );
+//    const[password,setPassword] = useState("");
+//    const[rePassword,setRePassword] = useState("");
+   const email = useRef();
+   const password = useRef();
+   const rePassword = useRef();
+
+
    const onEmailChange = (e) => {
-    setEmail(e.target.value);
-   }
+    email.current += e.target.value;
+   }    
 
 
    const onPasswordChange = (e) => {
-      setPassword(e.target.value);
+    //   setPassword(e.target.value);
+    password.current += e.target.value;
    }
 
    const onRePasswordChange = (e) => {
-    setRePassword(e.target.value);
+    // setRePassword(e.target.value);
+    rePassword.current += e.target.value;
     }
 
     return (
@@ -29,15 +36,18 @@ const Register = () => {
                         <h2>Register</h2>
                         <form action="#">
                             <div className="input-group input-group-lg">
-                                <input className="form-control" type="text"  placeholder="Email" name="email" value={email} onChange = {onEmailChange}/>
+                            <input className="form-control" type="text"  placeholder="Email" name="email" refer={email} onChange = {onEmailChange} onBlur = {() => console.log("off focus")}/>
+                                {/* <input className="form-control" type="text"  placeholder="Email" name="email" value={email} onChange = {onEmailChange} /> */}
                             </div>
                     
-                            <div className="input-group input-group-lg">                          
-                                <input className="form-control" type="password" placeholder="Password" name="password" value = {password} onChange = {onPasswordChange}/>
+                            <div className="input-group input-group-lg">    
+                            <input className="form-control" type="password" placeholder="Password" name="password" ref = {password} onChange = {onPasswordChange} onBlur = {() => console.log("off focus")}/>                      
+                                {/* <input className="form-control" type="password" placeholder="Password" name="password" value = {password} onChange = {onPasswordChange} onBlur = {() => console.log("off focus")}/> */}
                             </div>
 
-                            <div className="input-group input-group-lg">                          
-                                <input className="form-control" type="rePassword" placeholder="Repeat Password" name="rePassword" value = {rePassword} onChange = {onRePasswordChange}/>
+                            <div className="input-group input-group-lg">        
+                            <input className="form-control" type="rePassword" placeholder="Repeat Password" name="rePassword" ref = {rePassword} onChange = {onRePasswordChange}/>                  
+                                {/* <input className="form-control" type="rePassword" placeholder="Repeat Password" name="rePassword" value = {rePassword} onChange = {onRePasswordChange}/> */}
                             </div>
 
                             <button type="submit" className="float">Login</button>
