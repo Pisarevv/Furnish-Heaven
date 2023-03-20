@@ -1,69 +1,113 @@
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useRef } from 'react';
 import './Register.css'
+import { register } from '../../services/authService';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Register = () => {
 
-//    const[email,setEmail] = useState("" );
-//    const[password,setPassword] = useState("");
-//    const[rePassword,setRePassword] = useState("");
-   const email = useRef("");
-   const password = useRef();
-   const rePassword = useRef();
+    const email = useRef("");
+    const password = useRef("");
+    const rePassword = useRef("");
 
-   const [isEmailValid,setIsEmailValid] = useState();
+    const {userLogin} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const [isInputValid, SetisInputValid] = useState({
+        emailValid: false,
+        passwordValid: false,
+        rePasswordValid: false
+    });
 
 
-   const onEmailChange = (e) => {
-    email.current = e.target.value;
-   }    
+    const onEmailChange = (e) => {
+        email.current = e.target.value;
+    }
 
 
-   const onPasswordChange = (e) => {
-    //   setPassword(e.target.value);
-    password.current = e.target.value;
-   }
+    const onPasswordChange = (e) => {
+        password.current = e.target.value;
+    }
 
-   const onRePasswordChange = (e) => {
-    // setRePassword(e.target.value);
-    rePassword.current = e.target.value;
+    const onRePasswordChange = (e) => {
+        rePassword.current = e.target.value;
     }
 
     const validateEmailInput = () => {
         const emailRegex = new RegExp(
             '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
-         );
+        );
         const match = emailRegex.test(email.current)
-        setIsEmailValid(isEmailValid => match);
-        
+        SetisInputValid({
+            ...isInputValid,
+            emailValid: match,
+        }
+        );
     }
+
+    const validatePasswordInput = () => {
+        const passwordRegex = new RegExp(
+            '^(?=.*[a-zA-Z]).{8,}$'
+        );
+        const match = passwordRegex.test(password.current);
+
+        SetisInputValid({
+            ...isInputValid,
+            passwordValid: match,
+        }
+        );
+    }
+
+    const validateRePasswordInput = () => {
+        const match = rePassword.current === password.current ? true : false;
+        SetisInputValid({
+            ...isInputValid,
+            rePasswordValid: match,
+        }
+        );
+    }
+
+    const registerHandler = async(e) => {
+        e.preventDefault();
+        console.log(email.current,password.current);
+        
+        try{
+            let result = await register(email.current,password.current);
+            userLogin({email:result.email, accessToken:result.accessToken, _id:result._id});
+            navigate('/');
+        }
+        catch{
+            alert("wrong data")
+        }
+        
+       }
 
     return (
         <section className="reg">
             <div className="containerReg">
-                <div className="login">
+                <div className="register">
                     <div className="heading">
                         <h2>Register</h2>
-                        <form action="#">
+                        <form onSubmit={registerHandler}>
                             <div className="input-group input-group-lg">
-                            <input className="form-control" type="text"  placeholder="Email" name="email" refer={email} onChange = {onEmailChange} onBlur = {() => validateEmailInput() }/>
-                            {!isEmailValid && email.current.length > 0 &&<p>Invalid email</p>}
-                                {/* <input className="form-control" type="text"  placeholder="Email" name="email" value={email} onChange = {onEmailChange} /> */}
-                            </div>  
-                    
-                            <div className="input-group input-group-lg">    
-                            <input className="form-control" type="password" placeholder="Password" name="password" ref = {password} onChange = {onPasswordChange} onBlur = {() => console.log("off focus")}/>                      
-                                {/* <input className="form-control" type="password" placeholder="Password" name="password" value = {password} onChange = {onPasswordChange} onBlur = {() => console.log("off focus")}/> */}
+                                <input className="form-control" type="text" placeholder="Email" name="email" refer={email} onChange={onEmailChange} onBlur={() => validateEmailInput()} />
+                                {!isInputValid.emailValid && email.current.length > 0 && <p>Invalid email address.</p>}
+
                             </div>
 
-                            <div className="input-group input-group-lg">        
-                            <input className="form-control" type="rePassword" placeholder="Repeat Password" name="rePassword" ref = {rePassword} onChange = {onRePasswordChange}/>                  
-                                {/* <input className="form-control" type="rePassword" placeholder="Repeat Password" name="rePassword" value = {rePassword} onChange = {onRePasswordChange}/> */}
+                            <div className="input-group input-group-lg">
+                                <input className="form-control" type="password" placeholder="Password" name="password" ref={password} onChange={onPasswordChange} onBlur={() => validatePasswordInput()} />
+                                {!isInputValid.passwordValid && password.current.length > 0 && <p>Password must contain minimum eight characters and at least one letter.</p>}
                             </div>
 
-                            <button type="submit" className="float">Login</button>
-                            <p className= "sign-up">Already have an account? <NavLink to = "/login">Log in</NavLink>.</p>
+                            <div className="input-group input-group-lg">
+                                <input className="form-control" type="password" placeholder="Repeat Password" name="rePassword" ref={rePassword} onChange={onRePasswordChange} onBlur={() => validateRePasswordInput()} />
+                                {!isInputValid.rePasswordValid && rePassword.current.length > 0 && <p>Passwords do not match.</p>}
+                            </div>
+
+                            <button type="submit" className="float">Sign up</button>
+                            <p className="sign-up">Already have an account? <NavLink to="/login">Log in</NavLink>.</p>
                         </form>
                     </div>
                 </div>

@@ -27,7 +27,7 @@ section {
 body, input, button {
   font-family: 'Source Sans Pro', sans-serif;
 }
-.login {
+.register {
   padding: 15px;
   width: 400px;
   min-height: 400px;
@@ -54,13 +54,13 @@ body, input, button {
   color: #0088a9;
 }
 
-.login .heading {
+.register .heading {
   text-align: center;
   margin-top: 15%;
  
 
 }
-.login .heading h2 {
+.register .heading h2 {
   font-size: 3em;
   font-weight: 300;
   color: rgba(255, 255, 255, 0.7);
@@ -68,23 +68,23 @@ body, input, button {
   padding-bottom: 5px;
   text-shadow: 1px 1px 3px #23203b;
 }
-.login form .input-group {
+.register form .input-group {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
-.login form .input-group:last-of-type {
+.register form .input-group:last-of-type {
   border-top: none;
 }
-.login form .input-group span {
+.register form .input-group span {
   background: transparent;
   min-width: 53px;
   border: none;
 }
-.login form .input-group span i {
+.register form .input-group span i {
   font-size: 1.5em;
   color: rgba(255, 255, 255, 0.2);
 }
-.login form input.form-control {
+.register form input.form-control {
   display: block;
   width: auto;
   height: auto;
@@ -99,10 +99,10 @@ body, input, button {
   background: transparent;
   color: #0e0c0a;
 }
-.login form input.form-control:focus {
+.register form input.form-control:focus {
   border: none;
 }
-.login form button {
+.register form button {
   margin-top: 20px;
   background: #27ae60;
   border: none;
@@ -114,7 +114,7 @@ body, input, button {
   color: #b3eecc;
   border-bottom: 4px solid #1e8449;
 }
-.login form button:hover {
+.register form button:hover {
   background: tint(#27ae60, 4%);
   -webkit-animation: hop 1s;
   animation: hop 1s;

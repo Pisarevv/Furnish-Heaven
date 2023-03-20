@@ -13,7 +13,8 @@ async function request(method,url,data){
         options.body = JSON.stringify(data);
     }
 
-    let token = JSON.parse(localStorage.getItem("user")).accessToken;
+    let token = JSON.parse(localStorage.getItem('user')).accessToken;
+
     console.log(token);
 
     if(token){
