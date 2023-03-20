@@ -20,7 +20,7 @@ const Navigation = () => {
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/">Products</NavLink></li>
                     <li><NavLink to="/">Deals</NavLink></li>
-                    <li><NavLink to="/">Recycle your furniture</NavLink></li>
+                    <li><NavLink to="/recycle">Recycle your furniture</NavLink></li>
                 </ul>
             </nav>
             <ul className="nav_links">

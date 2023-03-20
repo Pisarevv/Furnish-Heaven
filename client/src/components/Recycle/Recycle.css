@@ -1,0 +1,145 @@
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-300px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+section {
+    padding:  50px 10%;
+    
+}
+
+.catalog{
+  width:  100%;
+  min-height: 100vh;
+  background-image: url(../../../public/images/catalogImg2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+    
+}
+
+.catalog a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: #7FC37E;
+  text-decoration: none;  
+  border-radius: 25px;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 3em;
+}
+
+.welcome-container {
+  left: 5%;
+
+}
+.catalog-text {
+    cursor:default
+}
+.catalog-text h1 {
+    font-size: 2.7rem;
+    color: rgb(39, 37, 37);
+
+}
+
+.catalog-text span {
+    color: #7FC37E;
+}
+
+.introduction-container {
+  cursor:default;
+  background-color: #8fc48e;
+  background-size: cover;
+  border-radius: 25px;
+  opacity: 90%;
+  width: 50%;
+  left: 5%;
+  padding-bottom: 40px;
+  /* animation: slideInLeft 1s ease-in; */
+}
+
+.introduction-container p{
+    font-size: 1.5rem;
+    color: white;
+    text-align: left;
+    padding: 10px 50px;
+  }
+
+  .explore-btn {
+    padding: 10px;
+    border-radius: 0.3rem;
+    font-size: 14px;
+    background-color: aliceblue;
+  }
+
+  .explore-btn:hover {
+    transition: all 0.3s ease 0s;
+    background-color: #0088a9;
+    color: white;
+  }
+
+
+  .resell-container {
+    cursor:default;
+    background-color: #7FC37E;
+    opacity: 90%;
+    background-size: cover;
+    border-radius: 25px;
+    width: 90%;
+    left: 5%;
+    padding-bottom: 40px;
+    /* animation: slideInLeft 1.5s ease-in; */
+  }
+
+  .resell-container  p{
+    font-size: 1.5rem;
+    color: white;
+    text-align: left;
+    padding: 10px 50px;
+  } 
+
+  .sell-btn {
+    padding: 10px;
+    border-radius: 0.3rem;
+    font-size: 14px;
+    background-color: aliceblue;
+  }
+
+  .sell-btn:hover {
+    transition: all 0.3s ease 0s;
+    background-color: #0088a9;
+    color: white;
+  }
+
+
+  .trending-container {
+    flex-grow: 1;
+  }
+
+  .trending-container h3{
+    font-size: 2.0rem;
+    color: rgb(39, 37, 37);
+    /* animation: slideInLeft 1.5s ease-in; */
+  }
+
+  .trendingProducts-container{
+
+    display: flex;
+    gap:6em;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    /* animation: slideInLeft 1.5s ease-in; */
+  }

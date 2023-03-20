@@ -13,6 +13,7 @@ import { AuthContext } from './contexts/AuthContext';
 import { useState } from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
 import Logout from './components/Logout/Logout';
+import Recycle from './components/Recycle/Recycle';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/logout' element={<Logout />} />
+            <Route path='/recycle' element={ <Recycle/>}/> 
             <Route path='/about' element={<About />} />
             <Route path='/faq' element={<Faq />} />
           </Routes>
