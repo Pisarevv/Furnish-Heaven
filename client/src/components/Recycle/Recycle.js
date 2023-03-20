@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getTrendingProducts } from '../../services/storeProductsService';
 import './Recycle.css'
-import TrendingProductCard from './TrendingProductCard';
+import ProductCard from './ProductCard';
 
 const Recycle = () => {
 
@@ -42,7 +42,7 @@ const Recycle = () => {
             <div className="trending-container">
                 <h3>Latest users listings:</h3>
                 <div className='trendingProducts-container'>
-                    {trendingProducts.map(x => <TrendingProductCard key={x._id} productInfo = {x}/>)}
+                    {trendingProducts.map(x => <ProductCard key={x._id} productInfo = {x}/>)}
                  
                 </div>
             </div>
