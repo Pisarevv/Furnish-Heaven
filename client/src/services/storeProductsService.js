@@ -7,8 +7,18 @@ export async function getTrendingProducts () {
     return results;
 }
 
+export async function getUserProducts () {
+    let results = await api.get(`/data/userProducts?select=${encodeURIComponent("_id,model,price,imgUrl,rating")}`);
+    return results;
+}
 
-export async function getProductById(id){
+
+export async function getStoreProductById(id){
     let result = await api.get(`/data/storeProducts/${id}`);
+    return result;
+}
+
+export async function getUserProductById(id){
+    let result = await api.get(`/data/userProducts/${id}`);
     return result;
 }

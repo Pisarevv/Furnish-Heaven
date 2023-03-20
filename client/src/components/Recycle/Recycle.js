@@ -1,21 +1,22 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getTrendingProducts } from '../../services/storeProductsService';
+import { getUserProducts } from '../../services/storeProductsService';
 import './Recycle.css'
 import ProductCard from './ProductCard';
 
 const Recycle = () => {
 
-    const [trendingProducts,setTrendingProducts] = useState([]);
+    const [userProducts,setTrendingProducts] = useState([]);
 
     useEffect(() => {
       (async () => {
-        const result = await getTrendingProducts();
-        setTrendingProducts(trendingProducts => result);
+        const result = await getUserProducts();
+        setTrendingProducts(userProducts => result);
+        console.table(result)
       })()
     },[])
     
-    console.log(trendingProducts);
+    console.log(userProducts);
 
 
     return (
@@ -42,7 +43,7 @@ const Recycle = () => {
             <div className="trending-container">
                 <h3>Latest users listings:</h3>
                 <div className='trendingProducts-container'>
-                    {trendingProducts.map(x => <ProductCard key={x._id} productInfo = {x}/>)}
+                    {userProducts.map(x => <ProductCard key={x._id} productInfo = {x}/>)}
                  
                 </div>
             </div>

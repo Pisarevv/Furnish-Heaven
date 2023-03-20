@@ -1400,7 +1400,113 @@
                 _id: "f9c54df6-249d-4bfe-b7dc-4d4b4e4f6f8c"
              }
               
-        }
+        },
+        userProducts : {
+            "chf54df6-2d99-4bfe-b7dc-4d4b4e4f6f8c" : {
+                category: "Furniture",
+                type: "Table",
+                model: "Warden table",
+                year: 2022,
+                description: "The Warden dining table is a stunning centerpiece for any dining room. Its solid wood construction and distressed finish create a warm, inviting atmosphere that is perfect for family gatherings and dinner parties. The table is designed to comfortably seat six to eight people, and its sturdy construction ensures that it will last for generations. The unique design features a trestle-style base with a simple, yet elegant silhouette that complements a variety of decor styles. This table is a true statement piece that will elevate any dining room.",
+                price: 1250,
+                imgUrl: "https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                material: "Solid Wood",
+                _createdOn: 1646786949000,
+                _id: "f9c54df6-249d-4bfe-b7dc-4d4b4e4f6f8c",
+                _ownerId : "e8c00bac5dfd8059763a2645f06ab97394675795f95516e4f30f5ab8837792fd"
+             },
+             "hgt98yh6-3jkl-1bnp-9qrs-7tuv2wxy4za" : {
+                category: "Furniture",
+                type: "Sofa",
+                model: "Mid-Century Modern",
+                year: 2023,
+                description: "The Mid-Century Modern sofa is a stylish and comfortable addition to any living room. Its clean lines and tufted back cushions evoke the iconic designs of the 1950s and 60s, while its plush seat cushions provide modern comfort. The sofa is upholstered in a soft, durable fabric that is available in a range of colors to suit any decor. With room for three people, this sofa is perfect for entertaining guests or relaxing with family. The solid wood frame and legs ensure durability and stability for years to come.",
+                price: 1499,
+                imgUrl: "https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                material: "Solid Wood, Fabric",
+                _createdOn: 1647846931000,
+                _id: "hgt98yh6-3jkl-1bnp-9qrs-7tuv2wxy4za",
+                _ownerId: "a7b67cde8f901234567890ab"
+             },
+             "fdg67tyu-9ijk-2mnb-8vfr-1qaz5tgb3ed" : {
+                category: "Furniture",
+                type: "Bed",
+                model: "Modern Platform",
+                year: 2023,
+                description: "The Modern Platform bed is a sleek and minimalist piece that will elevate any bedroom. Its low profile design creates a clean and contemporary look, while the solid wood construction ensures durability and stability. The platform base eliminates the need for a box spring, making it a convenient and space-saving option. The bed is available in a range of sizes and finishes to fit any room and style.",
+                price: 899,
+                imgUrl: "https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                material: "Solid Wood",
+                _createdOn: 1648434961000,
+                _id: "fdg67tyu-9ijk-2mnb-8vfr-1qaz5tgb3ed",
+                _ownerId: "b8a67cde9f801234567890cd"
+             },
+             "abc23def-4ghi-5jkl-6mno-7pqr8stu9vw" : {
+                category: "Furniture",
+                type: "Chair",
+                model: "Eames Lounge",
+                year: 2022,
+                description: "The Eames Lounge chair is a classic and timeless design that has been in production for over 60 years. Its iconic silhouette and luxurious leather upholstery make it a statement piece in any room. The chair features a swivel base and reclining backrest for maximum comfort and versatility. The solid wood frame and premium materials ensure durability and longevity. The Eames Lounge chair is the perfect addition to any home or office.",
+                price: 2999,
+                imgUrl: "https://images.pexels.com/photos/220749/pexels-photo-220749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                material: "Solid Wood, Leather",
+                _createdOn: 1649080354000,
+                _id: "abc23def-4ghi-5jkl-6mno-7pqr8stu9vw",
+                _ownerId: "c9b68cdea0801234567890ef"
+              },
+              "zxc98vbn-7mlo-5kji-3hgf-1dsaqwertyu" : {
+                category: "Furniture",
+                type: "Desk",
+                model: "Mid-Century Modern",
+                year: 2023,
+                description: "The Mid-Century Modern desk is a stylish and functional addition to any home office or workspace. Its clean lines and simple design evoke the iconic designs of the 1950s and 60s, while the solid wood construction ensures durability and stability. The desk features ample storage space with two drawers and an open shelf, making it a versatile option for organizing your work essentials. The desk is available in a range of finishes to suit any decor style.",
+                price: 799,
+                imgUrl: "https://images.pexels.com/photos/1957478/pexels-photo-1957478.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                material: "Solid Wood",
+                _createdOn: 1649652362000,
+                _id: "zxc98vbn-7mlo-5kji-3hgf-1dsaqwertyu",
+                _ownerId: "d0c79def1a901234567890ab"
+              },
+              "asd56fgh-1qwe-9zxc-2rty-8vbn0uio7lk" : {
+                category: "Furniture",
+                type: "Sofa",
+                model: "Sectional",
+                year: 2022,
+                description: "The Sectional sofa is a spacious and comfortable seating option for any living room. Its modular design allows for easy customization to fit any space and lifestyle. The plush cushions and soft upholstery make it a cozy and inviting place to relax and unwind. The sofa is available in a range of colors and fabrics to suit any decor style.",
+                price: 1499,
+                imgUrl: "https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                material: "Fabric",
+                _createdOn: 1650327293000,
+                _id: "asd56fgh-1qwe-9zxc-2rty-8vbn0uio7lk",
+                _ownerId: "e1d23abc456f890ghi7jklm"
+              },
+              "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv" : {
+                category: "Furniture",
+                type: "Bookcase",
+                model: "Industrial",
+                year: 2023,
+                description: "The Industrial bookcase is a rugged and functional storage solution for any home or office. Its open shelving design allows for easy organization and display of books, decor, and more. The metal frame and distressed wood shelves create an industrial chic look that is both stylish and sturdy. The bookcase is available in a range of sizes and configurations to fit any space and storage needs.",
+                price: 599,
+                imgUrl: "https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                material: "Metal, Wood",
+                _createdOn: 1650989851000,
+                _id: "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",
+                _ownerId: "f2e34bcd567g890hij1klm2"
+              },
+              "mnb43vfr-7ujh-9okm-1qaz-2wsx8edc6ty" : {
+                category: "Furniture",
+                type: "Dresser",
+                model: "Mid-Century Modern",
+                year: 2022,
+                description: "The Mid-Century Modern dresser is a stylish and functional piece that will elevate any bedroom. Its clean lines and tapered legs evoke the iconic designs of the 1950s and 60s, while the solid wood construction ensures durability and longevity. The dresser features six spacious drawers, providing ample storage space for clothing and accessories. The dresser is available in a range of finishes to suit any decor style.",
+                price: 899,
+                imgUrl: "https://images.pexels.com/photos/1866149/pexels-photo-1866149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                material: "Solid Wood",
+                _createdOn: 1651652764000,
+                _id: "mnb43vfr-7ujh-9okm-1qaz-2wsx8edc6ty",
+                _ownerId: "g3f45cde67890hija1klm2n"
+              }
+             }     
     };
     var rules$1 = {
         users: {

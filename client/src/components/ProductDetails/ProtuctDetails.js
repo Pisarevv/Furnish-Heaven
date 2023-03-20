@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
-import { getProductById } from "../../services/storeProductsService";
+import { getUserProductById } from "../../services/storeProductsService";
 import "./ProductDetails.css";
 
 const ProductDetails = () => {
@@ -10,9 +10,9 @@ const ProductDetails = () => {
 
     useEffect(() => {
         (async () => {
-            const result = await getProductById(id)
+            const result = await getUserProductById(id)
             setProductInfo(result);
-            console.log(productInfo)
+            console.log(result)
         }
         )()
     }, [])
@@ -36,7 +36,7 @@ const ProductDetails = () => {
                                     <p>Material: {productInfo.material}</p>
                                     <p>Rating : {productInfo.rating}</p>
 
-                                    <NavLink className="sell-btn" to="/">Purchuse</NavLink>
+                                    <NavLink className="sell-btn" to="/">Purchase</NavLink>
                                     <NavLink className="sell-btn" to="/">Edit</NavLink>
                                 </div>
                             </div>
