@@ -9,6 +9,7 @@ import { AuthContext } from '../../contexts/AuthContext'
 
 
 const Navigation = () => {
+    
     const {user} = useContext(AuthContext);
 
 

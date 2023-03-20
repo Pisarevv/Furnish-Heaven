@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContext";
 import { getUserProductById } from "../../services/storeProductsService";
 import "./ProductDetails.css";
 
@@ -7,12 +8,14 @@ const ProductDetails = () => {
 
     const [productInfo, setProductInfo] = useState("");
     const { id } = useParams();
+    const {user} = useContext(AuthContext);
 
     useEffect(() => {
         (async () => {
             const result = await getUserProductById(id)
             setProductInfo(result);
             console.log(result)
+            console.log(user);
         }
         )()
     }, [])
@@ -37,7 +40,8 @@ const ProductDetails = () => {
                                     <p>Rating : {productInfo.rating}</p>
 
                                     <NavLink className="sell-btn" to="/">Purchase</NavLink>
-                                    <NavLink className="sell-btn" to="/">Edit</NavLink>
+                                    {user._id === productInfo._ownerId && <NavLink className="sell-btn" to="/">Edit</NavLink>}
+                                    
                                 </div>
                             </div>
                         </div>
