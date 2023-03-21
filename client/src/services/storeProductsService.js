@@ -24,5 +24,5 @@ export async function getUserProductById(id){
 }
 
 export async function updateUserProductById(id,data){
-    let result = await api.post(id,data);
+    let result = await api.put(`/data/userProducts/${id}`,data);
 }
