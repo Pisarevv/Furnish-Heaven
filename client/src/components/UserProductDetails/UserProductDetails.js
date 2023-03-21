@@ -37,10 +37,9 @@ const UserProductDetails = () => {
                                     <p>Collection year : {productInfo.year}</p>
                                     <p>{productInfo.description}</p>
                                     <p>Material: {productInfo.material}</p>
-                                    <p>Rating : {productInfo.rating}</p>
 
                                     {user._id && <NavLink className="sell-btn" to="/">Purchase</NavLink>}
-                                    {user._id === productInfo._ownerId && <NavLink className="sell-btn" to="/">Edit</NavLink>}
+                                    {user._id === productInfo._ownerId && <NavLink className="sell-btn" to={`/recycle/${id}/edit`}>Edit</NavLink>}
                                     
                                 </div>
                             </div>

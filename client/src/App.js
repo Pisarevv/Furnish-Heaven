@@ -14,7 +14,8 @@ import { useState } from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
 import Logout from './components/Logout/Logout';
 import Recycle from './components/Recycle/Recycle';
-import UserProductDetails from './components/ProductDetails/UserProductDetails';
+import UserProductDetails from './components/UserProductDetails/UserProductDetails';
+import EditUserProduct from './components/EditUserProduct/EditUserProduct';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Route path='/about' element={<About />} />
             <Route path='/faq' element={<Faq />} />
             <Route path='/recycle/:id' element = {<UserProductDetails/>} />
+            <Route path='/recycle/:id/edit' element = {<EditUserProduct/>} />
           </Routes>
         </main>
         <Footer />
