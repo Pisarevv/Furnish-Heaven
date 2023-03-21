@@ -16,6 +16,7 @@ import Logout from './components/Logout/Logout';
 import Recycle from './components/Recycle/Recycle';
 import UserProductDetails from './components/UserProductDetails/UserProductDetails';
 import EditUserProduct from './components/EditUserProduct/EditUserProduct';
+import CreateUserProduct from './components/CreateUserProduct/CreateUserProduct';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
             <Route path='/recycle' element={ <Recycle/>}/> 
             <Route path='/about' element={<About />} />
             <Route path='/faq' element={<Faq />} />
+            <Route path='/create' element={<CreateUserProduct/>} />
             <Route path='/recycle/:id' element = {<UserProductDetails/>} />
             <Route path='/recycle/:id/edit' element = {<EditUserProduct/>} />
           </Routes>

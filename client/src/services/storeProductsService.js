@@ -30,3 +30,7 @@ export async function updateUserProductById(id,data){
 export async function deleteUserProductById(id){
     await api.delete(`/data/userProducts/${id}`);
 }
+
+export async function createUserProduct(data){
+    await api.post('/data/userProducts',data);
+}
