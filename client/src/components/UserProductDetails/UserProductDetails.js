@@ -1,13 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import { getUserProductById } from "../../services/storeProductsService";
+import { deleteUserProductById, getUserProductById } from "../../services/storeProductsService";
 import "./UserProductDetails.css";
 
 const UserProductDetails = () => {
 
     const [productInfo, setProductInfo] = useState("");
     const { id } = useParams();
+    const navigate = useNavigate();
     const {user} = useContext(AuthContext);
 
     useEffect(() => {
@@ -19,6 +20,13 @@ const UserProductDetails = () => {
         }
         )()
     }, [])
+
+    const onProductDelete = async(e) => {
+        e.preventDefault();
+        await deleteUserProductById(id);
+        navigate('/recycle');
+    }
+    
 
     return (
         <section className="details-wrapper">
@@ -39,7 +47,10 @@ const UserProductDetails = () => {
                                     <p>Material: {productInfo.material}</p>
 
                                     {user._id && <NavLink className="sell-btn" to="/">Purchase</NavLink>}
-                                    {user._id === productInfo._ownerId && <NavLink className="sell-btn" to={`/recycle/${id}/edit`}>Edit</NavLink>}
+                                    {user._id === productInfo._ownerId && <>
+                                        <NavLink className="sell-btn" to={`/recycle/${id}/edit`}>Edit</NavLink>
+                                        <NavLink className="sell-btn" onClick= {onProductDelete}>Delete</NavLink>
+                                        </>}
                                     
                                 </div>
                             </div>

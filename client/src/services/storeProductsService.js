@@ -24,5 +24,9 @@ export async function getUserProductById(id){
 }
 
 export async function updateUserProductById(id,data){
-    let result = await api.put(`/data/userProducts/${id}`,data);
+    await api.put(`/data/userProducts/${id}`,data);
+}
+
+export async function deleteUserProductById(id){
+    await api.delete(`/data/userProducts/${id}`);
 }

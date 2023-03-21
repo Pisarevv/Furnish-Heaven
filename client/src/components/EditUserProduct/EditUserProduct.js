@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getUserProductById, updateUserProductById } from "../../services/storeProductsService";
+import { deleteUserProductById, getUserProductById, updateUserProductById } from "../../services/storeProductsService";
 import "./EditUserProduct.css";
 
 const EditUserProduct = () => {
@@ -33,8 +33,8 @@ const EditUserProduct = () => {
         await updateUserProductById(id,productDetails)
         navigate('/recycle');
     }
-    
-       
+
+   
     return (
         <section className="editProduct">
             <div className="edit-container">
