@@ -2,9 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { getUserProductById } from "../../services/storeProductsService";
-import "./ProductDetails.css";
+import "./UserProductDetails.css";
 
-const ProductDetails = () => {
+const UserProductDetails = () => {
 
     const [productInfo, setProductInfo] = useState("");
     const { id } = useParams();
@@ -39,7 +39,7 @@ const ProductDetails = () => {
                                     <p>Material: {productInfo.material}</p>
                                     <p>Rating : {productInfo.rating}</p>
 
-                                    <NavLink className="sell-btn" to="/">Purchase</NavLink>
+                                    {user._id && <NavLink className="sell-btn" to="/">Purchase</NavLink>}
                                     {user._id === productInfo._ownerId && <NavLink className="sell-btn" to="/">Edit</NavLink>}
                                     
                                 </div>
@@ -53,5 +53,5 @@ const ProductDetails = () => {
     )
 }
 
-export default ProductDetails;
+export default UserProductDetails;
 
