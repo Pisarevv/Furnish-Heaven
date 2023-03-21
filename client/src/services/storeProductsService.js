@@ -22,3 +22,7 @@ export async function getUserProductById(id){
     let result = await api.get(`/data/userProducts/${id}`);
     return result;
 }
+
+export async function updateUserProductById(id,data){
+    let result = await api.post(id,data);
+}
