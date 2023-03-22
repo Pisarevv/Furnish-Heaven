@@ -5,7 +5,6 @@ import './Recycle.css'
 import ProductCard from './ProductCard';
 import { AuthContext } from '../../contexts/AuthContext';
 import Observer from '../../utils/Observer';
-import {motion} from 'framer-motion';
 
 const Recycle = () => {
 
@@ -29,10 +28,7 @@ const Recycle = () => {
 
 
     return (
-        <motion.section className="catalog"
-            initial = {{opacity:0.8}}
-            animate = {{opacity:1}}
-            exit = {{opacity:0.8}}> 
+        <section className="catalog">
             <div className="container"> 
             {user._id && <NavLink className="sell-btn" to="/create">Create listing</NavLink>}
  
@@ -45,7 +41,7 @@ const Recycle = () => {
             </div>
              
             </div>
-        </motion.section>
+        </section>
     )
 }
 

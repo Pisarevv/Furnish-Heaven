@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getTrendingProducts } from '../../services/storeProductsService';
 import Observer from '../../utils/Observer';
-import { motion } from 'framer-motion';
 import './Catalog.css'
 import TrendingProductCard from './TrendingProductCard';
 
@@ -27,10 +26,7 @@ const Catalog = () => {
 
     return (
      
-        <motion.section className="catalog"
-            initial = {{opacity:0.8}}
-            animate = {{opacity:1}}
-            exit = {{opacity:0.8}}>       
+        <section className="catalog">       
             <div className="container">
            
             <div className="welcome-container hidden">
@@ -73,7 +69,7 @@ const Catalog = () => {
           
             </div>
            
-        </motion.section>
+        </section>
        
     )
 }
