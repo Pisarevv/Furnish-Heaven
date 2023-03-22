@@ -1,4 +1,7 @@
+import { Navigate } from "react-router-dom";
+
 let target = "http://localhost:3030"
+
 
 async function request(method,url,data){
     let options = {
@@ -28,10 +31,9 @@ async function request(method,url,data){
 
         let result = await response.json();
 
-        if(response.ok !== true){
+        if(response.ok !== true){   
              if(response.status === 403){
-              localStorage.setItem('user',JSON.stringify({}));
-              
+                <Navigate to="/logout" replace={true} />
             }
             
 
