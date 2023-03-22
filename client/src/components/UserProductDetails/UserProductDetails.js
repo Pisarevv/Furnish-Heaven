@@ -46,7 +46,8 @@ const UserProductDetails = () => {
                                     <p>{productInfo.description}</p>
                                     <p>Material: {productInfo.material}</p>
 
-                                    {user._id && <NavLink className="sell-btn" to="/">Purchase</NavLink>}
+                                    {user._id && user._id !==productInfo._ownerId  && <NavLink className="sell-btn" to="/">Add to cart</NavLink>}
+                                    
                                     {user._id === productInfo._ownerId && <>
                                         <NavLink className="sell-btn" to={`/recycle/${id}/edit`}>Edit</NavLink>
                                         <NavLink className="sell-btn" onClick= {onProductDelete}>Delete</NavLink>

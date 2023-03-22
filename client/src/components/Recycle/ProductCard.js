@@ -3,9 +3,6 @@ import './ProductCard.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowTrendUp, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom'
-import Observer from '../../utils/Observer'
-
-
 
 const ProductCard = ({ productInfo }) => {
 
