@@ -1333,9 +1333,9 @@
         }
     };
     var seedData = {
-        storeProducts : {
-            "53d4dbf5-7f41-47ba-b485-43eccb91cb95": {            
-                category : "Furniture",
+        storeProducts: {
+            "53d4dbf5-7f41-47ba-b485-43eccb91cb95": {
+                category: "Furniture",
                 type: "Table",
                 model: "Opulent Oaken Boardroom Table",
                 year: 2023,
@@ -1343,12 +1343,12 @@
                 price: 1235,
                 imgUrl: "https://www.bentleydesigns.com/images/products/large/3074_10186.jpg",
                 material: "Oak",
-                rating : 9.5,
+                rating: 9.5,
                 _createdOn: 1615545143015,
                 _id: "53d4dbf5-7f41-47ba-b485-43eccb91cb95"
             },
             "22d4dbf5-7f41-47ba-b485-43eccb91cb95": {
-                category : "Bedroom",
+                category: "Bedroom",
                 type: "Bed",
                 model: "Regal Slumber Haven",
                 year: 2022,
@@ -1356,12 +1356,12 @@
                 price: 2235,
                 imgUrl: "https://www.idfdesign.com/images/luxury-classic-bed-and-canopy-bed/r45-bed-carved-beds-3.jpg",
                 material: "Hardwood",
-                rating : 8.8,
+                rating: 8.8,
                 _createdOn: 1615545143015,
                 _id: "22d4dbf5-7f41-47ba-b485-43eccb91cb95"
             },
             "23s4dbf5-7f41-47ba-b485-43eccb91cb95": {
-                category : "Kitchen",
+                category: "Kitchen",
                 type: "Sink",
                 model: "Luminous Cascade",
                 year: 2015,
@@ -1369,7 +1369,7 @@
                 price: 235,
                 imgUrl: "https://www.ikea.com/us/en/images/products/havsen-apron-front-double-bowl-sink-white__0866246_pe671652_s5.jpg?f=s",
                 material: "Hardwood",
-                rating : 4,
+                rating: 4,
                 _createdOn: 1615545143015,
                 _id: "22d4dbf5-7f41-47ba-b485-43eccb91cb95"
             },
@@ -1385,8 +1385,8 @@
                 rating: 9.2,
                 _createdOn: 1646520438593,
                 _id: "d1e7fa1c-2b0f-4ccf-8ed7-1b2e00e192a8"
-                }, 
-             "f9c54df6-2d99-4bfe-b7dc-4d4b4e4f6f8c" : {
+            },
+            "f9c54df6-2d99-4bfe-b7dc-4d4b4e4f6f8c": {
                 category: "Furniture",
                 type: "Table",
                 model: "Rustic Farmhouse",
@@ -1398,11 +1398,11 @@
                 rating: 6.2,
                 _createdOn: 1646786949000,
                 _id: "f9c54df6-249d-4bfe-b7dc-4d4b4e4f6f8c"
-             }
-              
+            }
+
         },
-        userProducts : {
-            "chf54df6-2d99-4bfe-b7dc-4d4b4e4f6f8c" : {
+        userProducts: {
+            "chf54df6-2d99-4bfe-b7dc-4d4b4e4f6f8c": {
                 category: "Furniture",
                 type: "Table",
                 model: "Warden table",
@@ -1413,9 +1413,9 @@
                 material: "Solid Wood",
                 _createdOn: 1646786949000,
                 _id: "f9c54df6-249d-4bfe-b7dc-4d4b4e4f6f8c",
-                _ownerId : "e8c00bac5dfd8059763a2645f06ab97394675795f95516e4f30f5ab8837792fd"
-             },
-             "hgt98yh6-3jkl-1bnp-9qrs-7tuv2wxy4za" : {
+                _ownerId: "e8c00bac5dfd8059763a2645f06ab97394675795f95516e4f30f5ab8837792fd"
+            },
+            "hgt98yh6-3jkl-1bnp-9qrs-7tuv2wxy4za": {
                 category: "Furniture",
                 type: "Sofa",
                 model: "Mid-Century Modern",
@@ -1427,8 +1427,8 @@
                 _createdOn: 1647846931000,
                 _id: "hgt98yh6-3jkl-1bnp-9qrs-7tuv2wxy4za",
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8"
-             },
-             "fdg67tyu-9ijk-2mnb-8vfr-1qaz5tgb3ed" : {
+            },
+            "fdg67tyu-9ijk-2mnb-8vfr-1qaz5tgb3ed": {
                 category: "Furniture",
                 type: "Bed",
                 model: "Modern Platform",
@@ -1440,8 +1440,8 @@
                 _createdOn: 1648434961000,
                 _id: "fdg67tyu-9ijk-2mnb-8vfr-1qaz5tgb3ed",
                 _ownerId: "b8a67cde9f801234567890cd"
-             },
-             "abc23def-4ghi-5jkl-6mno-7pqr8stu9vw" : {
+            },
+            "abc23def-4ghi-5jkl-6mno-7pqr8stu9vw": {
                 category: "Furniture",
                 type: "Chair",
                 model: "Eames Lounge",
@@ -1453,8 +1453,8 @@
                 _createdOn: 1649080354000,
                 _id: "abc23def-4ghi-5jkl-6mno-7pqr8stu9vw",
                 _ownerId: "c9b68cdea0801234567890ef"
-              },
-              "zxc98vbn-7mlo-5kji-3hgf-1dsaqwertyu" : {
+            },
+            "zxc98vbn-7mlo-5kji-3hgf-1dsaqwertyu": {
                 category: "Furniture",
                 type: "Desk",
                 model: "Mid-Century Modern",
@@ -1466,8 +1466,8 @@
                 _createdOn: 1649652362000,
                 _id: "zxc98vbn-7mlo-5kji-3hgf-1dsaqwertyu",
                 _ownerId: "d0c79def1a901234567890ab"
-              },
-              "asd56fgh-1qwe-9zxc-2rty-8vbn0uio7lk" : {
+            },
+            "asd56fgh-1qwe-9zxc-2rty-8vbn0uio7lk": {
                 category: "Furniture",
                 type: "Sofa",
                 model: "Sectional",
@@ -1479,8 +1479,8 @@
                 _createdOn: 1650327293000,
                 _id: "asd56fgh-1qwe-9zxc-2rty-8vbn0uio7lk",
                 _ownerId: "e1d23abc456f890ghi7jklm"
-              },
-              "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv" : {
+            },
+            "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv": {
                 category: "Furniture",
                 type: "Bookcase",
                 model: "Industrial",
@@ -1492,8 +1492,8 @@
                 _createdOn: 1650989851000,
                 _id: "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",
                 _ownerId: "f2e34bcd567g890hij1klm2"
-              },
-              "mnb43vfr-7ujh-9okm-1qaz-2wsx8edc6ty" : {
+            },
+            "mnb43vfr-7ujh-9okm-1qaz-2wsx8edc6ty": {
                 category: "Furniture",
                 type: "Dresser",
                 model: "Mid-Century Modern",
@@ -1505,8 +1505,23 @@
                 _createdOn: 1651652764000,
                 _id: "mnb43vfr-7ujh-9okm-1qaz-2wsx8edc6ty",
                 _ownerId: "g3f45cde67890hija1klm2n"
-              }
-             }     
+            }
+        },
+
+        userCarts: {
+            "995s8uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv": {
+                _id: "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",
+                _productId : "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                _createdOn: 1650989851000          
+            },
+            "aezs5uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv": {
+                _id: "eki55uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",
+                _productId : "mnb43vfr-7ujh-9okm-1qaz-2wsx8edc6ty",
+                _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                _createdOn: 1650989851000          
+            }
+        }
     };
     var rules$1 = {
         users: {

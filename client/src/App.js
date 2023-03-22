@@ -10,18 +10,21 @@ import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 import Faq from './components/Faq/Faq';
 import { AuthContext } from './contexts/AuthContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useLocalStorage from './hooks/useLocalStorage';
 import Logout from './components/Logout/Logout';
 import Recycle from './components/Recycle/Recycle';
 import UserProductDetails from './components/UserProductDetails/UserProductDetails';
 import EditUserProduct from './components/EditUserProduct/EditUserProduct';
 import CreateUserProduct from './components/CreateUserProduct/CreateUserProduct';
+import { CartContext } from './contexts/CartContext';
 
 
 function App() {
 
   const [auth,setAuth] = useLocalStorage('user',{});
+
+  const [products,setProducts] = useLocalStorage('cart', {})
 
   const userLogin = (userData) => {
     setAuth(userData);
@@ -29,11 +32,20 @@ function App() {
 
   const userLogout = () => {
     setAuth({})
+    setProducts({})
   }
+
+  const addProductToCart = (productData) => {
+    setProducts(productData);
+  }
+
+  
+
 
 
   return (
     <AuthContext.Provider value = {{user: auth, userLogin, userLogout}}>
+      <CartContext.Provider value = {{cart: products, addProductToCart}}>
       <div className="App">
         <Navigation />
         <main id="main-content">
@@ -52,8 +64,11 @@ function App() {
         </main>
         <Footer />
       </div>
+      </CartContext.Provider>
     </AuthContext.Provider>
   );
+  
 }
 
 export default App;
+

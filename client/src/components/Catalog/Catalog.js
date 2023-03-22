@@ -64,7 +64,7 @@ const Catalog = () => {
                So, if you're looking for a sustainable and eco-friendly way to furnish your home, we're here to help.</p>
                 <p className='hidden'>Thank you for supporting our mission to create a greener and more sustainable future.</p>
                 <p className='hidden'></p>
-                <NavLink className="sell-btn hidden" to="/">Retail your old furniture</NavLink>
+                <NavLink className="sell-btn hidden" to="/recycle">Retail your old furniture</NavLink>
             </div>
           
             </div>

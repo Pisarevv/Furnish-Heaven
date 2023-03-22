@@ -1,13 +1,16 @@
 import { useContext, useEffect, useState } from 'react';
 import { NavLink , Link, useNavigate} from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthContext';
+import { CartContext } from '../../contexts/CartContext';
 import { login } from '../../services/authService';
+import { getUserCartItems } from '../../services/cartService';
 import './Login.css'
 
 
 const Login = () => {
 
    const {userLogin} = useContext(AuthContext);
+   const {addProductToCart} = useContext(CartContext);
    const navigate = useNavigate();
 
    const[email,setEmail] = useState("");
@@ -26,7 +29,11 @@ const Login = () => {
     e.preventDefault();
     console.log(email,password);
     let result = await login(email,password);
+    console.log(result);
+    let cartProducts = await getUserCartItems(result._id);
     userLogin(result);
+    addProductToCart(cartProducts);
+
     navigate('/');
    }
 
