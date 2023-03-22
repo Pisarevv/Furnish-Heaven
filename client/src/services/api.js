@@ -11,12 +11,12 @@ async function request(method,url,data){
         options.body = JSON.stringify(data);
     }
 
-    let token = JSON.parse(localStorage.getItem('user')).accessToken;
+    const user = localStorage.getItem('user');
+    const auth = JSON.parse(user || '{}');
 
-    console.log(token);
 
-    if(token){
-        options.headers['X-Authorization'] = token;
+    if(auth.accessToken){
+        options.headers['X-Authorization'] = auth.accessToken;
     }
 
     try{
