@@ -20,11 +20,11 @@ const Recycle = () => {
       (async () => {
         const result = await getUserProducts();
         setTrendingProducts(userProducts => result);
-        console.table(result)
+        // console.table(result)
       })()
     },[])
     
-    console.log(userProducts);
+    // console.log(userProducts);
 
 
     return (

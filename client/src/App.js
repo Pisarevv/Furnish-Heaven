@@ -39,13 +39,17 @@ function App() {
     setProducts(productData);
   }
 
+  const removeProductFromCart = (productId) => {
+    setProducts(products => products.filter(x => x._productId != productId));
+  }
+
   
 
 
 
   return (
     <AuthContext.Provider value = {{user: auth, userLogin, userLogout}}>
-      <CartContext.Provider value = {{cart: products, addProductToCart}}>
+      <CartContext.Provider value = {{cart: products, addProductToCart, removeProductFromCart}}>
       <div className="App">
         <Navigation />
         <main id="main-content">
