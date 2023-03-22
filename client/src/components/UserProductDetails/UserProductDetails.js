@@ -8,17 +8,17 @@ import "./UserProductDetails.css";
 
 const UserProductDetails = () => {
 
-    const [productInfo, setProductInfo] = useState("");
-    const [isAddedToCart, setIsAddedToCart] = useState();
-    const { id } = useParams();
-
-    const navigate = useNavigate();
-
     const {user} = useContext(AuthContext);
     const {cart, addProductToCart, removeProductFromCart} = useContext(CartContext);
 
-    
+    const [productInfo, setProductInfo] = useState("");
+    const [isAddedToCart, setIsAddedToCart] = useState();
 
+    const { id } = useParams();
+ 
+    const navigate = useNavigate();
+
+    
     useEffect(() => {
         (async () => {
             const result = await getUserProductById(id)
@@ -28,7 +28,7 @@ const UserProductDetails = () => {
             console.log(cart);
         }
         )()
-    }, [])
+    }, [],[cart.length])
 
     useEffect(() => {
         (async () => {
@@ -39,8 +39,6 @@ const UserProductDetails = () => {
         )()
     }, [isAddedToCart])
 
-
-    console.log(isAddedToCart);
 
     const onProductDelete = async(e) => {
         e.preventDefault();

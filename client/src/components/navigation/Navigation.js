@@ -4,14 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
+import { CartContext } from '../../contexts/CartContext'
 
 
 
 
 const Navigation = () => {
-    
-    const {user} = useContext(AuthContext);
 
+    const { user } = useContext(AuthContext);
+    const { cart } = useContext(CartContext);
 
     return (
         <header>
@@ -26,18 +27,22 @@ const Navigation = () => {
             </nav>
             <ul className="nav_links">
                 {
-                user.email && user.accessToken
-                ?
-                 <><li><NavLink to="/logout">Logout</NavLink></li>
-                 <NavLink className="cta" to="/">Cart  <FontAwesomeIcon icon={faCartShopping} /></NavLink></>
-                :
-                 <><li><NavLink to="/register">Register</NavLink></li>
-                 <li><NavLink to="/login">Login</NavLink></li></>
-                 } 
-                
+                    user.email && user.accessToken
+                        ?
+                        <><li><NavLink to="/logout">Logout</NavLink></li>
+                            <span className="fa-layers fa-fw fa-2x" >
+                                <NavLink className="fas fa-envelope fa-sm" to="/"><FontAwesomeIcon icon={faCartShopping} /></NavLink>
+                                <span className="fa-layers-counter" >{cart.length}</span>
+                            </span>
+                        </>
+                        :
+                        <><li><NavLink to="/register">Register</NavLink></li>
+                            <li><NavLink to="/login">Login</NavLink></li></>
+                }
+
             </ul>
 
-            
+
 
         </header>
     )

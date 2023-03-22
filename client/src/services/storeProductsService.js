@@ -14,7 +14,7 @@ export async function getUserProducts () {
 
 
 export async function getStoreProductById(id){
-    let result = await api.get(`/data/storeProducts/${id}`);
+    let result = await api.get(`/data/storeProducts/${id}`);    
     return result;
 }
 
