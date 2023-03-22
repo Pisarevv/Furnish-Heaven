@@ -23,12 +23,22 @@ const UserProductDetails = () => {
         (async () => {
             const result = await getUserProductById(id)
             setProductInfo(result);
-            setIsAddedToCart(cart.some(p => p._productId === id))          
+            setIsAddedToCart(cart.find(p => p._productId === id))          
             console.log(id);
             console.log(cart);
         }
         )()
     }, [])
+
+    useEffect(() => {
+        (async () => {
+            const result = await getUserProductById(id)
+            setProductInfo(result);
+            setIsAddedToCart(cart.find(p => p._productId === id))          
+        }
+        )()
+    }, [isAddedToCart])
+
 
     console.log(isAddedToCart);
 
@@ -42,14 +52,14 @@ const UserProductDetails = () => {
         e.preventDefault()
         let response = await addProductToCartById(user._id,id)
         addProductToCart(response);
-        navigate('/recycle');
+        setIsAddedToCart(true)
     }
 
     const onRemoveProductFromCart = async(e) => {
         e.preventDefault()
-        let response = await removeProductFromCartById(user._id,id)
-        removeProductFromCart(id);
-        navigate('/recycle');
+        await removeProductFromCartById(isAddedToCart._id)
+        removeProductFromCart(id);     
+        setIsAddedToCart(false)
     }
     
 
@@ -67,12 +77,12 @@ const UserProductDetails = () => {
                                 <div className="details-product-details">
                                     <p>Category :{productInfo.category}</p>
                                     <p>Model: {productInfo.model}</p>
-                                    <p>Collection year : {productInfo.year}</p>
+                                    <p>Collection year: {productInfo.year}</p>
                                     <p>{productInfo.description}</p>
                                     <p>Material: {productInfo.material}</p>
 
                                     {(user._id && user._id !==productInfo._ownerId &&  isAddedToCart)  &&
-                                    <NavLink className="sell-btn" onClick={onProductAddToCart}>Remove from cart</NavLink> }
+                                    <NavLink className="sell-btn" onClick={onRemoveProductFromCart}>Remove from cart</NavLink> }
                                      
                                     {(user._id && user._id !==productInfo._ownerId &&  !isAddedToCart)  &&
                                     <NavLink className="sell-btn" onClick={onProductAddToCart}>Add to cart</NavLink> }

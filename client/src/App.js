@@ -24,7 +24,7 @@ function App() {
 
   const [auth,setAuth] = useLocalStorage('user',{});
 
-  const [products,setProducts] = useLocalStorage('cart', {})
+  const [products,setProducts] = useLocalStorage('cart', [])
 
   const userLogin = (userData) => {
     setAuth(userData);
@@ -36,11 +36,19 @@ function App() {
   }
 
   const addProductToCart = (productData) => {
-    setProducts(productData);
+    if(Object.keys(products).length !== 0){
+     
+      setProducts([...products,productData]);
+    }
+    else{
+      setProducts(productData);
+    }
+   
+    
   }
 
   const removeProductFromCart = (productId) => {
-    setProducts(products => products.filter(x => x._productId != productId));
+    setProducts(products.filter(x => x._productId !== productId));
   }
 
   
