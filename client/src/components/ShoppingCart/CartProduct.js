@@ -1,31 +1,48 @@
+import './CartProduct.css';
 
-
-const CartProduct = () => {
+const CartProduct = ({ productInfo }) => {
+    const { _id, imgUrl, quantity, model, price } = productInfo;
+    console.log(productInfo)
     return (
-        <li class="items even">
-
-            <div class="infoWrap">
-                <div class="cartSection">
-
-                    <img src="http://lorempixel.com/output/technics-q-c-300-300-4.jpg" alt="" class="itemImg" />
-                    <p class="itemNumber">#QUE-007544-002</p>
-                    <h3>Item Name 1</h3>
-
-                    <p> <input type="text" class="qty" placeholder="3" /> x $5.00</p>
-
-                    <p class="stockStatus"> In Stock</p>
+         <div className="items even">
+            <div className="infoWrap">
+                <div className="cartSection">
+                    <img src={imgUrl} alt="" className="itemImg" />
+                    <p className="itemNumber">{model}</p>
+                    <h3>{model}</h3>
+                    <p> <input type="text" className="qty" placeholder={quantity} /> x ${price}</p>
+                    <p className="stockStatus">In Stock</p>
                 </div>
-
-
-                <div class="prodTotal cartSection">
-                    <p>$15.00</p>
+                <div className="prodTotal cartSection">
+                    <p>{quantity * price}</p>
                 </div>
-                <div class="cartSection removeWrap">
-                    <a href="#" class="remove">x</a>
+                <div className="cartSection removeWrap">
+                    <a href="#" className="remove">x</a>
                 </div>
             </div>
-        </li>
+        </div>
+
     )
 }
 
 export default CartProduct;
+
+
+        // <li className="items even">
+        //     <div className="infoWrap">
+        //         <div className="cartSection">
+
+        //             <img src={imgUrl} alt="" className="itemImg" />
+        //             <p className="itemNumber">{model}</p>
+        //             <h3>{model}</h3>
+        //             <p> <input type="text" className="qty" placeholder={quantity} /> x ${price}</p>
+        //             <p className="stockStatus">In Stock</p>
+        //         </div>
+        //         <div className="prodTotal cartSection">
+        //             <p>{quantity * price}</p>
+        //         </div>
+        //         <div className="cartSection removeWrap">
+        //             <a href="#" className="remove">x</a>
+        //         </div>
+        //     </div>
+        // </li>

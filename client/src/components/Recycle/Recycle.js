@@ -13,15 +13,13 @@ const Recycle = () => {
 
     const observer = Observer;
 
-   
-    
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach(el => observer.observe(el)); 
 
     useEffect(() => {
       (async () => {
         const result = await getUserProducts();
         setTrendingProducts(userProducts => result);
-        const hiddenElements = document.querySelectorAll('.hidden');
-        hiddenElements.forEach(el => observer.observe(el));
       })()
     },[])
     

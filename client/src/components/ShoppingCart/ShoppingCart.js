@@ -1,29 +1,27 @@
 import { useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 import { getAllUserProductsForCart } from '../../services/cartService';
+import CartProduct from './CartProduct';
 import './ShoppingCart.css';
 
 const ShoppingCart = () => {
 
-    const [productsId, setProductsIds] = useState();
-    const {cart} = useContext(CartContext)
+    const [cartProducts, setCartProducts] = useState([]);
+    const { cart } = useContext(CartContext)
 
     useEffect(() => {
-       (async () => 
-       {
-        // setProductsIds(cart.map(x => x._productId));
-        const productIds = cart.map(x => x._productId);
-        // let searchString = "";
-        // productIds.forEach(x => searchString += `"${x}",`);
-        // let slicedString = searchString.slice(0, searchString.length-1);
-        // console.log(slicedString);
-        const products = await getAllUserProductsForCart(productIds);
-       }
-       )()
-    },[]);
+        (async () => {
+            // setProductsIds(cart.map(x => x._productId));
+            const productIds = cart.map(x => x._productId);
+            let products = await getAllUserProductsForCart(productIds);
+            products = products.map(product => ({ ...product, quantity: 1 }))
+            console.log(products);
+            setCartProducts(products)
+        }
+        )()
+    }, []);
 
-    console.log(productsId);
-    
+
     return (
         <div className="wrap cf">
             <div className="heading cf">
@@ -37,14 +35,12 @@ const ShoppingCart = () => {
                     <li>Total</li>
                     <li>Remove</li>
                 </ul>
-                <ul className="cartWrap">
-                    <li className="items odd">
-
-                        
-                    </li>
-
-
-                </ul>
+                {/* <ul className="cartWrap">
+                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} />)}
+                </ul> */}
+                <div className='cartProductsContainer'>
+                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} />)}
+                </div>
             </div>
 
             <div className="subtotal cf">
