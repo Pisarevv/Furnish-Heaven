@@ -34,10 +34,7 @@ const UserProductDetails = () => {
 
     useEffect(() => {
         (async () => {
-            const result = await getUserProductById(id)
-            setProductInfo(result);
             setProductStatusInCart(cart.find(p => p._productId === id))        
-            console.log("Has changed")  
         }
         )()
     }, [isAddedToCart])
