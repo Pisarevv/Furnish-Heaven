@@ -8,25 +8,25 @@ import "./UserProductDetails.css";
 
 const UserProductDetails = () => {
 
-    const {user} = useContext(AuthContext);
-    const {cart, addProductToCart, removeProductFromCart} = useContext(CartContext);
+    const { user } = useContext(AuthContext);
+    const { cart, addProductToCart, removeProductFromCart } = useContext(CartContext);
 
     const [productInfo, setProductInfo] = useState("");
     const [isAddedToCart, setIsAddedToCart] = useState();
 
-    const [productStatusInCart,setProductStatusInCart] = useState();
+    const [productStatusInCart, setProductStatusInCart] = useState();
 
     const { id } = useParams();
- 
+
     const navigate = useNavigate();
 
-    
+
     useEffect(() => {
         (async () => {
             const result = await getUserProductById(id)
             setProductInfo(result);
-            setProductStatusInCart(cart.find(p => p._productId === id))         
-            setIsAddedToCart(cart.some(p => p._productId === id)) 
+            setProductStatusInCart(cart.find(p => p._productId === id))
+            setIsAddedToCart(cart.some(p => p._productId === id))
             console.log(id);
             console.log(cart);
         }
@@ -37,33 +37,34 @@ const UserProductDetails = () => {
         (async () => {
             const result = await getUserProductById(id)
             setProductInfo(result);
-            setProductStatusInCart(cart.find(p => p._productId === id))        
-            console.log("Has changed")  
+            setProductStatusInCart(cart.find(p => p._productId === id))
+            console.table(cart);
+            console.log("Has changed")
         }
         )()
     }, [isAddedToCart])
 
 
-    const onProductDelete = async(e) => {
+    const onProductDelete = async (e) => {
         e.preventDefault();
         await deleteUserProductById(id);
         navigate('/recycle');
     }
 
-    const onProductAddToCart = async(e) => {
+    const onProductAddToCart = async (e) => {
         e.preventDefault()
-        let response = await addProductToCartById(user._id,id)
+        let response = await addProductToCartById(user._id, id)
         addProductToCart(response);
         setIsAddedToCart(true)
     }
 
-    const onRemoveProductFromCart = async(e) => {
+    const onRemoveProductFromCart = async (e) => {
         e.preventDefault()
         await removeProductFromCartById(productStatusInCart._id)
-        removeProductFromCart(id);     
+        removeProductFromCart(id);
         setIsAddedToCart(false)
     }
-    
+
 
     return (
         <section className="details-wrapper">
@@ -71,7 +72,7 @@ const UserProductDetails = () => {
                 <div className="details-product-wrapper">
                     <div className="details-product-container">
                         <div className="details-product-top">
-                            <img src = {productInfo.imgUrl}></img>
+                            <img src={productInfo.imgUrl}></img>
                         </div>
 
                         <div className="details-product-bottom">
@@ -83,17 +84,17 @@ const UserProductDetails = () => {
                                     <p>{productInfo.description}</p>
                                     <p>Material: {productInfo.material}</p>
 
-                                    {(user._id && user._id !==productInfo._ownerId &&  isAddedToCart)  &&
-                                    <NavLink className="sell-btn" onClick={onRemoveProductFromCart}>Remove from cart</NavLink> }
-                                     
-                                    {(user._id && user._id !==productInfo._ownerId &&  !isAddedToCart)  &&
-                                    <NavLink className="sell-btn" onClick={onProductAddToCart}>Add to cart</NavLink> }
-                                    
+                                    {(user._id && user._id !== productInfo._ownerId && isAddedToCart) &&
+                                        <NavLink className="sell-btn" onClick={onRemoveProductFromCart}>Remove from cart</NavLink>}
+
+                                    {(user._id && user._id !== productInfo._ownerId && !isAddedToCart) &&
+                                        <NavLink className="sell-btn" onClick={onProductAddToCart}>Add to cart</NavLink>}
+
                                     {user._id === productInfo._ownerId && <>
                                         <NavLink className="sell-btn" to={`/recycle/${id}/edit`}>Edit</NavLink>
-                                        <NavLink className="sell-btn" onClick= {onProductDelete}>Delete</NavLink>
-                                        </>}
-                                    
+                                        <NavLink className="sell-btn" onClick={onProductDelete}>Delete</NavLink>
+                                    </>}
+
                                 </div>
                             </div>
                         </div>

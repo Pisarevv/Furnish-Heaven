@@ -32,28 +32,24 @@ function App() {
 
   const userLogout = () => {
     setAuth({})
-    setProducts({})
+    setProducts([])
   }
 
   const addProductToCart = (productData) => {
 
-    if(Object.keys(products).length == 0){
-      setProducts(productData);
-    }
-    else if(Object.keys(products).length == 4){
-      const array = [products];
-      array.push(productData);
-      setProducts(array);
+    setProducts([...products,productData]);
+    // if(Object.keys(products).length == 0){
+    //   setProducts(productData);
+    // }
+    // else if(Object.keys(products).length == 4){
+    //   const array = [products];
+    //   array.push(productData);
+    //   setProducts(array);
 
-    }
-    else{
-        setProducts([...products,productData]);
-    }
-
-    
-   
-   
-  
+    // }
+    // else{
+        
+    // }
   }
 
   const removeProductFromCart = (productId) => {
