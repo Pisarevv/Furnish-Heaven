@@ -36,15 +36,24 @@ function App() {
   }
 
   const addProductToCart = (productData) => {
-    if(Object.keys(products).length !== 0){
-     
-      setProducts([...products,productData]);
-    }
-    else{
+
+    if(Object.keys(products).length == 0){
       setProducts(productData);
     }
-   
+    else if(Object.keys(products).length == 4){
+      const array = [products];
+      array.push(productData);
+      setProducts(array);
+
+    }
+    else{
+        setProducts([...products,productData]);
+    }
+
     
+   
+   
+  
   }
 
   const removeProductFromCart = (productId) => {
