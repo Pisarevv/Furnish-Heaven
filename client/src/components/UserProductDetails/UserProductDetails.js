@@ -25,7 +25,8 @@ const UserProductDetails = () => {
         (async () => {
             const result = await getUserProductById(id)
             setProductInfo(result);
-            setProductStatusInCart(cart.find(p => p._productId === id))          
+            setProductStatusInCart(cart.find(p => p._productId === id))         
+            setIsAddedToCart(cart.some(p => p._productId === id)) 
             console.log(id);
             console.log(cart);
         }
@@ -34,7 +35,10 @@ const UserProductDetails = () => {
 
     useEffect(() => {
         (async () => {
+            const result = await getUserProductById(id)
+            setProductInfo(result);
             setProductStatusInCart(cart.find(p => p._productId === id))        
+            console.log("Has changed")  
         }
         )()
     }, [isAddedToCart])
