@@ -14,6 +14,8 @@ const UserProductDetails = () => {
     const [productInfo, setProductInfo] = useState("");
     const [isAddedToCart, setIsAddedToCart] = useState();
 
+    const [productStatusInCart,setProductStatusInCart] = useState();
+
     const { id } = useParams();
  
     const navigate = useNavigate();
@@ -23,18 +25,19 @@ const UserProductDetails = () => {
         (async () => {
             const result = await getUserProductById(id)
             setProductInfo(result);
-            setIsAddedToCart(cart.find(p => p._productId === id))          
+            setProductStatusInCart(cart.find(p => p._productId === id))          
             console.log(id);
             console.log(cart);
         }
         )()
-    }, [],[cart.length])
+    }, [])
 
     useEffect(() => {
         (async () => {
             const result = await getUserProductById(id)
             setProductInfo(result);
-            setIsAddedToCart(cart.find(p => p._productId === id))          
+            setProductStatusInCart(cart.find(p => p._productId === id))        
+            console.log("Has changed")  
         }
         )()
     }, [isAddedToCart])
@@ -55,7 +58,7 @@ const UserProductDetails = () => {
 
     const onRemoveProductFromCart = async(e) => {
         e.preventDefault()
-        await removeProductFromCartById(isAddedToCart._id)
+        await removeProductFromCartById(productStatusInCart._id)
         removeProductFromCart(id);     
         setIsAddedToCart(false)
     }
