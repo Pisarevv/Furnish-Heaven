@@ -18,6 +18,7 @@ import UserProductDetails from './components/UserProductDetails/UserProductDetai
 import EditUserProduct from './components/EditUserProduct/EditUserProduct';
 import CreateUserProduct from './components/CreateUserProduct/CreateUserProduct';
 import { CartContext } from './contexts/CartContext';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 
 function App() {
@@ -75,6 +76,7 @@ function App() {
             <Route path='/create' element={<CreateUserProduct/>} />
             <Route path='/recycle/:id' element = {<UserProductDetails/>} />
             <Route path='/recycle/:id/edit' element = {<EditUserProduct/>} />
+            <Route path='/cart' element = {<ShoppingCart/>}/>
           </Routes>
         </main>
         <Footer />

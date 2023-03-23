@@ -31,7 +31,7 @@ const Navigation = () => {
                         ?
                         <><li><NavLink to="/logout">Logout</NavLink></li>
                             <span className="fa-layers fa-fw fa-2x" >
-                                <NavLink className="fas fa-envelope fa-sm" to="/"><FontAwesomeIcon icon={faCartShopping} /></NavLink>
+                                <NavLink className="fas fa-envelope fa-sm" to="/cart"><FontAwesomeIcon icon={faCartShopping} /></NavLink>
                                 {cart.length > 0 &&  <span className="fa-layers-counter" >{cart.length}</span>}
                             </span>
                         </>
