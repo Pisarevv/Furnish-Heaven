@@ -36,20 +36,18 @@ function App() {
   }
 
   const addProductToCart = (productData) => {
-
-    setProducts([...products,productData]);
-    // if(Object.keys(products).length == 0){
-    //   setProducts(productData);
-    // }
-    // else if(Object.keys(products).length == 4){
-    //   const array = [products];
-    //   array.push(productData);
-    //   setProducts(array);
-
-    // }
-    // else{
-        
-    // }
+    if(products.length == 0){
+      if(Array.isArray(productData)){
+        setProducts(productData);
+      }
+      else{
+        let newArray = [productData]
+        setProducts(newArray);
+      }
+    }
+    else{
+      setProducts([...products,productData]);
+    }
   }
 
   const removeProductFromCart = (productId) => {

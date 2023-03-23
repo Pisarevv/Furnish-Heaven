@@ -27,8 +27,6 @@ const UserProductDetails = () => {
             setProductInfo(result);
             setProductStatusInCart(cart.find(p => p._productId === id))
             setIsAddedToCart(cart.some(p => p._productId === id))
-            console.log(id);
-            console.log(cart);
         }
         )()
     }, [])
