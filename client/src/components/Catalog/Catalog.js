@@ -5,7 +5,7 @@ import Observer from '../../utils/Observer';
 import './Catalog.css'
 import TrendingProductCard from './TrendingProductCard';
 import { AuthContext } from '../../contexts/AuthContext';
-import { AlertHandler } from '../../utils/Common';
+import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
 
 const Catalog = () => {
 
@@ -25,7 +25,7 @@ const Catalog = () => {
         }
         catch (error) {
             if(error === "Invalid access token"){
-                AlertHandler(error,"Your access token has expired! Please log in again","critical")
+                ErrorHandler(error)
                 userLogout();
             };
       }}

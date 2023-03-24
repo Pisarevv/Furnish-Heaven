@@ -4,9 +4,9 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { CartContext } from '../../contexts/CartContext';
 import { login } from '../../services/authService';
 import { getUserCartItems } from '../../services/cartService';
-import { Store } from 'react-notifications-component';
+import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
 import './Login.css'
-import { AlertHandler } from '../../utils/Common';
+
 
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
             navigate('/');
         }
         catch (error) {
-            AlertHandler("Invalid credentials",error,"warning")
+            ErrorHandler(error);
         }
 
     }
