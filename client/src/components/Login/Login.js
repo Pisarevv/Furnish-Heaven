@@ -11,20 +11,20 @@ import './Login.css'
 
 const Login = () => {
 
-    const { userLogin , userLogout} = useContext(AuthContext);
+    const { userLogin } = useContext(AuthContext);
     const { addProductToCart } = useContext(CartContext);
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState({});
+
 
     const onEmailChange = (e) => {
-        setEmail(e.target.value);
+        setEmail(email => e.target.value);
     }
 
     const onPasswordChange = (e) => {
-        setPassword(e.target.value);
+        setPassword(email => e.target.value);
     }
 
     const loginHandler = async (e) => {

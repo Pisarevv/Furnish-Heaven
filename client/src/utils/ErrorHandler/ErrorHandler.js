@@ -11,7 +11,12 @@ const errors = {
         title : "Invalid credentials",
         message : "Login or password don\'t match",
         type : "warning"
-    }
+    },
+    "Invalid register fields" : {
+        title : "Invalid input",
+        message : "All fields must be valid",
+        type : "warning"
+    },
 }
 
 

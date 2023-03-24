@@ -7,6 +7,14 @@ const CreateUserProduct = () => {
     
     const navigate = useNavigate();
 
+    const category = useRef();
+    const description = useRef();
+    const imgUrl = useRef();
+    const model = useRef();
+    const price = useRef();
+    const type = useRef();
+    const year = useRef();
+
     const productDetailsInput = useRef({
         category: "",
         description: "",

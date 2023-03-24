@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import './Register.css'
 import { register } from '../../services/authService';
 import { AuthContext } from '../../contexts/AuthContext';
+import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
 
 const Register = () => {
 
@@ -73,12 +74,17 @@ const Register = () => {
         console.log(email.current,password.current);
         
         try{
-            let result = await register(email.current,password.current);
-            userLogin({email:result.email, accessToken:result.accessToken, _id:result._id});
-            navigate('/');
+            if(isInputValid.emailValid && isInputValid.passwordValid && isInputValid.rePasswordValid){
+                let result = await register(email.current,password.current);
+                userLogin({email:result.email, accessToken:result.accessToken, _id:result._id});
+                navigate('/');
+            }
+            else{
+                throw("Invalid register fields")
+            }
         }
-        catch{
-            alert("wrong data")
+        catch(error){
+            ErrorHandler(error);
         }
         
        }
