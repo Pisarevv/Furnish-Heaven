@@ -9,59 +9,21 @@ import Register from './components/Register/Register';
 import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 import Faq from './components/Faq/Faq';
-import { AuthContext } from './contexts/AuthContext';
-import { useEffect, useState } from 'react';
+import { AuthProvider } from './contexts/AuthContext';
 import useLocalStorage from './hooks/useLocalStorage';
 import Logout from './components/Logout/Logout';
 import Recycle from './components/Recycle/Recycle';
 import UserProductDetails from './components/UserProductDetails/UserProductDetails';
 import EditUserProduct from './components/EditUserProduct/EditUserProduct';
 import CreateUserProduct from './components/CreateUserProduct/CreateUserProduct';
-import { CartContext } from './contexts/CartContext';
+import { CartProvider } from './contexts/CartContext';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 
 function App() {
-
-  const [auth,setAuth] = useLocalStorage('user',{});
-
-  const [products,setProducts] = useLocalStorage('cart', [])
-
-  const userLogin = (userData) => {
-    setAuth(userData);
-  }
-
-  const userLogout = () => {
-    setAuth({})
-    setProducts([])
-  }
-
-  const addProductToCart = (productData) => {
-    if(products.length == 0){
-      if(Array.isArray(productData)){
-        setProducts(productData);
-      }
-      else{
-        let newArray = [productData]
-        setProducts(newArray);
-      }
-    }
-    else{
-      setProducts([...products,productData]);
-    }
-  }
-
-  const removeProductFromCart = (productId) => {
-    setProducts(products.filter(x => x._productId !== productId));
-  }
-
-  
-
-
-
   return (
-    <AuthContext.Provider value = {{user: auth, userLogin, userLogout}}>
-      <CartContext.Provider value = {{cart: products, addProductToCart, removeProductFromCart}}>
+    <CartProvider >
+    <AuthProvider>
       <div className="App">
         <Navigation />
         <main id="main-content">
@@ -81,8 +43,8 @@ function App() {
         </main>
         <Footer />
       </div>
-      </CartContext.Provider>
-    </AuthContext.Provider>
+    </AuthProvider>
+    </CartProvider>
   );
   
 }
