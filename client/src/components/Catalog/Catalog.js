@@ -4,8 +4,8 @@ import { getTrendingProducts } from '../../services/storeProductsService';
 import Observer from '../../utils/Observer';
 import './Catalog.css'
 import TrendingProductCard from './TrendingProductCard';
-import { Store } from 'react-notifications-component';
 import { AuthContext } from '../../contexts/AuthContext';
+import { AlertHandler } from '../../utils/Common';
 
 const Catalog = () => {
 
@@ -25,19 +25,7 @@ const Catalog = () => {
         }
         catch (error) {
             if(error === "Invalid access token"){
-                Store.addNotification({
-                    title: error,
-                    message: "Your access token has expired.Please log in again",
-                    type: "warning",
-                    insert: "top",
-                    container: "top-right",
-                    animationIn: ["animate__animated", "animate__fadeIn"],
-                    animationOut: ["animate__animated", "animate__fadeOut"],
-                    dismiss: {
-                        duration: 5000,
-                        onScreen: true
-                    }
-                });
+                AlertHandler(error,"Your access token has expired! Please log in again","critical")
                 userLogout();
             };
       }}

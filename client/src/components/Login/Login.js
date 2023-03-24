@@ -6,6 +6,7 @@ import { login } from '../../services/authService';
 import { getUserCartItems } from '../../services/cartService';
 import { Store } from 'react-notifications-component';
 import './Login.css'
+import { AlertHandler } from '../../utils/Common';
 
 
 const Login = () => {
@@ -37,36 +38,7 @@ const Login = () => {
             navigate('/');
         }
         catch (error) {
-            if(error === "Login or password don't match"){
-            Store.addNotification({
-            title: "Invalid credentials!",
-            message: error,
-            type: "warning",
-            insert: "top",
-            container: "top-right",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-                duration: 5000,
-                onScreen: true
-            }
-        })}
-        else if(error === "Invalid access token"){
-            Store.addNotification({
-                title: error,
-                message: "Please log in again",
-                type: "warning",
-                insert: "top",
-                container: "top-right",
-                animationIn: ["animate__animated", "animate__fadeIn"],
-                animationOut: ["animate__animated", "animate__fadeOut"],
-                dismiss: {
-                    duration: 5000,
-                    onScreen: true
-                }
-            });
-            userLogout();
-        };
+            AlertHandler("Invalid credentials",error,"warning")
         }
 
     }
