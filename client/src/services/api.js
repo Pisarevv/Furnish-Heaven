@@ -1,12 +1,14 @@
+
+
 let target = "http://localhost:3030"
 
-async function request(method,url,data){
+async function request(method, url, data) {
     let options = {
         method,
-        headers:{}
+        headers: {}
     }
 
-    if(data){
+    if (data) {
         options.headers["Content-type"] = "application/json";
         options.body = JSON.stringify(data);
     }
@@ -15,34 +17,36 @@ async function request(method,url,data){
     const auth = JSON.parse(user || '{}');
 
 
-    if(auth.accessToken){
+    if (auth.accessToken) {
         options.headers['X-Authorization'] = auth.accessToken;
     }
 
-    try{
-        let response = await fetch(target + url,options);
+    try {
+        let response = await fetch(target + url, options);
 
-        if(response.status === 204){
+        if (response.status === 204) {
             return response;
         }
 
         let result = await response.json();
 
-        if(response.ok !== true){
-             if(response.status === 403){
-              localStorage.setItem('user',JSON.stringify({}));
-              
+        if (response.ok !== true) {
+            if (response.status === 403) {
+                // localStorage.setItem('user', JSON.stringify({}));
+                if(response.message == "Invalid access token"){
+                    throw (result.message);
+                }
+                else{
+                    throw (result.message);
+                }
             }
-            
-
-            throw new Error(response.message);
+            throw new Error(result.message);
         }
 
         return result;
     }
-    catch(error){
-        alert(error.message);
-        throw new Error();
+    catch (error) {  
+        throw (error);
     }
 
 
@@ -50,20 +54,20 @@ async function request(method,url,data){
 
 
 
-function post(url,data){
-    return request("post",url,data)
+function post(url, data) {
+    return request("post", url, data)
 }
 
-function get(url){
-    return request("get",url);
+function get(url) {
+    return request("get", url);
 }
 
-function put(url,data){
-    return request("put",url,data)
+function put(url, data) {
+    return request("put", url, data)
 }
 
-function del (url){
-    return request("delete",url);
+function del(url) {
+    return request("delete", url);
 }
 
 export {

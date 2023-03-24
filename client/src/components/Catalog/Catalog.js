@@ -1,12 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { getTrendingProducts } from '../../services/storeProductsService';
 import Observer from '../../utils/Observer';
 import './Catalog.css'
 import TrendingProductCard from './TrendingProductCard';
+import { Store } from 'react-notifications-component';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Catalog = () => {
 
+    const {userLogout} = useContext(AuthContext);
     const observer = Observer;
 
     const hiddenElements = document.querySelectorAll('.hidden');
@@ -16,9 +19,29 @@ const Catalog = () => {
 
     useEffect(() => {
       (async () => {
-        const result = await getTrendingProducts();
-        setTrendingProducts(trendingProducts => result);
-      })()
+        try{
+            const result = await getTrendingProducts();
+            setTrendingProducts(trendingProducts => result);
+        }
+        catch (error) {
+            if(error === "Invalid access token"){
+                Store.addNotification({
+                    title: error,
+                    message: "Your access token has expired.Please log in again",
+                    type: "warning",
+                    insert: "top",
+                    container: "top-right",
+                    animationIn: ["animate__animated", "animate__fadeIn"],
+                    animationOut: ["animate__animated", "animate__fadeOut"],
+                    dismiss: {
+                        duration: 5000,
+                        onScreen: true
+                    }
+                });
+                userLogout();
+            };
+      }}
+      )()
     },[])
     
     console.log(trendingProducts);
