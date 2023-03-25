@@ -23,8 +23,9 @@ import PrivateGuard from './components/Common/PrivateGuard';
 
 function App() {
   return (
+    <AuthProvider>
     <CartProvider >
-      <AuthProvider>
+     
         <div className="App">
           <Navigation />
           <main id="main-content">
@@ -37,7 +38,7 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/faq' element={<Faq />} />
               <Route path='/recycle/:id' element={<UserProductDetails />} />
-              <Route element={<PrivateGuard />}>
+              <Route element={<PrivateGuard/>}>
                 <Route path='/recycle/:id/edit' element={<EditUserProduct />} />
                 <Route path='/cart' element={<ShoppingCart />} />
                 <Route path='/create' element={<CreateUserProduct />} />
@@ -46,8 +47,9 @@ function App() {
           </main>
           <Footer />
         </div>
-      </AuthProvider>
+     
     </CartProvider>
+    </AuthProvider>
   );
 
 }

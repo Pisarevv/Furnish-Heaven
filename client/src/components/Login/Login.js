@@ -1,18 +1,19 @@
 import { useContext, useEffect, useState } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../contexts/AuthContext';
-import { CartContext } from '../../contexts/CartContext';
+// import { AuthContext } from '../../contexts/AuthContext';
 import { login } from '../../services/authService';
 import { getUserCartItems } from '../../services/cartService';
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
+import { useCartContext } from "../../contexts/CartContext";
 import './Login.css'
+import { useAuthContext } from '../../contexts/AuthContext';
 
 
 
 const Login = () => {
 
-    const { userLogin } = useContext(AuthContext);
-    const { addProductToCart } = useContext(CartContext);
+    const { userLogin } = useAuthContext();
+    const { addProductToCart } = useCartContext();
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
