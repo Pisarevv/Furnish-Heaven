@@ -10,7 +10,7 @@ export const CartProvider = ({
     const [products,setProducts] = useLocalStorage('cart', [])
 
     const addProductToCart = (productData) => {
-      if(products.length == 0){
+      if(products.length === 0){
         if(Array.isArray(productData)){
           setProducts(products => productData);
         }
@@ -38,4 +38,11 @@ export const CartProvider = ({
             {children}
         </CartContext.Provider>
     );
+}
+
+
+export const useCartContext = () => {
+  const context = useCartContext();
+
+  return context;
 }

@@ -2,21 +2,25 @@ import * as api from "./api";
 
 const minRating = 5;
 
+//Store products
+
 export async function getTrendingProducts () {
     let results = await api.get(`/data/storeProducts?select=${encodeURIComponent("_id,model,price,imgUrl,rating")}&where=${encodeURIComponent(`rating>=${minRating}`)}&pageSize=4`);
     return results;
 }
 
+export async function getStoreProductById(id){
+    let result = await api.get(`/data/storeProducts/${id}`);    
+    return result;
+}
+
+
+//User products
 export async function getUserProducts () {
     let results = await api.get(`/data/userProducts?select=${encodeURIComponent("_id,model,price,imgUrl,rating")}`);
     return results;
 }
 
-
-export async function getStoreProductById(id){
-    let result = await api.get(`/data/storeProducts/${id}`);    
-    return result;
-}
 
 export async function getUserProductById(id){
     let result = await api.get(`/data/userProducts/${id}`);

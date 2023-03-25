@@ -7,9 +7,9 @@ const errors = {
         message : "Your session has expired Please log in again.",
         type : "warning"
     },
-    "Login or password don\'t match" : {
+    "Login or password don't match" : {
         title : "Invalid credentials",
-        message : "Login or password don\'t match",
+        message : "Login or password don't match",
         type : "warning"
     },
     "Invalid register fields" : {
@@ -34,7 +34,7 @@ export const ErrorHandler = (inputError) => {
             animationIn: ["animate__animated", "animate__fadeIn"],
             animationOut: ["animate__animated", "animate__fadeOut"],
             dismiss: {
-                duration: 5000,
+                duration: 3000,
                 onScreen: true
             }
         })
