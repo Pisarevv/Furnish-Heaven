@@ -18,6 +18,7 @@ img {
 }
 .wrap {
 	width: 75%;
+	min-height: 70vh;
 	max-width: 960px;
 	margin: 0 auto;
 	padding: 5% 0;

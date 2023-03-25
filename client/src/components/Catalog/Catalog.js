@@ -20,6 +20,7 @@ const Catalog = () => {
     useEffect(() => {
       (async () => {
         try{
+            window.scrollTo(0, 0)
             const result = await getTrendingProducts();
             setTrendingProducts(trendingProducts => result);
         }

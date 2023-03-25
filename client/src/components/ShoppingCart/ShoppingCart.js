@@ -57,6 +57,7 @@ const ShoppingCart = () => {
             <div className="cart">
                 <ul className="cartWrap">
                     <li className="items odd">
+                        {/* TODO: Add paragraph when there are no products  */}
                     {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} removeProduct = {removeProduct} modifyQuantity = {modifyQuantity} />)}
                     </li>
 
