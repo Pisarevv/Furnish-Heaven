@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from 'react';
-import { useAuthContext } from '../../contexts/AuthContext';
-import { CartContext, useCartContext } from '../../contexts/CartContext';
-import { getAllUserProductsForCart, getUserCartItems, removeProductFromCartById } from '../../services/cartService';
+import { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { useCartContext } from '../../contexts/CartContext';
+import { getAllUserProductsForCart, removeProductFromCartById } from '../../services/cartService';
 import { AssignCartRecordIdToProductId } from '../../utils/Common';
 import CartProduct from './CartProduct';
 import './ShoppingCart.css';
@@ -10,8 +10,8 @@ const ShoppingCart = () => {
 
     const [cartProducts, setCartProducts] = useState([]);
     const { cart , removeProductFromCart} = useCartContext();
-    const { user} = useAuthContext();
     
+    const [totalPrice, setTotalPrice] = useState(0);
 
     const removeProduct = async (id) => {
        await removeProductFromCartById(id);
@@ -19,9 +19,15 @@ const ShoppingCart = () => {
        setCartProducts(cartProducts => cartProducts.filter(p => p.cartRecId !== id));
     }
 
+    const modifyQuantity = (id,quantity) => {
+        let product = cartProducts.find(x => x.cartRecId == id);
+        product.quantity = quantity;
+        setCartProducts(cartProducts.slice())
+        console.log(cartProducts)
+    }
+
     useEffect(() => {
         (async () => {
-            // setProductsIds(cart.map(x => x._productId));
             const productIds = cart.map(x => x._productId); 
             if(productIds.length > 0){
                 let cardRecordIds = cart.map(x => { return { cartRecId :x._id , productId : x._productId}});
@@ -29,24 +35,29 @@ const ShoppingCart = () => {
                 products = AssignCartRecordIdToProductId(cardRecordIds,products);
                 products = products.map(product => ({ ...product, quantity: 1 }))
                 console.log(products);
-                setCartProducts(products)
-            }
-            
+                setCartProducts(products);
+            }  
         }
         )()
     }, []);
+
+    useEffect(() => {
+     let totalPriceOfAllProducts = cartProducts.map(x => x.price * x.quantity).reduce((acc,curr) => acc + curr ,0);
+     setTotalPrice(totalPriceOfAllProducts);
+     console.log(totalPriceOfAllProducts);
+    },[cartProducts]);
 
 
     return (
         <div className="wrap cf">
             <div className="heading cf">
                 <h1>My Cart</h1>
-                <a href="#" className="continue">Continue Shopping</a>
+                <NavLink className="continue" to ="/">Continue Shopping</NavLink>
             </div>
             <div className="cart">
                 <ul className="cartWrap">
                     <li className="items odd">
-                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} removeProduct = {removeProduct} />)}
+                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} removeProduct = {removeProduct} modifyQuantity = {modifyQuantity} />)}
                     </li>
 
                 </ul>
@@ -54,12 +65,7 @@ const ShoppingCart = () => {
 
             <div className="subtotal cf">
                 <ul>
-                    <li className="totalRow"><span className="label">Subtotal</span><span className="value">$35.00</span></li>
-
-                    <li className="totalRow"><span className="label">Shipping</span><span className="value">$5.00</span></li>
-
-                    <li className="totalRow"><span className="label">Tax</span><span className="value">$4.00</span></li>
-                    <li className="totalRow final"><span className="label">Total</span><span className="value">$44.00</span></li>
+                    <li className="totalRow final"><span className="label">Total</span><span className="value">${totalPrice}</span></li>
                     <li className="totalRow"><a href="#" className="btn continue">Checkout</a></li>
                 </ul>
             </div>
