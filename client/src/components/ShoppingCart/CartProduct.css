@@ -96,16 +96,16 @@
     color: #6f6f6f;
     font-family: helvetica, arial, sans-serif;
 }
-a.remove {
+.remove {
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
     color: #fff;
     font-weight: bold;
     background: #e0e0e0;
     padding: 0.5em;
-    font-size: 0.75em;
-    display: inline-block;
-    border-radius: 100%;
+    /* font-size: 0.75em;
+    display: inline-block; */
+    border-radius: 45%;
     line-height: 0.85;
     -webkit-transition: all 0.25s linear;
     -moz-transition: all 0.25s linear;
@@ -113,7 +113,7 @@ a.remove {
     -o-transition: all 0.25s linear;
     transition: all 0.25s linear;
 }
-a.remove:hover {
+.remove:hover {
     background: #f30;
 }
 .promoCode {

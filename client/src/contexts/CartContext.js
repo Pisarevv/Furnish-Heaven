@@ -12,20 +12,22 @@ export const CartProvider = ({
     const addProductToCart = (productData) => {
       if(products.length === 0){
         if(Array.isArray(productData)){
-          setProducts(productData);
+          setProducts(products => productData);
         }
         else{
           let newArray = [productData]
           setProducts(newArray);
         }
       }
-      else{
-        setProducts(products =>[...products,productData]);
+      else{ 
+        setProducts([...products,productData].slice());
       }
     }
   
-    const removeProductFromCart = (productId) => {
-      setProducts(products => products.filter(x => x._productId !== productId));
+    const removeProductFromCart = (id) => {
+      if(products.some(p => p._id == id)){
+        setProducts(products.filter(x => x._id !== id));
+      } 
     }
   
     const emptyCart = () => {

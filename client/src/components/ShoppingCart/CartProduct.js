@@ -1,8 +1,13 @@
+import { faRemove } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useCartContext } from '../../contexts/CartContext';
 import './CartProduct.css';
 
-const CartProduct = ({ productInfo }) => {
-    const { _id, imgUrl, quantity, model, price } = productInfo;
-    console.log(productInfo)
+const CartProduct = ({ productInfo , removeProduct}) => {
+  
+    const { _id, imgUrl, quantity, model, price, cartRecId } = productInfo;
+    // console.log(productInfo)
+    // console.log(removeProduct);
     return (
         <div className="infoWrap">
             <div className="cartSection product">
@@ -17,7 +22,7 @@ const CartProduct = ({ productInfo }) => {
                 <p>${quantity * price}</p>
             </div>
             <div className="cartSection removeWrap">
-                <a href="#" className="remove">x</a>
+              <FontAwesomeIcon className='remove' onClick={() => removeProduct(cartRecId)} icon={faRemove} />
             </div>
         </div>
 

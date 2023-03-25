@@ -5,3 +5,14 @@ export function FormatCartSearchIds(inputIds) {
     return  formatedIds;
 }
 
+export function AssignCartRecordIdToProductId(cartRecordIds,products){
+    products.forEach(product => {
+        cartRecordIds.forEach(record => {
+            if(product._id == record.productId){
+                product.cartRecId = record.cartRecId;
+            }
+        })
+    })
+
+    return products;
+}

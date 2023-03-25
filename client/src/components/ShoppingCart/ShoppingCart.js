@@ -1,22 +1,37 @@
 import { useContext, useEffect, useState } from 'react';
-import { CartContext } from '../../contexts/CartContext';
-import { getAllUserProductsForCart } from '../../services/cartService';
+import { useAuthContext } from '../../contexts/AuthContext';
+import { CartContext, useCartContext } from '../../contexts/CartContext';
+import { getAllUserProductsForCart, getUserCartItems, removeProductFromCartById } from '../../services/cartService';
+import { AssignCartRecordIdToProductId } from '../../utils/Common';
 import CartProduct from './CartProduct';
 import './ShoppingCart.css';
 
 const ShoppingCart = () => {
 
     const [cartProducts, setCartProducts] = useState([]);
-    const { cart } = useContext(CartContext)
+    const { cart , removeProductFromCart} = useCartContext();
+    const { user} = useAuthContext();
+    
+
+    const removeProduct = async (id) => {
+       await removeProductFromCartById(id);
+       removeProductFromCart(id);
+       setCartProducts(cartProducts => cartProducts.filter(p => p.cartRecId !== id));
+    }
 
     useEffect(() => {
         (async () => {
             // setProductsIds(cart.map(x => x._productId));
-            const productIds = cart.map(x => x._productId);
-            let products = await getAllUserProductsForCart(productIds);
-            products = products.map(product => ({ ...product, quantity: 1 }))
-            console.log(products);
-            setCartProducts(products)
+            const productIds = cart.map(x => x._productId); 
+            if(productIds.length > 0){
+                let cardRecordIds = cart.map(x => { return { cartRecId :x._id , productId : x._productId}});
+                let products = await getAllUserProductsForCart(productIds);
+                products = AssignCartRecordIdToProductId(cardRecordIds,products);
+                products = products.map(product => ({ ...product, quantity: 1 }))
+                console.log(products);
+                setCartProducts(products)
+            }
+            
         }
         )()
     }, []);
@@ -31,7 +46,7 @@ const ShoppingCart = () => {
             <div className="cart">
                 <ul className="cartWrap">
                     <li className="items odd">
-                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} />)}
+                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} removeProduct = {removeProduct} />)}
                     </li>
 
                 </ul>
@@ -49,25 +64,7 @@ const ShoppingCart = () => {
                 </ul>
             </div>
         </div>
-        // <div classNameName="wrap cf">
-        //     <div classNameName="heading cf">
-        //         <h1>My Cart</h1>
-        //         <a href="#" classNameName="continue">Continue Shopping</a>
-        //     </div>
-        //     <div classNameName="cart">
-        //             {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} />)}
-        //     </div>
 
-        //     <div classNameName="subtotal cf">
-        //         <ul classNameName='total'>
-        //             <li classNameName="totalRow"><span classNameName="label">Subtotal</span><span classNameName="value">$35.00</span></li>
-        //             <li classNameName="totalRow"><span classNameName="label">Shipping</span><span classNameName="value">$5.00</span></li>
-        //             <li classNameName="totalRow"><span classNameName="label">Tax</span><span classNameName="value">$4.00</span></li>
-        //             <li classNameName="totalRow final"><span classNameName="label">Total</span><span classNameName="value">$44.00</span></li>
-        //             <li classNameName="totalRow"><a href="#" classNameName="btn continue">Checkout</a></li>
-        //         </ul>
-        //     </div>
-        // </div>
     )
 }
 

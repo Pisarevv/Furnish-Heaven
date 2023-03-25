@@ -59,7 +59,7 @@ const UserProductDetails = () => {
     const onRemoveProductFromCart = async (e) => {
         e.preventDefault()
         await removeProductFromCartById(productStatusInCart._id)
-        removeProductFromCart(id);
+        removeProductFromCart(productStatusInCart._id);
         setIsAddedToCart(false)
     }
 
