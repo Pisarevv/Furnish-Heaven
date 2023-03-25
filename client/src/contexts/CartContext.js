@@ -16,7 +16,7 @@ export const CartProvider = ({
         }
         else{
           let newArray = [productData]
-          setProducts(products => newArray);
+          setProducts(newArray);
         }
       }
       else{

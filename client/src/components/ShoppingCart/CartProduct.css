@@ -1,22 +1,27 @@
 .cart .items {
-    /* display: block; */
+    display: block;
     width: 100%;
-    /* padding: 1em;
-    border-bottom: 1px solid #fafafa; */
+    vertical-align: middle;
+    padding: 1.5em;
+    border-bottom: 1px solid #fafafa;
 }
 .cart .items.even {
     background: #fafafa;
 }
 .cart .items .infoWrap {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10em;
+    justify-content: space-between;
     width: 100%;
 }
 .cart .items .cartSection {
-    /* display: table-cell;
-    vertical-align: middle; */
+    /* display: table-cell; */
+    vertical-align: middle;
+}
+.cartSection .product{
+    size: 200px;
+}
+.cartSection .quantity{
+    width: 200px;
 }
 .cart .items .cartSection .itemNumber {
     font-size: 0.75em;
@@ -27,6 +32,7 @@
     font-size: 1em;
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
+    float: left;
     text-transform: uppercase;
     letter-spacing: 0.025em;
 }
@@ -55,6 +61,7 @@
 }
 .cart .items .cartSection.qtyWrap, .cart .items .cartSection.prodTotal {
     text-align: center;
+    width: 100px;
 }
 .cart .items .cartSection.qtyWrap p, .cart .items .cartSection.prodTotal p {
     font-weight: bold;
@@ -72,7 +79,23 @@
     display: inline;
     padding-right: 1em;
 }
-
+.special {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+}
+.special .specialContent {
+    padding: 1em 1em 0;
+    display: block;
+    margin-top: 0.5em;
+    border-top: 1px solid #dadada;
+}
+.special .specialContent:before {
+    content: "\21b3";
+    font-size: 1.5em;
+    margin-right: 1em;
+    color: #6f6f6f;
+    font-family: helvetica, arial, sans-serif;
+}
 a.remove {
     text-decoration: none;
     font-family: 'Montserrat', sans-serif;
@@ -93,10 +116,156 @@ a.remove {
 a.remove:hover {
     background: #f30;
 }
+.promoCode {
+    border: 2px solid #efefef;
+    float: left;
+    width: 35%;
+    padding: 2%;
+}
+.promoCode label {
+    display: block;
+    width: 100%;
+    font-style: italic;
+    font-size: 1.15em;
+    margin-bottom: 0.5em;
+    letter-spacing: -0.025em;
+}
+.promoCode input {
+    width: 85%;
+    font-size: 1em;
+    padding: 0.5em;
+    float: left;
+    border: 1px solid #dadada;
+}
+.promoCode input:active, .promoCode input:focus {
+    outline: 0;
+}
+.promoCode a.btn {
+    float: left;
+    width: 15%;
+    padding: 0.75em 0;
+    border-radius: 0 1em 1em 0;
+    text-align: center;
+    border: 1px solid #82ca9c;
+}
+.promoCode a.btn:hover {
+    border: 1px solid #f69679;
+    background: #f69679;
+}
+.btn:link, .btn:visited {
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.015em;
+    font-size: 1em;
+    padding: 1em 3em;
+    color: #fff;
+    background: #82ca9c;
+    font-weight: bold;
+    border-radius: 50px;
+    float: right;
+    text-align: right;
+    -webkit-transition: all 0.25s linear;
+    -moz-transition: all 0.25s linear;
+    -ms-transition: all 0.25s linear;
+    -o-transition: all 0.25s linear;
+    transition: all 0.25s linear;
+}
+.btn:after {
+    content: "\276f";
+    padding: 0.5em;
+    position: relative;
+    right: 0;
+    -webkit-transition: all 0.15s linear;
+    -moz-transition: all 0.15s linear;
+    -ms-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    transition: all 0.15s linear;
+}
+.btn:hover, .btn:focus, .btn:active {
+    background: #f69679;
+}
+.btn:hover:after, .btn:focus:after, .btn:active:after {
+    right: -10px;
+}
+.promoCode .btn {
+    font-size: 0.85em;
+    paddding: 0.5em 2em;
+}
+/* TOTAL AND CHECKOUT */
 
-.cartProductsContainer { 
-    display:  flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 1em;
+.subtotal {
+    float: right;
+    width: 35%;
+}
+.subtotal ul{
+        list-style-type: none; 
+}
+.subtotal .totalRow {
+    padding: 0.5em;
+    text-align: right;
+}
+.subtotal .totalRow.final {
+    font-size: 1.25em;
+    font-weight: bold;
+}
+.subtotal .totalRow span {
+    display: inline-block;
+    padding: 0 0 0 1em;
+    text-align: right;
+}
+.subtotal .totalRow .label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    color: #777;
+}
+.subtotal .totalRow .value {
+    letter-spacing: -0.025em;
+    width: 35%;
+}
+@media only screen and (max-width: 39.375em) {
+    .wrap {
+        width: 98%;
+        padding: 2% 0;
+   }
+    .projTitle {
+        font-size: 1.5em;
+        padding: 10% 5%;
+   }
+    .heading {
+        padding: 1em;
+        font-size: 90%;
+   }
+    .cart .items .cartSection {
+        width: 100%;
+        display: block;
+        float: left;
+   }
+    .cart .items .cartSection.qtyWrap {
+        width: 10%;
+        text-align: center;
+        padding: 0.5em 0;
+        float: right;
+   }
+    .cart .items .cartSection.qtyWrap:before {
+        content: "QTY";
+        display: block;
+        font-family: 'Montserrat', sans-serif;
+        padding: 0.25em;
+        font-size: 0.75em;
+   }
+    .cart .items .cartSection.prodTotal, .cart .items .cartSection.removeWrap {
+        display: none;
+        width: 50px;
+   }
+    .cart .items .cartSection .itemImg {
+        width: 25%;
+   }
+    .promoCode, .subtotal {
+        width: 100%;
+   }
+    a.btn.continue {
+        width: 100%;
+        text-align: center;
+   }
 }

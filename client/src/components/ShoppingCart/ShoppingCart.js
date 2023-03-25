@@ -29,31 +29,48 @@ const ShoppingCart = () => {
                 <a href="#" className="continue">Continue Shopping</a>
             </div>
             <div className="cart">
-                <ul className="tableHead">
-                    <li className="prodHeader">Product</li>
-                    <li>Quantity</li>
-                    <li>Total</li>
-                    <li>Remove</li>
+                <ul className="cartWrap">
+                    <li className="items odd">
+                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} />)}
+                    </li>
+
                 </ul>
-                {/* <ul className="cartWrap">
-                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} />)}
-                </ul> */}
-                <div className='cartProductsContainer'>
-                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} />)}
-                </div>
             </div>
 
             <div className="subtotal cf">
-                <ul className='total'>
+                <ul>
                     <li className="totalRow"><span className="label">Subtotal</span><span className="value">$35.00</span></li>
+
                     <li className="totalRow"><span className="label">Shipping</span><span className="value">$5.00</span></li>
+
                     <li className="totalRow"><span className="label">Tax</span><span className="value">$4.00</span></li>
                     <li className="totalRow final"><span className="label">Total</span><span className="value">$44.00</span></li>
                     <li className="totalRow"><a href="#" className="btn continue">Checkout</a></li>
                 </ul>
             </div>
         </div>
+        // <div classNameName="wrap cf">
+        //     <div classNameName="heading cf">
+        //         <h1>My Cart</h1>
+        //         <a href="#" classNameName="continue">Continue Shopping</a>
+        //     </div>
+        //     <div classNameName="cart">
+        //             {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} />)}
+        //     </div>
+
+        //     <div classNameName="subtotal cf">
+        //         <ul classNameName='total'>
+        //             <li classNameName="totalRow"><span classNameName="label">Subtotal</span><span classNameName="value">$35.00</span></li>
+        //             <li classNameName="totalRow"><span classNameName="label">Shipping</span><span classNameName="value">$5.00</span></li>
+        //             <li classNameName="totalRow"><span classNameName="label">Tax</span><span classNameName="value">$4.00</span></li>
+        //             <li classNameName="totalRow final"><span classNameName="label">Total</span><span classNameName="value">$44.00</span></li>
+        //             <li classNameName="totalRow"><a href="#" classNameName="btn continue">Checkout</a></li>
+        //         </ul>
+        //     </div>
+        // </div>
     )
 }
 
 export default ShoppingCart;
+
+
