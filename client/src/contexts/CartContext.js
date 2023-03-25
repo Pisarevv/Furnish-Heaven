@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 export const CartContext = createContext();
@@ -12,7 +12,7 @@ export const CartProvider = ({
     const addProductToCart = (productData) => {
       if(products.length === 0){
         if(Array.isArray(productData)){
-          setProducts(products => productData);
+          setProducts(productData);
         }
         else{
           let newArray = [productData]
@@ -42,7 +42,7 @@ export const CartProvider = ({
 
 
 export const useCartContext = () => {
-  const context = useCartContext();
+  const context = useContext(CartContext);
 
   return context;
 }
