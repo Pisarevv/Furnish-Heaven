@@ -3,7 +3,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { CartContext } from "../../contexts/CartContext";
 import { addProductToCartById, removeProductFromCartById } from "../../services/cartService";
-import { deleteUserProductById, getUserProductById } from "../../services/storeProductsService";
+import { deleteUserProductById, getUserProductById } from "../../services/userProductsService";
 import "./UserProductDetails.css";
 
 const UserProductDetails = () => {

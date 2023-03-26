@@ -12,7 +12,7 @@ export const CartProvider = ({
     const addProductToCart = (productData) => {
       if(products.length === 0){
         if(Array.isArray(productData)){
-          setProducts(products => productData);
+          setProducts(productData.slice());
         }
         else{
           let newArray = [productData]

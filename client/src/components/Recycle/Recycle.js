@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getUserProducts } from '../../services/storeProductsService';
+import { getUserProducts } from '../../services/userProductsService';
 import './Recycle.css'
 import ProductCard from './ProductCard';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -20,6 +20,7 @@ const Recycle = () => {
       (async () => {
         const result = await getUserProducts();
         setTrendingProducts(userProducts => result);
+        window.scrollTo(0, 0);
       })()
     },[])
     

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { createUserProduct } from "../../services/storeProductsService";
+import { createUserProduct } from "../../services/userProductsService";
 import "./CreateUserProduct.css";
 
 const CreateUserProduct = () => {
