@@ -4,12 +4,15 @@ import { getTrendingProducts } from '../../services/storeProductsService';
 import Observer from '../../utils/Observer';
 import './Catalog.css'
 import TrendingProductCard from './TrendingProductCard';
-import { AuthContext } from '../../contexts/AuthContext';
+import { AuthContext, useAuthContext } from '../../contexts/AuthContext';
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
+import { useCartContext } from '../../contexts/CartContext';
 
 const Catalog = () => {
 
-    const {userLogout} = useContext(AuthContext);
+    // const {userLogout} = useContext(AuthContext);
+    const {userLogout} = useAuthContext();
+    const {emptyCart} = useCartContext();
     const observer = Observer;
 
     const hiddenElements = document.querySelectorAll('.hidden');
@@ -20,7 +23,7 @@ const Catalog = () => {
     useEffect(() => {
       (async () => {
         try{
-            window.scrollTo(0, 0)
+            window.scrollTo(0, 0);
             const result = await getTrendingProducts();
             setTrendingProducts(trendingProducts => result);
         }
@@ -28,6 +31,7 @@ const Catalog = () => {
             if(error === "Invalid access token"){
                 ErrorHandler(error)
                 userLogout();
+                emptyCart();
             };
       }}
       )()

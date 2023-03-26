@@ -19,6 +19,7 @@ import CreateUserProduct from './components/CreateUserProduct/CreateUserProduct'
 import { CartProvider } from './contexts/CartContext';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import PrivateGuard from './components/Common/PrivateGuard';
+import StoreProducts from './components/StoreProducts/StoreProducts';
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/logout' element={<Logout />} />
+              <Route path='/products' element={<StoreProducts/>}/>
               <Route path='/recycle' element={<Recycle />} />
               <Route path='/about' element={<About />} />
               <Route path='/faq' element={<Faq />} />
