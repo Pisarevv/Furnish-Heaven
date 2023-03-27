@@ -20,6 +20,7 @@ import { CartProvider } from './contexts/CartContext';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import PrivateGuard from './components/Common/PrivateGuard';
 import StoreProducts from './components/StoreProducts/StoreProducts';
+import StoreProductDetails from './components/StoreProductDetails/StoreProductDetails';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
               <Route path='/about' element={<About />} />
               <Route path='/faq' element={<Faq />} />
               <Route path='/recycle/:id' element={<UserProductDetails />} />
+              <Route path='/products/:id' element ={<StoreProductDetails/>} />
               <Route element={<PrivateGuard/>}>
                 <Route path='/recycle/:id/edit' element={<EditUserProduct />} />
                 <Route path='/cart' element={<ShoppingCart />} />
