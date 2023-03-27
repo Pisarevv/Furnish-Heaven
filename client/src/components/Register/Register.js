@@ -15,11 +15,9 @@ const Register = () => {
     const {userLogin} = useContext(AuthContext);
     const navigate = useNavigate();
 
-    const [isInputValid, SetisInputValid] = useState({
-        emailValid: false,
-        passwordValid: false,
-        rePasswordValid: false
-    });
+    const [isEmailValid, setIsEmailValid] = useState(false);
+    const [isPasswordValid, setIsPasswordValid] = useState(false);
+    const [isRePasswordValid, setIsRePasswordValid] = useState(false);
 
 
     const onEmailChange = (e) => {
@@ -42,12 +40,8 @@ const Register = () => {
         const emailRegex = new RegExp(
             '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]+$'
         );
-        const match = emailRegex.test(email.current)
-        SetisInputValid({
-            ...isInputValid,
-            emailValid: match,
-        }
-        );
+        const match = emailRegex.test(email.current);
+        setIsEmailValid(match);
     }
 
     const validatePasswordInput = () => {
@@ -55,30 +49,18 @@ const Register = () => {
         const passwordRegex = new RegExp(
             '^(?=.*[a-zA-Z]).{8,}$'
         );
-        const match = passwordRegex.test(password.current);
-
-        SetisInputValid({
-            ...isInputValid,
-            passwordValid: match,
-        }
-        );
+        const match = passwordRegex.test(password.current)
+        setIsPasswordValid(match);
     }
 
     const validateRePasswordInput = () => {
         const match = rePassword.current === password.current ? true : false;
-        SetisInputValid({
-            ...isInputValid,
-            rePasswordValid: match,
-        }
-        );
+        setIsRePasswordValid(match)
     }
-
     const registerHandler = async(e) => {
         e.preventDefault();
-        console.log(email.current,password.current);
-        
         try{
-            if(isInputValid.emailValid && isInputValid.passwordValid && isInputValid.rePasswordValid){
+            if(isEmailValid && isPasswordValid && isRePasswordValid){
                 let result = await register(email.current,password.current);
                 userLogin({email:result.email, accessToken:result.accessToken, _id:result._id});
                 navigate('/');
@@ -102,18 +84,18 @@ const Register = () => {
                         <form onSubmit={registerHandler}>
                             <div className="input-group input-group-lg">
                                 <input className="form-control" type="text" placeholder="Email" name="email" refer={email} onChange={onEmailChange} onBlur={() => validateEmailInput()} />
-                                {!isInputValid.emailValid && email.current.length > 0 && <p>Invalid email address.</p>}
+                                {!isEmailValid && email.current.length > 0 && <p>Invalid email address.</p>}
 
                             </div>
 
                             <div className="input-group input-group-lg">
                                 <input className="form-control" type="password" placeholder="Password" name="password" ref={password} onChange={onPasswordChange} onBlur={() => validatePasswordInput()} />
-                                {!isInputValid.passwordValid && password.current.length > 0 && <p>Password must contain minimum eight characters and at least one letter.</p>}
+                                {!isPasswordValid && password.current.length > 0 && <p>Password must contain minimum eight characters and at least one letter.</p>}
                             </div>
 
                             <div className="input-group input-group-lg">
                                 <input className="form-control" type="password" placeholder="Repeat Password" name="rePassword" ref={rePassword} onChange={onRePasswordChange} onBlur={() => validateRePasswordInput()} />
-                                {!isInputValid.rePasswordValid && rePassword.current.length > 0 && <p>Passwords do not match.</p>}
+                                {!isRePasswordValid && rePassword.current.length > 0 && <p>Passwords do not match.</p>}
                             </div>
 
                             <button type="submit" className="float">Sign up</button>
