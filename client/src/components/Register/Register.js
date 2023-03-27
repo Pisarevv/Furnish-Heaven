@@ -36,8 +36,11 @@ const Register = () => {
     }
 
     const validateEmailInput = () => {
+        //The current regex validates that the input email address 
+        //begins with a string, contains a "@" symbol and "." after the domain
+        // and end with a top-level-domain TLD
         const emailRegex = new RegExp(
-            '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
+            '^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]+$'
         );
         const match = emailRegex.test(email.current)
         SetisInputValid({
@@ -48,6 +51,7 @@ const Register = () => {
     }
 
     const validatePasswordInput = () => {
+        //This regex validates that the input has minimul 8 charecters and one of them must be a letter
         const passwordRegex = new RegExp(
             '^(?=.*[a-zA-Z]).{8,}$'
         );
