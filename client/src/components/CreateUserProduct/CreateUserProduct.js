@@ -33,7 +33,6 @@ const CreateUserProduct = () => {
 
     const onProductCreate = async(e) => {
         e.preventDefault();
-
         await createUserProduct(productDetailsInput.current);
         navigate("/recycle");
     }

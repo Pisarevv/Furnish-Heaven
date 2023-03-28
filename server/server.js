@@ -1869,14 +1869,16 @@
         userCarts: {
             "995s8uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv": {
                 _id: "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",
-                _productId : "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                _productId : "poi98uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",       
+                isStoreProduct : false,     
                 _createdOn: 1650989851000          
             },
             "aezs5uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv": {
                 _id: "eki55uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",
-                _productId : "mnb43vfr-7ujh-9okm-1qaz-2wsx8edc6ty",
                 _ownerId: "35c62d76-8152-4626-8712-eeb96381bea8",
+                _productId : "mnb43vfr-7ujh-9okm-1qaz-2wsx8edc6ty",      
+                isStoreProduct : false,     
                 _createdOn: 1650989851000          
             }
         }

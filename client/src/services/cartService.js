@@ -7,8 +7,8 @@ export async function getUserCartItems(id){
    return result;
 }
 
-export async function addProductToCartById(_userId,_productId){
-    let result = await api.post('/data/userCarts',{_userId,_productId});
+export async function addProductToCartById(_productId,isStoreProduct){
+    let result = await api.post('/data/userCarts',{_productId,isStoreProduct});
     return result;
 }
 
