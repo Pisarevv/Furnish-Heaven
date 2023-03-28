@@ -4,7 +4,8 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { CartContext } from "../../contexts/CartContext";
 import { addProductToCartById, removeProductFromCartById } from "../../services/cartService";
 import { getStoreProductById } from "../../services/storeProductsService";
-import { deleteUserProductById, getUserProductById } from "../../services/userProductsService";
+import AddComment from "./Comments/AddComment";
+import CommentCart from "./Comments/CommentCard";
 import "./StoreProductDetails.css";
 
 const StoreProductDetails = () => {
@@ -46,7 +47,7 @@ const StoreProductDetails = () => {
 
     const onProductAddToCart = async (e) => {
         e.preventDefault()
-        let response = await addProductToCartById(id,IS_STORE_PRODUCT)
+        let response = await addProductToCartById(id, IS_STORE_PRODUCT)
         addProductToCart(response);
         setIsAddedToCart(true)
     }
@@ -83,11 +84,20 @@ const StoreProductDetails = () => {
 
                                     {(user._id && user._id !== productInfo._ownerId && !isAddedToCart) &&
                                         <NavLink className="sell-btn" onClick={onProductAddToCart}>Add to cart</NavLink>}
-
                                 </div>
+
                             </div>
+
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="comments-container"> COMMENTS :
+                <div className="comments">
+                    <CommentCart />
+                </div>
+                <div class="add-comment-container">
+                   <AddComment/>
                 </div>
             </div>
         </section>

@@ -1881,7 +1881,11 @@
                 isStoreProduct : false,     
                 _createdOn: 1650989851000          
             }
-        }
+        },
+
+        comments : {
+
+        },
     };
     var rules$1 = {
         users: {
