@@ -11,7 +11,7 @@ const StoreProductDetails = () => {
 
     const { user } = useContext(AuthContext);
     const { cart, addProductToCart, removeProductFromCart } = useContext(CartContext);
-    const isStoreProduct = true;
+    const IS_STORE_PRODUCT = true;
 
     const [productInfo, setProductInfo] = useState("");
     const [isAddedToCart, setIsAddedToCart] = useState();
@@ -46,7 +46,7 @@ const StoreProductDetails = () => {
 
     const onProductAddToCart = async (e) => {
         e.preventDefault()
-        let response = await addProductToCartById(id,isStoreProduct)
+        let response = await addProductToCartById(id,IS_STORE_PRODUCT)
         addProductToCart(response);
         setIsAddedToCart(true)
     }
