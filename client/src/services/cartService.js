@@ -23,3 +23,8 @@ export async function getAllUserProductsForCart(idsUrl){
     return result;
 }
 
+export async function getAllStoreProductsForCart(idsUrl){
+    let result = await api.get(`/data/storeProducts?select=${encodeURIComponent("_id,model,price,imgUrl")}&where=${encodeURI(`_id IN (${FormatCartSearchIds(idsUrl)})`)}`)
+    
+    return result;
+}

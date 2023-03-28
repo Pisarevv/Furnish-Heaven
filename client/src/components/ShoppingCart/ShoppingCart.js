@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useCartContext } from '../../contexts/CartContext';
-import { getAllUserProductsForCart, removeProductFromCartById } from '../../services/cartService';
+import { getAllStoreProductsForCart, getAllUserProductsForCart, removeProductFromCartById } from '../../services/cartService';
 import { AssignCartRecordIdToProductId } from '../../utils/Common';
 import CartProduct from './CartProduct';
 import './ShoppingCart.css';
@@ -28,15 +28,30 @@ const ShoppingCart = () => {
 
     useEffect(() => {
         (async () => {
-            const productIds = cart.map(x => x._productId); 
-            if(productIds.length > 0){
-                let cardRecordIds = cart.map(x => { return { cartRecId :x._id , productId : x._productId}});
-                let products = await getAllUserProductsForCart(productIds);
-                products = AssignCartRecordIdToProductId(cardRecordIds,products);
-                products = products.map(product => ({ ...product, quantity: 1 }))
-                console.log(products);
-                setCartProducts(products);
+            let allProducts = [];
+            const userProductIds = cart.filter(p => p.isStoreProduct === false).map(x => x._productId); 
+            const storeProductIds = cart.filter(p => p.isStoreProduct === true).map(x => x._productId); 
+
+            let cardRecordIds = cart.map(x => { return { cartRecId :x._id , productId : x._productId}});
+
+            if(userProductIds.length > 0)
+            {
+                let userProducts = await getAllUserProductsForCart(userProductIds);
+                userProducts = AssignCartRecordIdToProductId(cardRecordIds,userProducts);
+                userProducts = userProducts.map(product => ({ ...product, quantity: 1 }));
+
+                allProducts = [...userProducts];
             }  
+            if(storeProductIds.length > 0)
+            {
+                let storeProducts = await getAllStoreProductsForCart(storeProductIds);
+                storeProducts = AssignCartRecordIdToProductId(cardRecordIds,storeProducts);
+                storeProducts = storeProducts.map(product => ({ ...product, quantity: 1 }));
+
+                allProducts = [...allProducts,...storeProducts];
+            }
+
+            setCartProducts(allProducts);
         }
         )()
     }, []);
