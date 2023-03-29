@@ -22,7 +22,6 @@ const StoreProducts = () => {
             ErrorHandler(error);
         }
       })()
-      //TODO: Add try catch
     },[])
     
 
