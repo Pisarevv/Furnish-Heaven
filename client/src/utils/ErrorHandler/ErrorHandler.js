@@ -12,9 +12,9 @@ const errors = {
         message : "Login or password don't match",
         type : "warning"
     },
-    "Invalid register fields" : {
-        title : "Invalid input",
-        message : "All fields must be valid",
+    "Invalid input fields" : {
+        title : "Invalid input fields",
+        message : "Please make sure all inputs are valid before submiting",
         type : "warning"
     },
 }
