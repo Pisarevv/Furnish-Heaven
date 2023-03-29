@@ -97,7 +97,7 @@ const StoreProductDetails = () => {
                     <CommentCart />
                 </div>
                 <div class="add-comment-container">
-                   <AddComment/>
+                   <AddComment productId = {id}/>
                 </div>
             </div>
         </section>
