@@ -1,26 +1,26 @@
 import { useContext, useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
 import './StoreProducts.css'
 import StoreProductCard from './StoreProductCard';
 import { AuthContext } from '../../contexts/AuthContext';
-import Observer from '../../utils/Observer';
 import { getAllStoreProducts } from '../../services/storeProductsService';
+import Observe from '../../utils/Observer';
+import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
 
 const StoreProducts = () => {
 
     const {user} = useContext(AuthContext);
     const [storeProducts,setStoreProducts] = useState([]);
 
-    const observer = Observer;
-
-    const hiddenElements = document.querySelectorAll('.hidden');
-    hiddenElements.forEach(el => observer.observe(el)); 
-
     useEffect(() => {
       (async () => {
+        try {
+        Observe();
         const result = await getAllStoreProducts();
         setStoreProducts(storeProducts => result);
         window.scrollTo(0, 0);
+        } catch (error) {
+            ErrorHandler(error);
+        }
       })()
       //TODO: Add try catch
     },[])

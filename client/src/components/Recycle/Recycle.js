@@ -4,20 +4,16 @@ import { getUserProducts } from '../../services/userProductsService';
 import './Recycle.css'
 import ProductCard from './ProductCard';
 import { AuthContext } from '../../contexts/AuthContext';
-import Observer from '../../utils/Observer';
+import Observe from '../../utils/Observer';
 
 const Recycle = () => {
 
     const {user} = useContext(AuthContext);
     const [userProducts,setTrendingProducts] = useState([]);
 
-    const observer = Observer;
-
-    const hiddenElements = document.querySelectorAll('.hidden');
-    hiddenElements.forEach(el => observer.observe(el)); 
-
     useEffect(() => {
       (async () => {
+        Observe();
         const result = await getUserProducts();
         setTrendingProducts(userProducts => result);
         window.scrollTo(0, 0);
