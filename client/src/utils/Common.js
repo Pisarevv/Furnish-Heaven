@@ -16,3 +16,7 @@ export function AssignCartRecordIdToProductId(cartRecordIds,products){
 
     return products;
 }
+
+export function CheckAreAllElementsValid (inputCollection) {
+    return inputCollection.some(x => x === false) ? false : true;
+}
