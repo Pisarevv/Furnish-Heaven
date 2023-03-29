@@ -12,14 +12,14 @@
  * ----------------------
  * - trendingProducts (array): The collection holding the fetched products from the server.
  *  Example 
- *  ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  * [{…}, {…}, {…}, {…}]
-  0: 
-   {_id: '53d4dbf5-7f41-47ba-b485-43eccb91cb95', model: 'Opulent Oaken Boardroom Table', price: 1235, imgUrl: 'https://www.bentleydesigns.com/images/products/large/3074_10186.jpg', rating: 9.5, description : ...}
-  1: 
-   {_id: '22d4dbf5-7f41-47ba-b485-43eccb91cb95', model: 'Regal Slumber Haven', price: 2235, imgUrl: 'https://www.idfdesign.com/images/luxury-classic-bed-and-canopy-bed/r45-bed-carved-beds-3.jpg', rating: 8.8, description : ...}
- *  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- *  ---------------------
+ * 0: 
+ * {_id: '53d4dbf5-7f41-47ba-b485-43eccb91cb95', model: 'Opulent Oaken Boardroom Table', price: 1235, imgUrl: 'https://www.bentleydesigns.com/images/products/large/3074_10186.jpg', rating: 9.5, description : ...}
+ * 1: 
+ * {_id: '22d4dbf5-7f41-47ba-b485-43eccb91cb95', model: 'Regal Slumber Haven', price: 2235, imgUrl: 'https://www.idfdesign.com/images/luxury-classic-bed-and-canopy-bed/r45-bed-carved-beds-3.jpg', rating: 8.8, description : ...}
+ * -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ * ---------------
  * 
  * Contexts:
  * ----------------
@@ -36,9 +36,9 @@
  *  first opening of the page.
  * -----------------
  * 
- *  Functions:
+ * Functions:
  * -----------------
- * - Observer 
+ * - Observe 
  *  This function is used for the animation of fading in in the page.
  * 
  * - ErrorHandler
@@ -49,35 +49,34 @@
  *  title : "Invalid access token"
  *  message : "Your session has expired. Please log in again."
  * -----------------
- */
-
+**/
 
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { getTrendingProducts } from '../../services/storeProductsService';
-import Observer from '../../utils/Observer';
-import './Catalog.css'
-import TrendingProductCard from './TrendingProductCard';
-import { useAuthContext } from '../../contexts/AuthContext';
+
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
+
+import { useAuthContext } from '../../contexts/AuthContext';
 import { useCartContext } from '../../contexts/CartContext';
+
+import { getTrendingProducts } from '../../services/storeProductsService';
+
+import TrendingProductCard from './TrendingProductCard';
+import './Catalog.css'
+import Observe from '../../utils/Observer';
 
 const Catalog = () => {
 
     const {userLogout} = useAuthContext();
     const {emptyCart} = useCartContext();
-
-    const observer = Observer;
-
-    const hiddenElements = document.querySelectorAll('.hidden');
-    hiddenElements.forEach(el => observer.observe(el));
-
+    
     const [trendingProducts,setTrendingProducts] = useState([]);
 
     useEffect(() => {
       (async () => {
         try{
             window.scrollTo(0, 0);
+            Observe();
             const result = await getTrendingProducts();
             setTrendingProducts(trendingProducts => result);
         }
@@ -91,8 +90,6 @@ const Catalog = () => {
       )()
     },[])
     
-    console.log(trendingProducts);
-
 
     return (
      
