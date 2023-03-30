@@ -1,3 +1,52 @@
+/**
+ * Shopping Component
+ * ---------------------
+ * This component displays the shopping cart of the user
+ * with the product that he has added.
+ * The products can be from the store products and user listing products.
+ * The user has thet abillity to modify the quantity or remove products
+ * from the cart and see the final cost of the shopping cart.
+ * Button to continue shopping which navigates to "Products" page is provided
+ * and a "Check out" button which currently is unavaliable.
+ * ---------------------- 
+ * 
+ * Props:
+ * ----------------------
+ * - cartProducts (array): The collection holding all the products (user listing products and store products)
+ *   that the user has added to the cart.
+ * - totalPrice (string): The final sum of all of the product prices. Every time anything in the cart changes
+ *   triggers a useEffect which updates the total price.
+ * ---------------------
+ * 
+ * Contexts:
+ * ----------------   
+ *  - useCartContext
+ *  In this component this context provides the "cart" containing all the products added 
+ *  via the context in the localStorage and  "removeProductFromCart" function
+ *  which removes the product from the context if a user removes it from the cart.
+ * -----------------
+ * 
+ * Variables: 
+ * -----------------
+ * userProductIds (array) : used to store the user listing products ids.
+ * storeProductIds (array) : used to store the store product ids.
+ * allProducts (array) : stores both user listing products and store products after them
+ * being recieved from the server.
+ * 
+ * -----------------
+ * Functions:
+ * -----------------
+ * - AssignCartRecordIdToProductId
+ * A function recieving the records Ids of the products in the cart and 
+ * adding in to the passed collection with products that the user has added
+ * in their cart.
+ * - removeProduct
+ * Function that removes the product from the user cart. It recieves cart record Id as an input.
+ * - modifyQuantity
+ * Function that changes the quanitity of a product. It recieves cart record Id as an input.
+ * -----------------
+**/
+
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useCartContext } from '../../contexts/CartContext';
@@ -31,7 +80,8 @@ const ShoppingCart = () => {
             let allProducts = [];
             const userProductIds = cart.filter(p => p.isStoreProduct === false).map(x => x._productId); 
             const storeProductIds = cart.filter(p => p.isStoreProduct === true).map(x => x._productId); 
-
+            
+            //Taking the record Ids based on the products in the cart
             let cardRecordIds = cart.map(x => { return { cartRecId :x._id , productId : x._productId}});
 
             if(userProductIds.length > 0)
