@@ -20,7 +20,7 @@ const ProductTrending = ({productInfo}) => {
           <p>{model}</p>
           <p>{price}$</p>
         </div>
-        <NavLink className="sell-btn" to={`/recycle/${productInfo._id}`}>Details</NavLink>
+        <NavLink className="sell-btn" to={`/products/${productInfo._id}`}>Details</NavLink>
       </div>
     </div>
     

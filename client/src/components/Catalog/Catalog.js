@@ -110,7 +110,7 @@ const Catalog = () => {
                 <p className='hidden'>Our exclusive collection features the finest handcrafted furniture made from the highest quality materials and designed by world-renowned artisans.</p>
                 <p className='hidden'> Each piece is a masterpiece that exudes elegance, luxury, and sophistication.</p>
                 <p className='hidden'></p>
-                <NavLink className="explore-btn hidden" to="/">Explore our collections</NavLink>
+                <NavLink className="explore-btn hidden" to="/products">Explore our collections</NavLink>
             </div>
            
  
