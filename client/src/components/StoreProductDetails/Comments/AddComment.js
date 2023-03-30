@@ -1,27 +1,28 @@
-import { useRef } from "react";
-import { createComment } from "../../../services/commentService";
+import { useState } from "react";
 import "./AddComment.css"
 
-const AddComment = ({productId}) => {
+const AddComment = ({ onCommentCreate }) => {
 
-    const commentInput = useRef("");
+    const [commentInput, setCommentInput] = useState("");
 
-    const createCommentHandler = async (e) => {
+    const OnInputChange = (e) => {
+        setCommentInput(e.target.value)
+    }
+
+    const onCreateHandler = (e) => {
         e.preventDefault();
-        // let result = await createComment(productId,commentInput.current.value);
-        console.log(commentInput.current.value);
-
-
+        onCommentCreate(commentInput);
+        setCommentInput("");
+        
     }
 
     return (
         <>
             <h2>Add Comment</h2>
-            <form id="add-comment-form">
-                <label for="comment">Comment:</label>
-                <textarea id="comment" name="comment" rows="4" required ref = {commentInput}></textarea>
-                <button type="submit" onClick={createCommentHandler}>Submit</button>
-            </form></>
+            <label htmlFor="comment">Comment:</label>
+            <textarea id="comment" name="comment" rows="4" onChange={OnInputChange} value = {commentInput}></textarea>
+            <button type="submit" onClick={onCreateHandler}>Submit</button>
+        </>
     )
 }
 

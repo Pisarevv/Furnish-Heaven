@@ -32,7 +32,6 @@ async function request(method, url, data) {
 
         if (response.ok !== true) {
             if (response.status === 403) {
-                // localStorage.setItem('user', JSON.stringify({}));
                 if(response.message == "Invalid access token"){
                     throw (result.message);
                 }
@@ -66,6 +65,10 @@ function put(url, data) {
     return request("put", url, data)
 }
 
+function patch(url, data) {
+    return request("patch", url, data)
+}
+
 function del(url) {
     return request("delete", url);
 }
@@ -74,5 +77,6 @@ export {
     post,
     get,
     put,
+    patch,
     del as delete
 }

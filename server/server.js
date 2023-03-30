@@ -1347,7 +1347,7 @@
                 _createdOn: 1615545143015,
                 _id: "53d4dbf5-7f41-47ba-b485-43eccb91cb95"
             },
-            "22d4dbf5-7f41-47ba-b485-43eccb91cb95": {
+            "22d4dbf5-7f41-47ba-b485-43eccb91cb96": {
                 category: "Bedroom",
                 type: "Bed",
                 model: "Regal Slumber Haven",
@@ -1358,7 +1358,7 @@
                 material: "Hardwood",
                 rating: 8.8,
                 _createdOn: 1615545143015,
-                _id: "22d4dbf5-7f41-47ba-b485-43eccb91cb95"
+                _id: "22d4dbf5-7f41-47ba-b485-43eccb91cb96"
             },
             "23s4dbf5-7f41-47ba-b485-43eccb91cb95": {
                 category: "Kitchen",
@@ -1884,6 +1884,13 @@
         },
 
         comments : {
+            "111s8uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv": {
+                _ownerId : "35c62d76-8152-4626-8712-eeb96381bea8",
+                _id: "111s8uyt-5tgb-2wsx-9ijn-7ujh1qaz4rfv",
+                _productId : "53d4dbf5-7f41-47ba-b485-43eccb91cb95",   
+                text : "Great product!",    
+                _createdOn: 1650989851000          
+            },
 
         },
     };

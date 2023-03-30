@@ -1,6 +1,10 @@
 #add-comment-form {
+
     display: flex;
     flex-direction: column;
+    min-width: 200vh;
+    align-items: center;
+
   }
   
   label {

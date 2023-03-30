@@ -3,6 +3,7 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { CartContext } from "../../contexts/CartContext";
 import { addProductToCartById, removeProductFromCartById } from "../../services/cartService";
+import { createComment, deleteCommentById, editUserCommentById, getProductComments, updateUserCommentById } from "../../services/commentService";
 import { getStoreProductById } from "../../services/storeProductsService";
 import AddComment from "./Comments/AddComment";
 import CommentCart from "./Comments/CommentCard";
@@ -16,18 +17,19 @@ const StoreProductDetails = () => {
 
     const [productInfo, setProductInfo] = useState("");
     const [isAddedToCart, setIsAddedToCart] = useState();
+    const [productComments, setProductComments] = useState([]);
 
     const [productStatusInCart, setProductStatusInCart] = useState();
 
     const { id } = useParams();
 
-    const navigate = useNavigate();
-
-
     useEffect(() => {
         (async () => {
-            const result = await getStoreProductById(id)
-            setProductInfo(result);
+            const product = await getStoreProductById(id);
+            setProductInfo(product);
+            const comments = await getProductComments(id);
+            setProductComments(comments);
+
             setProductStatusInCart(cart.find(p => p._productId === id))
             setIsAddedToCart(cart.some(p => p._productId === id))
         }
@@ -57,6 +59,25 @@ const StoreProductDetails = () => {
         await removeProductFromCartById(productStatusInCart._id)
         removeProductFromCart(productStatusInCart._id);
         setIsAddedToCart(false)
+    }
+
+    const onCommentCreate = async (commentInput) => {
+        await createComment(id, commentInput);
+        const comments = await getProductComments(id);
+        setProductComments(comments);
+    }
+
+
+    const onCommentDelete = async (commentId) => {
+        await deleteCommentById(commentId);
+        const comments = await getProductComments(id);
+        setProductComments(comments);
+    }
+
+    const onCommentEdit = async (commentId, text) => {
+        await editUserCommentById(commentId, text, id)
+        const comments = await getProductComments(id);
+        setProductComments(comments);
     }
 
 
@@ -94,11 +115,15 @@ const StoreProductDetails = () => {
             </div>
             <div className="comments-container"> COMMENTS :
                 <div className="comments">
-                    <CommentCart />
+                    {productComments.length > 0 ?
+                        productComments.map(pc => <CommentCart key={pc._id} commentData={pc} user={user} onCommentDelete={onCommentDelete} onCommentEdit={onCommentEdit} />)
+                        : <p>There are no comments yet.</p>}
                 </div>
-                <div class="add-comment-container">
-                   <AddComment productId = {id}/>
-                </div>
+                {user._id &&
+                    <div className="add-comment-container">
+                        <AddComment productId={id} onCommentCreate={onCommentCreate} />
+                    </div>}
+
             </div>
         </section>
 
