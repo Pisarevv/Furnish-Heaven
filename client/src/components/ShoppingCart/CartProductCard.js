@@ -1,13 +1,44 @@
+/**
+ * CartProductCard Component
+ * ---------------------
+ * This component displays the product info that a user has added to their shopping cart
+ * with its price, model, quantity, image. There is a button to remove the product from the cart.
+ * ---------------------- 
+ * 
+ * States:
+ * ----------------------
+ * - productQuantity (number): Holding the quanitity of the current product.
+ * - totalProductPrice (numer): Holding the final price of the current product based on its price and quantity.
+ * ---------------------
+ * 
+ * Props: 
+ * -----------------
+ * - imgUrl (string) - containing the URL link for the image
+ * - quantity (number) - containing the quantity of the product
+ * - model (string) - containing the model of the product
+ * - price (number) - containing the price of the product
+ * - cartRecId (string) - containing the cart record Id of the product in the cart
+ * -----------------
+ * 
+ * Functions:
+ * -----------------
+ * - removeProduct
+ * Function that removes the product from the user cart. It recieves cart record Id as an input.
+ * - modifyQuantity
+ * Function that changes the quanitity of a product. It recieves cart record Id as an input.
+ * -----------------
+**/
+
 import { faRemove } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
-import './CartProduct.css';
+import './CartProductCard.css';
 
-const CartProduct = ({ productInfo , removeProduct, modifyQuantity}) => {
+const CartProductCard = ({ productInfo , removeProduct, modifyQuantity}) => {
   
     const [productQuantity, setProductQuantity] = useState(0);
     const [totalProductPrice, setTotalProductPrice] = useState(0);
-    const { _id, imgUrl, quantity, model, price, cartRecId } = productInfo;
+    const { imgUrl, quantity, model, price, cartRecId } = productInfo;
     
     const onQuantityChange = (e) => {
         e.preventDefault();
@@ -44,5 +75,5 @@ const CartProduct = ({ productInfo , removeProduct, modifyQuantity}) => {
     )
 }
 
-export default CartProduct;
+export default CartProductCard;
 
