@@ -1,7 +1,7 @@
 /**
  * Shopping Component
  * ---------------------
- * This component displays the shopping cart of the user
+ * This component displays the shopping cart information of the user
  * with the product that he has added.
  * The products can be from the store products and user listing products.
  * The user has thet abillity to modify the quantity or remove products
@@ -10,7 +10,7 @@
  * and a "Check out" button which currently is unavaliable.
  * ---------------------- 
  * 
- * Props:
+ * States:
  * ----------------------
  * - cartProducts (array): The collection holding all the products (user listing products and store products)
  *   that the user has added to the cart.
@@ -52,7 +52,7 @@ import { NavLink } from 'react-router-dom';
 import { useCartContext } from '../../contexts/CartContext';
 import { getAllStoreProductsForCart, getAllUserProductsForCart, removeProductFromCartById } from '../../services/cartService';
 import { AssignCartRecordIdToProductId } from '../../utils/Common';
-import CartProduct from './CartProduct';
+import CartProductCard from './CartProductCard';
 import './ShoppingCart.css';
 
 const ShoppingCart = () => {
@@ -80,7 +80,7 @@ const ShoppingCart = () => {
             let allProducts = [];
             const userProductIds = cart.filter(p => p.isStoreProduct === false).map(x => x._productId); 
             const storeProductIds = cart.filter(p => p.isStoreProduct === true).map(x => x._productId); 
-            
+
             //Taking the record Ids based on the products in the cart
             let cardRecordIds = cart.map(x => { return { cartRecId :x._id , productId : x._productId}});
 
@@ -123,7 +123,7 @@ const ShoppingCart = () => {
                 <ul className="cartWrap">
                     <li className="items odd">
                         {/* TODO: Add paragraph when there are no products  */}
-                    {cartProducts.map(p => <CartProduct key={p._id} productInfo={p} removeProduct = {removeProduct} modifyQuantity = {modifyQuantity} />)}
+                    {cartProducts.map(p => <CartProductCard key={p._id} productInfo={p} removeProduct = {removeProduct} modifyQuantity = {modifyQuantity} />)}
                     </li>
 
                 </ul>

@@ -8,7 +8,7 @@
  * user listing products
  * ---------------------- 
  * 
- * Props:
+ * States:
  * ----------------------
  * - trendingProducts (array): The collection holding the fetched products from the server.
  *  Example 
