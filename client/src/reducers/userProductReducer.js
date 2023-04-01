@@ -1,10 +1,11 @@
 function userProductReducer(state, action) {
+
     switch (action.type) {
         case "SET_CATEGORY":
             return { ...state, category: action.payload, categoryError: "" };
         case "SET_DESCRIPTION":
             return { ...state, description: action.payload, descriptionError: "" };
-        case "SET_IMG_URL":
+        case "SET_IMGURL":
             return { ...state, imgUrl: action.payload, imgUrlError: "" };
         case "SET_MODEL":
             return { ...state, model: action.payload, modelError: "" };
@@ -18,7 +19,7 @@ function userProductReducer(state, action) {
             return { ...state, categoryError: action.payload };
         case "SET_DESCRIPTION_ERROR":
             return { ...state, descriptionError: action.payload };
-        case "SET_IMG_URL_ERROR":
+        case "SET_IMGURL_ERROR":
             return { ...state, imgUrlError: action.payload };
         case "SET_MODEL_ERROR":
             return { ...state, modelError: action.payload };
