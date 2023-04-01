@@ -1,7 +1,8 @@
-import { useRef } from "react";
+import { useReducer, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useFirstTouched from "../../hooks/useFirstTouched";
 import useIsValid from "../../hooks/useIsValid";
+import userProductReducer from "../../reducers/userProductReducer";
 import { createUserProduct } from "../../services/userProductsService";
 import { CheckAreAllElementsValid } from "../../utils/Common";
 import { ErrorHandler } from "../../utils/ErrorHandler/ErrorHandler";
@@ -20,6 +21,24 @@ const ValidationRegexes = {
 const CreateUserProduct = () => {
 
     const navigate = useNavigate();
+
+    const [state,dispatch] = useReducer(userProductReducer, {
+        category : "",
+        description : "",
+        imgUrl : "",
+        model: "",
+        price: "",
+        type : "",
+        year : "",
+        
+        categoryError : "",
+        descriptionError : "",
+        imgUrlError : "",
+        modelError: "",
+        priceError: "",
+        typeError : "",
+        yearError : ""
+    })
 
     const isCategoryValid = useIsValid();
     const categoryTouched = useFirstTouched();
