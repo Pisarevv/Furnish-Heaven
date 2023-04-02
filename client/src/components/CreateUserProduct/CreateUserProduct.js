@@ -1,10 +1,7 @@
 import { useReducer, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import useFirstTouched from "../../hooks/useFirstTouched";
-import useIsValid from "../../hooks/useIsValid";
 import userProductReducer from "../../reducers/userProductReducer";
 import { createUserProduct } from "../../services/userProductsService";
-import { CheckAreAllElementsValid } from "../../utils/Common";
 import { ErrorHandler } from "../../utils/ErrorHandler/ErrorHandler";
 import "./CreateUserProduct.css";
 
@@ -86,8 +83,8 @@ const CreateUserProduct = () => {
                 isTypeValid && isPriceValid &&
                 isYearValid
             ) {
-                let {category,description,imgUrl,model,price,type,year} = state;
-                await createUserProduct({category,description,imgUrl,model,price,type,year});
+                let { category, description, imgUrl, model, price, type, year } = state;
+                await createUserProduct({ category, description, imgUrl, model, price, type, year });
                 navigate("/recycle");
 
             }
@@ -109,33 +106,39 @@ const CreateUserProduct = () => {
                         <h2>Create listing</h2>
                         <form onSubmit={onProductCreate}>
                             <div className="input-group input-group-lg">
+                                <label>Category:</label>
                                 <input className="form-control" type="text" placeholder="Category" name="category" value={state.category} onChange={onInputChange} />
                                 {state.categoryError && <p>{state.categoryError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
+                                <label>Description:</label>
                                 <input className="form-control" type="text" placeholder="Description" name="description" value={state.description} onChange={onInputChange} />
                                 {state.descriptionError && <p>{state.descriptionError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
+                                <label>Image URL:</label>
                                 <input className="form-control" type="text" placeholder="Image URL" name="imgUrl" value={state.imgUrl} onChange={onInputChange} />
                                 {state.imgUrlError && <p>{state.imgUrlError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
+                                <label>Model:</label>
                                 <input className="form-control" type="text" placeholder="Model" name="model" value={state.model} onChange={onInputChange} />
                                 {state.modelError && <p>{state.modelError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
+                                <label>Product type:</label>
                                 <input className="form-control" type="text" placeholder="Product type" name="type" value={state.type} onChange={onInputChange} />
                                 {state.typeError && <p>{state.typeError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
+                                <label>Year:</label>
                                 <input className="form-control" type="text" placeholder="Year" name="year" value={state.year} onChange={onInputChange} />
                                 {state.yearError && <p>{state.yearError}</p>}
                             </div>
-                            <input className="form-control" type="text" placeholder="Price" name="price" value={state.price} onChange={onInputChange} />
-                                {state.priceError && <p>{state.priceError}</p>}
                             <div className="input-group input-group-lg">
-
+                                <label>Price:</label>
+                                <input className="form-control" type="text" placeholder="Price" name="price" value={state.price} onChange={onInputChange} />
+                                {state.priceError && <p>{state.priceError}</p>}
                             </div>
                             <button type="submit" className="float">Create listing</button>
                             <button type="submit" className="float">Cancel</button>

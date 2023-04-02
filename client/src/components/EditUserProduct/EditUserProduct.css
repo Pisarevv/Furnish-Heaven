@@ -28,21 +28,20 @@ body, input, button {
 .edit-item {
   padding: 15px;
   width: 700px;
-  min-height: 700px;
+  min-height: 750px;
   margin: 2% auto 0 auto;
   background-color: #c2b8b1;
   opacity: 90%;
   border-radius: 10%;
   
 }
-.sign-up {
+label {
   padding-top: 25px;
   font-family: "Montserrat", sans-serif;
   font-weight: 200;
   font-size: 19px;
 
 }
-
 
 .edit-item .edit-heading {
   text-align: center;
