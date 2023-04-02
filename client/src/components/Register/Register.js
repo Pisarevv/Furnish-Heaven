@@ -1,12 +1,10 @@
 import { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useRef } from 'react';
 import './Register.css'
 import { register } from '../../services/authService';
 import { AuthContext } from '../../contexts/AuthContext';
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
-import useFirstTouched from '../../hooks/useFirstTouched';
-import useIsValid from '../../hooks/useIsValid';
+
 
 const ValidationRegexes = {
     //The current regex validates that the input email address 
@@ -19,22 +17,26 @@ const ValidationRegexes = {
     passwordRegex: new RegExp( /^(?=.*[a-zA-Z]).{8,}$/)
 }
 
+const ValidationErrors = {
+    email : "Please enter a valid email address",
+    password: "Password must contain minimum eight characters and at least one letter.",
+    rePassword: "Passwords do not match"
+}
+
 const Register = () => {
 
 
     const [email,setEmail] = useState("");
+    const [emailError, setEmailError] = useState("");
+
     const [password,setPassword] = useState("");
+    const [passwordError, setPasswordError] = useState("");
+
     const [rePassword,setRepassword] = useState("");
+    const [rePasswordError, setRePasswordError] = useState("");
 
     const {userLogin} = useContext(AuthContext);
     const navigate = useNavigate();
-
-    const isEmailValid = useIsValid();
-
-    const isPasswordValid = useIsValid()
-
-    const isRePasswordValid = useIsValid()
-
 
     const onEmailChange = (e) => {
         setEmail(email => e.target.value);
@@ -48,43 +50,40 @@ const Register = () => {
         setRepassword(rePassword => e.target.value)
     }
 
-    const validateEmailInput = (e) => {
-        e.preventDefault();    
-        if(ValidationRegexes.emailRegex.test(email)){
-            isEmailValid.setValidHandler();
+    const validateEmailInput = () => {   
+        if(!ValidationRegexes.emailRegex.test(email)){
+            setEmailError(emailError => ValidationErrors.email)
+            return false;
         }
-        else{
-            isEmailValid.setInvalidHandler();           
-        }
-        console.log(email.current.length)
+        return true;
     }
 
     const validatePasswordInput = () => {
-
-        if(ValidationRegexes.passwordRegex.test(password)){
-            isPasswordValid.setValidHandler();
+        if(!ValidationRegexes.passwordRegex.test(password)){
+            setPasswordError(passwordError => ValidationErrors.password);
+            return false;
         }
-        else{
-            isPasswordValid.setInvalidHandler();
-        }
+        return true;
     }
 
     const validateRePasswordInput = () => {
-        if(rePassword == password){
-            isRePasswordValid.setValidHandler();
+        if(rePassword !== password){
+            setRePasswordError(rePasswordError => ValidationErrors.rePassword);
+            return false;
         }
-        else{
-            isRePasswordValid.setInvalidHandler();
-        }
-
+        return true;
     }
 
     const registerHandler = async(e) => {
         e.preventDefault();
         try{
-            if(isEmailValid.isValid && isPasswordValid.isValid && isRePasswordValid.isValid){
-                let result = await register(email.current,password.current);
-                userLogin({email:result.email, accessToken:result.accessToken, _id:result._id});
+            let isEmailValid = validateEmailInput(email);
+            let isPasswordValid = validatePasswordInput(password);
+            let isRePasswordValid = validateRePasswordInput(rePassword);
+
+            if(isEmailValid && isPasswordValid && isRePasswordValid){
+                let result = await register(email,password);
+                userLogin(result);
                 navigate('/');
             }
             else{
@@ -105,19 +104,18 @@ const Register = () => {
                         <h2>Register</h2>
                         <form onSubmit={registerHandler}>
                             <div className="input-group input-group-lg">
-                                <input className="form-control" type="text" placeholder="Email" name="email" value={email} onChange={onEmailChange} onBlur={validateEmailInput} />
-                                {!isEmailValid.isValid && email.length > 0 && <p>Invalid email address.</p>}
-
+                                <input className="form-control" type="text" placeholder="Email" name="email" value={email} onChange={onEmailChange}/>
+                                {emailError && <p>{emailError}</p>}
                             </div>
 
                             <div className="input-group input-group-lg">
-                                <input className="form-control" type="password" placeholder="Password" name="password" value={password} onChange={onPasswordChange} onBlur={validatePasswordInput} />
-                                {!isPasswordValid.isValid  &&  <p>Password must contain minimum eight characters and at least one letter.</p>}
+                                <input className="form-control" type="password" placeholder="Password" name="password" value={password} onChange={onPasswordChange}/> 
+                                {passwordError && <p>{passwordError}</p>}
                             </div>
 
                             <div className="input-group input-group-lg">
-                                <input className="form-control" type="password" placeholder="Repeat Password" name="rePassword" value={rePassword} onChange={onRePasswordChange} onBlur={validateRePasswordInput} />
-                                {!isRePasswordValid.isValid && <p>Passwords do not match.</p>}
+                                <input className="form-control" type="password" placeholder="Repeat Password" name="rePassword" value={rePassword} onChange={onRePasswordChange}/>
+                                {rePasswordError && <p>{rePasswordError}</p>}
                             </div>
 
                             <button type="submit" className="float">Sign up</button>
