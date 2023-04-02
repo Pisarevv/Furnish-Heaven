@@ -1,5 +1,3 @@
-
-
 let target = "http://localhost:3030"
 
 async function request(method, url, data) {
@@ -31,15 +29,7 @@ async function request(method, url, data) {
         let result = await response.json();
 
         if (response.ok !== true) {
-            if (response.status === 403) {
-                if(response.message == "Invalid access token"){
-                    throw (result.message);
-                }
-                else{
-                    throw (result.message);
-                }
-            }
-            throw new Error(result.message);
+            throw (result.message);
         }
 
         return result;
@@ -47,7 +37,6 @@ async function request(method, url, data) {
     catch (error) {  
         throw (error);
     }
-
 
 }
 
