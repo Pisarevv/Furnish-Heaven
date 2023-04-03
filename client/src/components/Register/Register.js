@@ -1,9 +1,57 @@
+/**
+ * Register Component
+ * ---------------------
+ * This component displays the register form for the user
+ * to create an account.
+ * ---------------------- 
+ * 
+ * States:
+ * ----------------------
+ * - email (string): Holding the user email input.
+ * - password (string): Holding the user password input.
+ * - rePassword (string): Holding the repeated user password.
+ * ----------------------
+ * 
+ * Contexts:
+ * ----------------
+ * - useAuthContext
+ *  In this component this context provides the "userLogin" function.
+ *  The purpose of this function is to set the user data after successful login 
+ *  in the custom localStorage hook.
+ * -----------------
+ * 
+ * Functions:
+ * -----------------
+ * - onEmailChange:
+ *  Function for handling user input for email.
+ * - onPasswordChange:
+ *  Function for handling user input for password.
+ * - onRePasswordChange:
+ *  Function for handling user input for repeated password.
+ * - registerHandler:
+ *   Function that sends the user input.
+ *   If the sent data is valid the user is authenticated and redircted.
+ * 
+ * - ErrorHandler
+ *  This is a custom function that handles errors thrown by the REST api  
+ *  and based on the error shows the user notifications.
+ *  In the current case with a invalid access  token the user recieves a 
+ *  notification containing :
+ *  title : "Invalid access token"
+ *  message : "Your session has expired. Please log in again."
+ * -----------------
+**/
+
 import { useContext, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import './Register.css'
-import { register } from '../../services/authService';
+
 import { AuthContext } from '../../contexts/AuthContext';
+
+import { register } from '../../services/authService';
+
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
+
+import './Register.css'
 
 
 const ValidationRegexes = {
@@ -82,8 +130,8 @@ const Register = () => {
             let isRePasswordValid = validateRePasswordInput(rePassword);
 
             if(isEmailValid && isPasswordValid && isRePasswordValid){
-                let result = await register(email,password);
-                userLogin(result);
+                let returnedUserData = await register(email,password);
+                userLogin(returnedUserData);
                 navigate('/');
             }
             else{
