@@ -11,7 +11,7 @@ const LoadingComponent = () => {
             ariaLabel="three-dots-loading"
             wrapperStyle={{
                 position: "fixed",
-                left: "50%",
+                left: "47%",
             }}
              visible={true}
         />

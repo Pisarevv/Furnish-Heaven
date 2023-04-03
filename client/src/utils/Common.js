@@ -8,7 +8,7 @@ export function FormatCartSearchIds(inputIds) {
 export function AssignCartRecordIdToProductId(cartRecordIds,products){
     products.forEach(product => {
         cartRecordIds.forEach(record => {
-            if(product._id == record.productId){
+            if(product._id === record.productId){
                 product.cartRecId = record.cartRecId;
             }
         })
