@@ -35,10 +35,6 @@
  * - ErrorHandler
  *  This is a custom function that handles errors thrown by the REST api  
  *  and based on the error shows the user notifications.
- *  In the current case with a invalid access  token the user recieves a 
- *  notification containing :
- *  title : "Invalid access token"
- *  message : "Your session has expired. Please log in again."
  * -----------------
 **/
 
@@ -102,12 +98,14 @@ const EditUserProduct = (props) => {
         })()
     }, [])
 
+
     const setProductInitialDetails = (productProperties) => {
         for (const property in productProperties) {
             dispatch({ type: `SET_${(property).toUpperCase()}`, payload: productProperties[property] })
         }
     }
 
+    //Event handlers
     const onInputChange = (e) => {
         dispatch({ type: `SET_${(e.target.name).toUpperCase()}`, payload: e.target.value })
     }
