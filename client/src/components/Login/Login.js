@@ -1,45 +1,37 @@
 /**
  * Login Component
  * ---------------------
- * This component displays the starting page of the website with 
- * the wellcoming slogans and showing the top 4 most trending products.
- * Trending products are products that have more than 5 rating on them.
- * The catalog provides two buttons - a button to navigate to the store products page or 
- * user listing products
+ * This component displays the login form for the user
+ * to authenticate.
  * ---------------------- 
  * 
  * States:
  * ----------------------
- * - trendingProducts (array): The collection holding the fetched products from the server.
- *  Example 
- * ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- * [{…}, {…}, {…}, {…}]
- * 0: 
- * {_id: '53d4dbf5-7f41-47ba-b485-43eccb91cb95', model: 'Opulent Oaken Boardroom Table', price: 1235, imgUrl: 'https://www.bentleydesigns.com/images/products/large/3074_10186.jpg', rating: 9.5, description : ...}
- * 1: 
- * {_id: '22d4dbf5-7f41-47ba-b485-43eccb91cb95', model: 'Regal Slumber Haven', price: 2235, imgUrl: 'https://www.idfdesign.com/images/luxury-classic-bed-and-canopy-bed/r45-bed-carved-beds-3.jpg', rating: 8.8, description : ...}
- * -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- * ---------------
+ * - email (string): Holding the user email input.
+ * - password (string): Holding hte user password input.
+ * ----------------------
  * 
  * Contexts:
  * ----------------
  * - useAuthContext
- *  In this component this context provides the "userLogout" function.
- *  The purpose of this function here is when the user has an expired 
- *  access token to be logged out on the first opening of the page
- *  and set localStorage key containing the user information to default.
+ *  In this component this context provides the "userLogin" function.
+ *  The purpose of this function is to set the user data after successful login 
+ *  in the custom localStorage hook.
  *  
  *  - useCartContext
- *  In this component this context provides the "emptyCart" function.
- *  The purpose of this function here is also when the user has an expired 
- *  access token have his cart in the localStorage set to the default value on the 
- *  first opening of the page.
+ *  In this component this context provides the "addProductToCart" function.
+ *  The purpose of this function is to set the user cart products after successful login.
  * -----------------
  * 
  * Functions:
  * -----------------
- * - Observe 
- *  This function is used for the animation of fading in in the page.
+ * - onEmailChange:
+ *  Function for handling user input for email.
+ * - onPasswordChange:
+ *  Function for handling user input for password.
+ * - loginHandler:
+ *   Function that sends the user input.
+ *   If the sent data is valid the user is authenticated and redircted.
  * 
  * - ErrorHandler
  *  This is a custom function that handles errors thrown by the REST api  
@@ -70,12 +62,14 @@ const Login = () => {
 
     const { userLogin } = useAuthContext();
     const { addProductToCart } = useCartContext();
+
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
 
+    //Event handlers
     const onEmailChange = (e) => {
         setEmail(email => e.target.value);
     }
@@ -85,12 +79,10 @@ const Login = () => {
     }
 
     const loginHandler = async (e) => {
-        e.preventDefault();
-        console.log(email, password);
         try {
-            let result = await login(email, password);
-            let cartProducts = await getUserCartItems(result._id);
-            userLogin(result);
+            let returnedUserData = await login(email, password);
+            let cartProducts = await getUserCartItems(returnedUserData._id);
+            userLogin(returnedUserData);
             addProductToCart(cartProducts);  
             navigate('/');
         }
