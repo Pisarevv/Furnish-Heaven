@@ -43,7 +43,6 @@
  * -----------------
 **/
 
-
 import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
@@ -75,10 +74,11 @@ const Login = () => {
     }
 
     const onPasswordChange = (e) => {
-        setPassword(email => e.target.value);
+        setPassword(password => e.target.value);
     }
 
     const loginHandler = async (e) => {
+        e.preventDefault();
         try {
             let returnedUserData = await login(email, password);
             let cartProducts = await getUserCartItems(returnedUserData._id);

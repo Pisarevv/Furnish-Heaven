@@ -1,18 +1,43 @@
-import './Navigation.css'
+/**
+ * Navigation Component
+ * ---------------------
+ * This component displays the website header. It has two states
+ * - For guest (unauthorized users):
+ *   The user can navigate trough Home page, Products page(where the store products are) 
+ *   and Recycle page(where the user products listings are).
+ *   When the user is not logged in a Register and Login links are available.
+ * - For logged in users (authorized users):
+ *   This user can navigate to all the links the guest can but there is no
+ *   Login or Register links. Instead there is a Logout link.
+ * ---------------------- 
+ * 
+ * Contexts:
+ * ----------------
+ * - useAuthContext
+ *  In this component this context provides the "isAuthenticated" variable.
+ *  The purpose of this variable is to determine if the user is authorized or not 
+ *  and based on that to render different navigation links.
+ *  
+ *  - useCartContext
+ *  In this component this context provides the "cart" array.
+ *  The purpose of this array is to get its length and set the user cart products count on the icon of the cart.
+ * -----------------
+**/
+
 import { NavLink } from 'react-router-dom'
+
+import { useCartContext } from "../../contexts/CartContext";
+import { useAuthContext } from '../../contexts/AuthContext';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
-import { useContext } from 'react'
-import { AuthContext } from '../../contexts/AuthContext'
-import { CartContext } from '../../contexts/CartContext'
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 
-
-
+import './Navigation.css'
 
 const Navigation = () => {
 
-    const { user } = useContext(AuthContext);
-    const { cart } = useContext(CartContext);
+    const { isAuthenticated } = useAuthContext();
+    const { cart } = useCartContext();
 
     return (
         <header>
@@ -21,18 +46,17 @@ const Navigation = () => {
                 <ul className="nav_links">
                     <li><NavLink to="/">Home</NavLink></li>
                     <li><NavLink to="/products">Products</NavLink></li>
-                    {/* <li><NavLink to="/">Deals</NavLink></li> */}
                     <li><NavLink to="/recycle">Recycle your furniture</NavLink></li>
                 </ul>
             </nav>
             <ul className="nav_links">
                 {
-                    user.email && user.accessToken
+                        isAuthenticated
                         ?
                         <><li><NavLink to="/logout">Logout</NavLink></li>
                             <span className="fa-layers fa-fw fa-2x" >
                                 <NavLink className="fas fa-envelope fa-sm" to="/cart"><FontAwesomeIcon icon={faCartShopping} /></NavLink>
-                                {cart.length > 0 &&  <span className="fa-layers-counter" >{cart.length}</span>}
+                                {cart.length > 0 && <span className="fa-layers-counter" >{cart.length}</span>}
                             </span>
                         </>
                         :

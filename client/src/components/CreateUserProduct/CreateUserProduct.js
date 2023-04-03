@@ -34,6 +34,7 @@
  * -----------------
 **/
 
+
 import { useReducer } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -51,7 +52,7 @@ const ValidationErrors = {
 }
 
 const ValidationRegexes = {
-    //Validates that the price is a positive double or decimal number
+    //Validates that the price is a positive double, integer or decimal number
     priceRegex: new RegExp(/^(\d+(\.\d*)?|\.\d+)$/),
     //Validates that the year is an integer 
     yearRegex: new RegExp(/^[0-9]*$/)
