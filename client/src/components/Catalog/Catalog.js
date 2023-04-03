@@ -54,18 +54,19 @@
 import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
-
 import { useAuthContext } from '../../contexts/AuthContext';
 import { useCartContext } from '../../contexts/CartContext';
+
+import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
 
 import { getTrendingProducts } from '../../services/storeProductsService';
 
 import TrendingProductCard from './TrendingProductCard';
-import './Catalog.css'
+
 import Observe from '../../utils/Observer';
 import IsLoadingHOC from '../Common/IsLoadingHoc';
 
+import './Catalog.css'
 
 
 const Catalog = (props) => {
@@ -75,10 +76,7 @@ const Catalog = (props) => {
 
     const { setLoading } = props;
 
-
     const [trendingProducts, setTrendingProducts] = useState([]);
-    const [isLoading,setIsLoading] = useState(true);
-
 
     useEffect(() => {
         (async () => {
