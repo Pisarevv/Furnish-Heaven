@@ -64,13 +64,16 @@ import { getTrendingProducts } from '../../services/storeProductsService';
 import TrendingProductCard from './TrendingProductCard';
 import './Catalog.css'
 import Observe from '../../utils/Observer';
+import IsLoadingHOC from '../Common/IsLoadingHoc';
 
 
 
-const Catalog = () => {
+const Catalog = (props) => {
 
     const { userLogout } = useAuthContext();
     const { emptyCart } = useCartContext();
+
+    const { setLoading } = props;
 
 
     const [trendingProducts, setTrendingProducts] = useState([]);
@@ -81,10 +84,10 @@ const Catalog = () => {
         (async () => {
             try {
                 window.scrollTo(0, 0);
-                Observe();
                 const result = await getTrendingProducts();
                 setTrendingProducts(trendingProducts => result);
-                setIsLoading(false)
+                setLoading(false);
+                Observe();
             }
             catch (error) {
                 if (error === "Invalid access token") {
@@ -148,5 +151,5 @@ const Catalog = () => {
 }
 
 
-export default Catalog;
+export default IsLoadingHOC(Catalog);
 
