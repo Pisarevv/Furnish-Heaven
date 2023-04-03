@@ -1,8 +1,48 @@
-import { useReducer, useRef } from "react";
+/**
+ * CreateUserProduct Component
+ * ---------------------
+ * This component displays a form that is available for registered user.
+ * The user can create a listing of a product by filling the category, description, image url, model ,type, 
+ * price and year fields. 
+ * If all fields are valid a listing is created.
+ * ---------------------- 
+ * 
+ * States:
+ * ----------------------
+ * - userProduct (object): This object contains the properties of the product
+ *   and errors that can occur on them. The userProduct is controlled by a reducer.
+ * ---------------
+ * 
+ * Functions:
+ * -----------------
+ * - onInputChange:
+ *  Generic function updating the userProduct of a property.
+ * - validateTextFields:
+ *  Function that validates that a field is not blank.
+ *  There is a possibility to add different validation.
+ * - validateNumberFields:
+ *  Function that validates fields that a field is not blank and contains digits only.
+ *  There is a possibility to add different validation.
+ * - onProductCreate:
+ *  Function that creates the product if all of the properties are valid.
+ *  If the request is successful it redirects to the user products listing page - ("/recylce").
+ * -----------------
+ * 
+ * - ErrorHandler
+ *  This is a custom function that handles errors thrown by the REST api  
+ *  and based on the error shows the user notifications.
+ * -----------------
+**/
+
+import { useReducer } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import userProductReducer from "../../reducers/userProductReducer";
-import { createUserProduct } from "../../services/userProductsService";
+
 import { ErrorHandler } from "../../utils/ErrorHandler/ErrorHandler";
+
+import { createUserProduct } from "../../services/userProductsService";
+
+import userProductReducer from "../../reducers/userProductReducer";
+
 import "./CreateUserProduct.css";
 
 const ValidationErrors = {
@@ -11,7 +51,9 @@ const ValidationErrors = {
 }
 
 const ValidationRegexes = {
+    //Validates that the price is a positive double or decimal number
     priceRegex: new RegExp(/^(\d+(\.\d*)?|\.\d+)$/),
+    //Validates that the year is an integer 
     yearRegex: new RegExp(/^[0-9]*$/)
 }
 
@@ -19,7 +61,7 @@ const CreateUserProduct = () => {
 
     const navigate = useNavigate();
 
-    const [state, dispatch] = useReducer(userProductReducer, {
+    const [userProduct, dispatch] = useReducer(userProductReducer, {
         category: "",
         description: "",
         imgUrl: "",
@@ -70,20 +112,20 @@ const CreateUserProduct = () => {
     const onProductCreate = async (e) => {
         e.preventDefault();
         try {
-            let isCategoryValid = validateTextFields("category", state.category);
-            let isDescriptionValid = validateTextFields("description", state.description);
-            let isImgUrlValid = validateTextFields("imgUrl", state.imgUrl);
-            let isModelValid = validateTextFields("model", state.model);
-            let isTypeValid = validateTextFields("type", state.type);
-            let isPriceValid = validateNumberFields("price", state.price);
-            let isYearValid = validateNumberFields("year", state.year);
+            let isCategoryValid = validateTextFields("category", userProduct.category);
+            let isDescriptionValid = validateTextFields("description", userProduct.description);
+            let isImgUrlValid = validateTextFields("imgUrl", userProduct.imgUrl);
+            let isModelValid = validateTextFields("model", userProduct.model);
+            let isTypeValid = validateTextFields("type", userProduct.type);
+            let isPriceValid = validateNumberFields("price", userProduct.price);
+            let isYearValid = validateNumberFields("year", userProduct.year);
 
             if (isCategoryValid && isDescriptionValid &&
                 isImgUrlValid && isModelValid &&
                 isTypeValid && isPriceValid &&
                 isYearValid
             ) {
-                let { category, description, imgUrl, model, price, type, year } = state;
+                let { category, description, imgUrl, model, price, type, year } = userProduct;
                 await createUserProduct({ category, description, imgUrl, model, price, type, year });
                 navigate("/recycle");
 
@@ -107,38 +149,38 @@ const CreateUserProduct = () => {
                         <form onSubmit={onProductCreate}>
                             <div className="input-group input-group-lg">
                                 <label>Category:</label>
-                                <input className="form-control" type="text" placeholder="Category" name="category" value={state.category} onChange={onInputChange} />
-                                {state.categoryError && <p>{state.categoryError}</p>}
+                                <input className="form-control" type="text" placeholder="Category" name="category" value={userProduct.category} onChange={onInputChange} />
+                                {userProduct.categoryError && <p>{userProduct.categoryError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
                                 <label>Description:</label>
-                                <input className="form-control" type="text" placeholder="Description" name="description" value={state.description} onChange={onInputChange} />
-                                {state.descriptionError && <p>{state.descriptionError}</p>}
+                                <input className="form-control" type="text" placeholder="Description" name="description" value={userProduct.description} onChange={onInputChange} />
+                                {userProduct.descriptionError && <p>{userProduct.descriptionError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
                                 <label>Image URL:</label>
-                                <input className="form-control" type="text" placeholder="Image URL" name="imgUrl" value={state.imgUrl} onChange={onInputChange} />
-                                {state.imgUrlError && <p>{state.imgUrlError}</p>}
+                                <input className="form-control" type="text" placeholder="Image URL" name="imgUrl" value={userProduct.imgUrl} onChange={onInputChange} />
+                                {userProduct.imgUrlError && <p>{userProduct.imgUrlError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
                                 <label>Model:</label>
-                                <input className="form-control" type="text" placeholder="Model" name="model" value={state.model} onChange={onInputChange} />
-                                {state.modelError && <p>{state.modelError}</p>}
+                                <input className="form-control" type="text" placeholder="Model" name="model" value={userProduct.model} onChange={onInputChange} />
+                                {userProduct.modelError && <p>{userProduct.modelError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
                                 <label>Product type:</label>
-                                <input className="form-control" type="text" placeholder="Product type" name="type" value={state.type} onChange={onInputChange} />
-                                {state.typeError && <p>{state.typeError}</p>}
+                                <input className="form-control" type="text" placeholder="Product type" name="type" value={userProduct.type} onChange={onInputChange} />
+                                {userProduct.typeError && <p>{userProduct.typeError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
                                 <label>Year:</label>
-                                <input className="form-control" type="text" placeholder="Year" name="year" value={state.year} onChange={onInputChange} />
-                                {state.yearError && <p>{state.yearError}</p>}
+                                <input className="form-control" type="text" placeholder="Year" name="year" value={userProduct.year} onChange={onInputChange} />
+                                {userProduct.yearError && <p>{userProduct.yearError}</p>}
                             </div>
                             <div className="input-group input-group-lg">
                                 <label>Price:</label>
-                                <input className="form-control" type="text" placeholder="Price" name="price" value={state.price} onChange={onInputChange} />
-                                {state.priceError && <p>{state.priceError}</p>}
+                                <input className="form-control" type="text" placeholder="Price" name="price" value={userProduct.price} onChange={onInputChange} />
+                                {userProduct.priceError && <p>{userProduct.priceError}</p>}
                             </div>
                             <button type="submit" className="float">Create listing</button>
                             <NavLink className="float" to={`/recycle`}>Cancel</NavLink>
