@@ -1,21 +1,21 @@
+/**
+ * Footer Component
+ * ---------------------
+ * This component displays basic links to home, about and faq pages in
+ * the store and copyright information.
+ * 
+ * ---------------------- 
+**/
+
 import { NavLink } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+
 import "./Footer.css"
+
 
 const Footer = () => {
     return (
 
         <footer className="footer-distributed">
-
-            <div className="footer-right">
-                 {/* //TODO: Fix icons */}
-                <NavLink href="#"><FontAwesomeIcon icon={faHeart} /></NavLink>
-                <NavLink href="#"><FontAwesomeIcon icon={faHeart} /></NavLink>
-                <NavLink href="#"><FontAwesomeIcon icon={faHeart} /></NavLink>
-                <NavLink href="#"><FontAwesomeIcon icon={faHeart} /></NavLink>
-
-            </div>
 
             <div className="footer-left">
 
@@ -26,7 +26,6 @@ const Footer = () => {
 
                     <NavLink to = "/faq">FAQ</NavLink>
 
-                    <NavLink to = "/about">Contact</NavLink>
                 </p>
 
                 <p>Hristo Pisarev &copy; 2023</p>

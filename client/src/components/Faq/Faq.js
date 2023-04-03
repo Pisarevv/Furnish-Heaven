@@ -1,4 +1,14 @@
+/**
+ * Faq Component
+ * ---------------------
+ * This component displays frequently asked questions
+ * the store.
+ * ---------------------- 
+**/
+
+
 import { useEffect } from "react"
+
 import "./Faq.css"
 
 const Faq = () => {
