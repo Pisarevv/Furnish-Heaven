@@ -1,4 +1,13 @@
+/**
+ * About Component
+ * ---------------------
+ * This component displays basic information about
+ * the store.
+ * ---------------------- 
+**/
+
 import { useEffect } from "react"
+ 
 import "./About.css"
 
 const About = () => {

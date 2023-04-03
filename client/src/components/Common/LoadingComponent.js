@@ -1,5 +1,11 @@
-import { ThreeDots } from 'react-loader-spinner';
+/**
+ * LoadingComponent components
+ * ---------------------
+ * This components returns a loading animation with three dots.
+ * ---------------------
+**/
 
+import { ThreeDots } from 'react-loader-spinner';
 
 const LoadingComponent = () => {
     return (
