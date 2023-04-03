@@ -17,6 +17,11 @@ const errors = {
         message : "Please make sure all inputs are valid before submiting",
         type : "warning"
     },
+    "A user with the same email already exists" : {
+        title : "A user with the same email already exists",
+        message : "Please use another email to register",
+        type : "warning"
+    }
 }
 
 
