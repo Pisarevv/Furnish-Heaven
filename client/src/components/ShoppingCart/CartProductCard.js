@@ -28,10 +28,11 @@
  * Function that changes the quanitity of a product. It recieves cart record Id as an input.
  * -----------------
 **/
+import { useEffect, useState } from 'react';
 
 import { faRemove } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useState } from 'react';
+
 import './CartProductCard.css';
 
 const CartProductCard = ({ productInfo , removeProduct, modifyQuantity}) => {
