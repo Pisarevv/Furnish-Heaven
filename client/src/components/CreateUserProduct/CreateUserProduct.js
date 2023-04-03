@@ -1,5 +1,5 @@
 import { useReducer, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import userProductReducer from "../../reducers/userProductReducer";
 import { createUserProduct } from "../../services/userProductsService";
 import { ErrorHandler } from "../../utils/ErrorHandler/ErrorHandler";
@@ -141,7 +141,7 @@ const CreateUserProduct = () => {
                                 {state.priceError && <p>{state.priceError}</p>}
                             </div>
                             <button type="submit" className="float">Create listing</button>
-                            <button type="submit" className="float">Cancel</button>
+                            <NavLink className="float" to={`/recycle`}>Cancel</NavLink>
                         </form>
                     </div>
                 </div>

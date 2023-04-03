@@ -94,7 +94,7 @@ label {
 .create-item form input.form-control:focus {
   border: none;
 }
-.create-item form button {
+.create-item form button  {
   margin-top: 20px;
   background: #27ae60;
   border: none;
@@ -106,7 +106,28 @@ label {
   color: #b3eecc;
   border-bottom: 4px solid #1e8449;
 }
+
+.create-item form a  {
+  margin-top: 20px;
+  text-decoration: none;
+  background: #27ae60;
+  border: none;
+  font-size: 1.6em;
+  font-weight: 300;
+  padding: 5px 0;
+  width: 100%;
+  border-radius: 3px;
+  color: #b3eecc;
+  border-bottom: 4px solid #1e8449;
+}
+
 .create-item form button:hover {
+  background: tint(#27ae60, 4%);
+  -webkit-animation: hop 1s;
+  animation: hop 1s;
+}
+
+.create-item form a:hover {
   background: tint(#27ae60, 4%);
   -webkit-animation: hop 1s;
   animation: hop 1s;

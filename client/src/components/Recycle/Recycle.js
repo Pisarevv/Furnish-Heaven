@@ -5,18 +5,21 @@ import './Recycle.css'
 import ProductCard from './ProductCard';
 import { AuthContext } from '../../contexts/AuthContext';
 import Observe from '../../utils/Observer';
+import IsLoadingHOC from '../Common/IsLoadingHoc';
 
-const Recycle = () => {
+const Recycle = (props) => {
 
     const {user} = useContext(AuthContext);
     const [userProducts,setTrendingProducts] = useState([]);
+    const {setLoading} = props;
 
     useEffect(() => {
       (async () => {
-        Observe();
+        window.scrollTo(0, 0);
         const result = await getUserProducts();
         setTrendingProducts(userProducts => result);
-        window.scrollTo(0, 0);
+        setLoading(false);
+        Observe();
       })()
     },[])
     
@@ -41,5 +44,5 @@ const Recycle = () => {
 }
 
 
-export default Recycle;
+export default IsLoadingHOC(Recycle);
 

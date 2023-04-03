@@ -25,7 +25,7 @@ export const CartProvider = ({
     }
   
     const removeProductFromCart = (id) => {
-      if(products.some(p => p._id == id)){
+      if(products.some(p => p._id === id)){
         setProducts(products.filter(x => x._id !== id));
       } 
     }

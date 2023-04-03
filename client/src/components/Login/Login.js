@@ -7,7 +7,7 @@ import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
 import { useCartContext } from "../../contexts/CartContext";
 import './Login.css'
 import { useAuthContext } from '../../contexts/AuthContext';
-
+import IsLoadingHOC from "../Common/IsLoadingHoc";
 
 
 const Login = () => {
@@ -35,12 +35,13 @@ const Login = () => {
             let result = await login(email, password);
             let cartProducts = await getUserCartItems(result._id);
             userLogin(result);
-            addProductToCart(cartProducts);
+            addProductToCart(cartProducts);  
             navigate('/');
         }
         catch (error) {
             ErrorHandler(error);
         }
+
 
     }
 

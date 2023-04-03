@@ -8,12 +8,15 @@ import { getStoreProductById } from "../../services/storeProductsService";
 import AddComment from "./Comments/AddComment";
 import CommentCart from "./Comments/CommentCard";
 import "./StoreProductDetails.css";
+import IsLoadingHOC from "../Common/IsLoadingHoc";
 
-const StoreProductDetails = () => {
+const StoreProductDetails = (props) => {
 
     const { user } = useContext(AuthContext);
     const { cart, addProductToCart, removeProductFromCart } = useContext(CartContext);
     const IS_STORE_PRODUCT = true;
+
+    const {setLoading} = props;
 
     const [productInfo, setProductInfo] = useState("");
     const [isAddedToCart, setIsAddedToCart] = useState();
@@ -29,9 +32,9 @@ const StoreProductDetails = () => {
             setProductInfo(product);
             const comments = await getProductComments(id);
             setProductComments(comments);
-
-            setProductStatusInCart(cart.find(p => p._productId === id))
-            setIsAddedToCart(cart.some(p => p._productId === id))
+            setProductStatusInCart(cart.find(p => p._productId === id));
+            setIsAddedToCart(cart.some(p => p._productId === id));
+            setLoading(false);
         }
         )()
     }, [])
@@ -130,5 +133,5 @@ const StoreProductDetails = () => {
     )
 }
 
-export default StoreProductDetails;
+export default IsLoadingHOC(StoreProductDetails);
 

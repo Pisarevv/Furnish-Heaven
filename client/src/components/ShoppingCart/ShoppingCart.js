@@ -54,11 +54,14 @@ import { getAllStoreProductsForCart, getAllUserProductsForCart, removeProductFro
 import { AssignCartRecordIdToProductId } from '../../utils/Common';
 import CartProductCard from './CartProductCard';
 import './ShoppingCart.css';
+import IsLoadingHOC from '../Common/IsLoadingHoc';
 
-const ShoppingCart = () => {
+const ShoppingCart = (props) => {
 
     const [cartProducts, setCartProducts] = useState([]);
     const { cart , removeProductFromCart} = useCartContext();
+    
+    const {setLoading} = props;
     
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -100,8 +103,8 @@ const ShoppingCart = () => {
 
                 allProducts = [...allProducts,...storeProducts];
             }
-
             setCartProducts(allProducts);
+            setLoading(false);
         }
         )()
     }, []);
@@ -109,7 +112,7 @@ const ShoppingCart = () => {
     useEffect(() => {
      let totalPriceOfAllProducts = cartProducts.map(x => x.price * x.quantity).reduce((acc,curr) => acc + curr ,0);
      setTotalPrice(totalPriceOfAllProducts);
-     console.log(totalPriceOfAllProducts);
+  
     },[cartProducts]);
 
 
@@ -140,6 +143,6 @@ const ShoppingCart = () => {
     )
 }
 
-export default ShoppingCart;
+export default IsLoadingHOC(ShoppingCart);
 
 

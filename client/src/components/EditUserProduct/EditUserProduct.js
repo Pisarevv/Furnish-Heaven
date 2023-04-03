@@ -4,6 +4,7 @@ import { getUserProductById, updateUserProductById } from "../../services/userPr
 import { ErrorHandler } from "../../utils/ErrorHandler/ErrorHandler";
 import "./EditUserProduct.css";
 import userProductReducer from "../../reducers/userProductReducer";
+import IsLoadingHOC from "../Common/IsLoadingHoc";
 
 const ValidationErrors = {
     emptyInput: "This field cannot be empty",
@@ -15,10 +16,11 @@ const ValidationRegexes = {
     yearRegex: new RegExp(/^[0-9]*$/)
 }
 
-const EditUserProduct = () => {
+const EditUserProduct = (props) => {
 
     const { id } = useParams();
     const navigate = useNavigate();
+     const { setLoading } = props;
 
 
     const [state, dispatch] = useReducer(userProductReducer, {
@@ -45,9 +47,10 @@ const EditUserProduct = () => {
         (async () => {
             const productDetails = await getUserProductById(id)
             setProductInitialDetails(productDetails);
+            setLoading(false);
         })()
-    }, [id])
-
+    }, [])
+ 
     const setProductInitialDetails = (productProperties) => {
         for (const property in productProperties) {
             dispatch({ type: `SET_${(property).toUpperCase()}`, payload: productProperties[property] })
@@ -168,4 +171,4 @@ const EditUserProduct = () => {
     )
 
 }
-export default EditUserProduct;
+export default  IsLoadingHOC(EditUserProduct);

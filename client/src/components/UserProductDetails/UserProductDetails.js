@@ -5,12 +5,14 @@ import { CartContext } from "../../contexts/CartContext";
 import { addProductToCartById, removeProductFromCartById } from "../../services/cartService";
 import { deleteUserProductById, getUserProductById } from "../../services/userProductsService";
 import "./UserProductDetails.css";
+import IsLoadingHOC from "../Common/IsLoadingHoc";
 
-const UserProductDetails = () => {
+const UserProductDetails = (props) => {
 
     const { user } = useContext(AuthContext);
     const { cart, addProductToCart, removeProductFromCart } = useContext(CartContext);
     const IS_STORE_PRODUCT = false;
+    const {setLoading} = props;
 
     const [productInfo, setProductInfo] = useState("");
     const [isAddedToCart, setIsAddedToCart] = useState();
@@ -105,5 +107,5 @@ const UserProductDetails = () => {
     )
 }
 
-export default UserProductDetails;
+export default IsLoadingHOC(UserProductDetails);
 

@@ -5,18 +5,21 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { getAllStoreProducts } from '../../services/storeProductsService';
 import Observe from '../../utils/Observer';
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
+import IsLoadingHOC from '../Common/IsLoadingHoc';
 
-const StoreProducts = () => {
+const StoreProducts = (props) => {
 
     const {user} = useContext(AuthContext);
     const [storeProducts,setStoreProducts] = useState([]);
+    const {setLoading} = props;
 
     useEffect(() => {
       (async () => {
         try {
-        Observe();
         const result = await getAllStoreProducts();
         setStoreProducts(storeProducts => result);
+        setLoading(false);
+        Observe();
         window.scrollTo(0, 0);
         } catch (error) {
             ErrorHandler(error);
@@ -42,5 +45,5 @@ const StoreProducts = () => {
 }
 
 
-export default StoreProducts;
+export default IsLoadingHOC(StoreProducts);
 
