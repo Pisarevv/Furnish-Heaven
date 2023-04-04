@@ -1,3 +1,14 @@
+/**
+ * CommentCard Component
+ * ---------------------
+ * This component displays information about a comment - 
+ * the user who has posted it, the date that it has been posted 
+ * and the comment text.
+ * If the user is the creator of the comment he can 
+ * edit or delete it.
+ * ---------------------- 
+**/
+
 import { useState } from "react";
 
 import EdiText from 'react-editext';

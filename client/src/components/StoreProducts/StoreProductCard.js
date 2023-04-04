@@ -1,13 +1,12 @@
-import './StoreProductCard.css'
+import { NavLink } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons'
-import { NavLink } from 'react-router-dom';
 
+import './StoreProductCard.css'
 
 const StoreProductCard = ({productInfo}) => { 
   const {imgUrl,model,price,description, _id} = productInfo;
-    
     return (
         <div className="wrapper">
   <div className="container">
@@ -20,7 +19,7 @@ const StoreProductCard = ({productInfo}) => {
           <p>{model}</p>
           <p>{price}$</p>
         </div>
-        <NavLink className="sell-btn" to={`/products/${productInfo._id}`}>Details</NavLink>
+        <NavLink className="sell-btn" to={`/products/${_id}`}>Details</NavLink>
       </div>
     </div>
     

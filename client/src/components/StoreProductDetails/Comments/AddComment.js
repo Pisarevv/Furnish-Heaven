@@ -1,3 +1,12 @@
+/**
+ * AddComment Component
+ * ---------------------
+ * This component gives the user the opportunity 
+ * to add a comment to the product.
+ * ---------------------- 
+**/
+
+
 import { useState } from "react";
 
 import "./AddComment.css"

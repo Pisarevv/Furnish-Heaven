@@ -3,7 +3,8 @@
  * ---------------------
  * This component displays the store user products page with products listings.
  * The user can see a product card containing the model, price and image of the product.
- * A detail button on every card is available witch on click shows details about the product.
+ * A details button on every card is available witch on click redirects to the details 
+ * component about the product.
  * If the user is authenticated a button "Create listing" above the listings is available.
  * The user can create his own listing of a product. 
  * ---------------------- 
@@ -45,7 +46,7 @@ import { getUserProducts } from '../../services/userProductsService';
 import Observe from '../../utils/Observer';
 import IsLoadingHOC from '../Common/IsLoadingHoc';
 
-import ProductCard from './ProductCard';
+import UserProductCard from './UserProductCard';
 
 import './Recycle.css'
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
@@ -81,7 +82,7 @@ const Recycle = (props) => {
                 <div className="trending-container">
                     <h3 className='hidden'>Latest users listings:</h3>
                     <div className='trendingProducts-container hidden'>
-                        {userProducts.map(x => <ProductCard key={x._id} productInfo={x} />)}
+                        {userProducts.map(x => <UserProductCard key={x._id} productInfo={x} />)}
                     </div>
                 </div>
 
