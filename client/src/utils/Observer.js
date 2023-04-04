@@ -1,3 +1,9 @@
+/**
+ *  Observer
+ *  This is a custom component that creates a fading in animation.
+ * -----------------
+**/
+
 const Observer = new IntersectionObserver((entries) => {
 
         entries.forEach((entry) => {
