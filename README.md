@@ -27,6 +27,13 @@ https://github.com/Pisarevv/FurnitureStore.git
 2. Navigate to the project directory
 
 3. Install the dependencies
+npm install --save @fortawesome/free-solid-svg-icons
+npm install --save @fortawesome/react-fontawesome
+npm i react-router-dom
+npm i react-edit-text
+npm i react-loader-spinner
+npm i react-notifications-component
+
 
 ### Running the Application
 
@@ -60,5 +67,7 @@ This project is licensed under the GNU General Public License. See the [LICENSE.
 - [React](https://reactjs.org/) and [create-react-app](https://create-react-app.dev/) for the project setup.
 - [Softuni practice server](https://github.com/softuni-practice-server)
 - [React router](https://reactrouter.com/en/main)
-- [React-loading-spinner](https://mhnpd.github.io/react-loader-spinner/)
+- [React-loader-spinner](https://mhnpd.github.io/react-loader-spinner/)
 - [React-edit-text](https://github.com/bymi15/react-edit-text)
+- [React-notifications-component](https://github.com/teodosii/react-notifications-component)
+
