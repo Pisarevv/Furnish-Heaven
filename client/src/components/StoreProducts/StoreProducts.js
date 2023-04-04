@@ -1,6 +1,32 @@
-import { useContext, useEffect, useState } from 'react';
+/**
+ * StoreProducts  Component
+ * ---------------------
+ * This component displays the store products page with products listings.
+ * The user can see a product card containing the model, price and image of the product.
+ * A details button on every card is available witch on click redirects to the details 
+ * component about the product.
+ * ---------------------- 
+ * 
+ * States:
+ * ----------------------
+ * - storeProducts (array): The collection holding the fetched store products from the server.
+ * ---------------
+ * 
+ * Functions:
+ * -----------------
+ * - Observe 
+ *  This function is used for the animation of fading in in the page.
+ * 
+ * - ErrorHandler
+ *  This is a custom function that handles errors thrown by the REST api  
+ *  and based on the error shows the user notifications.
+ *  
+ *  - setLoading 
+ *  This function removes the loading animation.
+ * -----------------
+**/  
 
-import { AuthContext } from '../../contexts/AuthContext';
+import { useEffect, useState } from 'react';
 
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
 
@@ -15,15 +41,14 @@ import './StoreProducts.css'
 
 const StoreProducts = (props) => {
 
-    const {user} = useContext(AuthContext);
     const [storeProducts,setStoreProducts] = useState([]);
-    const {setLoading} = props;
+    const { setLoading } = props;
 
     useEffect(() => {
       (async () => {
         try {
-        const result = await getAllStoreProducts();
-        setStoreProducts(storeProducts => result);
+        const fetchedStoreProducts = await getAllStoreProducts();
+        setStoreProducts(storeProducts => fetchedStoreProducts);
         setLoading(false);
         Observe();
         window.scrollTo(0, 0);
