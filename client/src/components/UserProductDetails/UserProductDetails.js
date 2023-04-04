@@ -4,6 +4,8 @@ import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { CartContext } from "../../contexts/CartContext";
 
+import { ErrorHandler } from "../../utils/ErrorHandler/ErrorHandler";
+
 import { addProductToCartById, removeProductFromCartById } from "../../services/cartService";
 import { deleteUserProductById, getUserProductById } from "../../services/userProductsService";
 
@@ -11,12 +13,13 @@ import IsLoadingHOC from "../Common/IsLoadingHoc";
 
 import "./UserProductDetails.css";
 
+
 const UserProductDetails = (props) => {
 
     const { user } = useContext(AuthContext);
     const { cart, addProductToCart, removeProductFromCart } = useContext(CartContext);
     const IS_STORE_PRODUCT = false;
-    const {setLoading} = props;
+    const { setLoading } = props;
 
     const [productInfo, setProductInfo] = useState("");
     const [isAddedToCart, setIsAddedToCart] = useState();
@@ -30,22 +33,30 @@ const UserProductDetails = (props) => {
 
     useEffect(() => {
         (async () => {
-            const productData = await getUserProductById(id);
-            setProductInfo(productData);
-            setProductStatusInCart(cart.find(p => p._productId === id))
-            setIsAddedToCart(cart.some(p => p._productId === id))
-            setLoading(false);
+            try {
+                const productData = await getUserProductById(id);
+                setProductInfo(productData);
+                setProductStatusInCart(cart.find(p => p._productId === id));
+                setIsAddedToCart(cart.some(p => p._productId === id));
+                setLoading(false);
+            }
+            catch (error) {
+                ErrorHandler(error);
+            }
         }
         )()
     }, [])
 
     useEffect(() => {
         (async () => {
-            const productData = await getUserProductById(id)
-            setProductInfo(productData);
-            setProductStatusInCart(cart.find(p => p._productId === id))
-            console.table(cart);
-            console.log("Has changed")
+            try {
+                const productData = await getUserProductById(id)
+                setProductInfo(productData);
+                setProductStatusInCart(cart.find(p => p._productId === id))
+            }
+            catch (error) {
+                ErrorHandler(error);
+            }
         }
         )()
     }, [isAddedToCart])
@@ -53,22 +64,37 @@ const UserProductDetails = (props) => {
 
     const onProductDelete = async (e) => {
         e.preventDefault();
-        await deleteUserProductById(id);
-        navigate('/recycle');
+        try {
+            await deleteUserProductById(id);
+            navigate('/recycle');
+        }
+        catch (error) {
+            ErrorHandler(error);
+        }
     }
 
     const onProductAddToCart = async (e) => {
         e.preventDefault()
-        let response = await addProductToCartById(id,IS_STORE_PRODUCT)
-        addProductToCart(response);
-        setIsAddedToCart(true)
+        try {
+            let returnedProduct = await addProductToCartById(id, IS_STORE_PRODUCT);
+            addProductToCart(returnedProduct);
+            setIsAddedToCart(true);
+        }
+        catch (error) {
+            ErrorHandler(error);
+        }
     }
 
     const onRemoveProductFromCart = async (e) => {
         e.preventDefault()
-        await removeProductFromCartById(productStatusInCart._id)
-        removeProductFromCart(productStatusInCart._id);
-        setIsAddedToCart(false)
+        try {
+            await removeProductFromCartById(productStatusInCart._id)
+            removeProductFromCart(productStatusInCart._id);
+            setIsAddedToCart(false)
+        }
+        catch (error) {
+            ErrorHandler(error);
+        }
     }
 
 
