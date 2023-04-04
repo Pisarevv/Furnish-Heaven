@@ -10,7 +10,6 @@ import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 import Faq from './components/Faq/Faq';
 import { AuthProvider } from './contexts/AuthContext';
-import useLocalStorage from './hooks/useLocalStorage';
 import Logout from './components/Logout/Logout';
 import Recycle from './components/Recycle/Recycle';
 import UserProductDetails from './components/UserProductDetails/UserProductDetails';

@@ -1,5 +1,6 @@
 /**
- *  Observer
+ *  Observer 
+ * -----------------
  *  This is a custom component that creates a fading in animation.
  * -----------------
 **/

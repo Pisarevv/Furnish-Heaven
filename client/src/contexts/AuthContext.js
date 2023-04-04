@@ -3,6 +3,7 @@
  * ---------------------
  * React authentication context and provider,
  * as well as a custom hook to access the authentication state and functions in any component.
+ * It contains the user data - access token, id and email address.
  * ---------------------- 
  * 
  * States:

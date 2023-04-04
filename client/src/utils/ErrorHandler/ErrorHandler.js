@@ -1,5 +1,11 @@
-import { Store } from 'react-notifications-component';
+/**
+ *  ErrorHandler
+ *  This is a custom function that handles errors thrown by the REST api or application 
+ *  and based on the error shows the user notifications.
+ * -----------------
+**/
 
+import { Store } from 'react-notifications-component';
 
 const errors = {
     "Invalid access token" : {
