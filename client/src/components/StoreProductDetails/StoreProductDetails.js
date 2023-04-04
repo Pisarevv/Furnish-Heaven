@@ -1,22 +1,30 @@
 import { useContext, useEffect, useState } from "react";
-import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+
 import { AuthContext } from "../../contexts/AuthContext";
 import { CartContext } from "../../contexts/CartContext";
+
+import { ErrorHandler } from "../../utils/ErrorHandler/ErrorHandler";
+
 import { addProductToCartById, removeProductFromCartById } from "../../services/cartService";
-import { createComment, deleteCommentById, editUserCommentById, getProductComments, updateUserCommentById } from "../../services/commentService";
+import { createComment, deleteCommentById, editUserCommentById, getProductComments } from "../../services/commentService";
 import { getStoreProductById } from "../../services/storeProductsService";
+
 import AddComment from "./Comments/AddComment";
 import CommentCart from "./Comments/CommentCard";
-import "./StoreProductDetails.css";
 import IsLoadingHOC from "../Common/IsLoadingHoc";
+
+import "./StoreProductDetails.css";
+
 
 const StoreProductDetails = (props) => {
 
     const { user } = useContext(AuthContext);
     const { cart, addProductToCart, removeProductFromCart } = useContext(CartContext);
+
     const IS_STORE_PRODUCT = true;
 
-    const {setLoading} = props;
+    const { setLoading } = props;
 
     const [productInfo, setProductInfo] = useState("");
     const [isAddedToCart, setIsAddedToCart] = useState();
@@ -28,59 +36,93 @@ const StoreProductDetails = (props) => {
 
     useEffect(() => {
         (async () => {
-            const product = await getStoreProductById(id);
-            setProductInfo(product);
-            const comments = await getProductComments(id);
-            setProductComments(comments);
-            setProductStatusInCart(cart.find(p => p._productId === id));
-            setIsAddedToCart(cart.some(p => p._productId === id));
-            setLoading(false);
+            try {
+                const product = await getStoreProductById(id);
+                setProductInfo(product);
+                const comments = await getProductComments(id);
+                setProductComments(comments);
+                setProductStatusInCart(cart.find(p => p._productId === id));
+                setIsAddedToCart(cart.some(p => p._productId === id));
+                setLoading(false);
+            }
+            catch (error) {
+                ErrorHandler(error);
+            }
         }
         )()
     }, [])
 
     useEffect(() => {
         (async () => {
-            const result = await getStoreProductById(id)
-            setProductInfo(result);
-            setProductStatusInCart(cart.find(p => p._productId === id))
-            console.table(cart);
-            console.log("Has changed")
+            try {
+                const fetchedProduct = await getStoreProductById(id)
+                setProductInfo(fetchedProduct);
+                setProductStatusInCart(cart.find(p => p._productId === id))
+                console.table(cart);
+            }
+            catch (error) {
+                ErrorHandler(error);
+            }
         }
         )()
     }, [isAddedToCart])
 
     const onProductAddToCart = async (e) => {
         e.preventDefault()
-        let response = await addProductToCartById(id, IS_STORE_PRODUCT)
-        addProductToCart(response);
-        setIsAddedToCart(true)
+        try {
+            let returnedProduct = await addProductToCartById(id, IS_STORE_PRODUCT)
+            addProductToCart(returnedProduct);
+            setIsAddedToCart(true)
+        }
+        catch (error) {
+            ErrorHandler(error);
+        }
     }
 
     const onRemoveProductFromCart = async (e) => {
         e.preventDefault()
-        await removeProductFromCartById(productStatusInCart._id)
-        removeProductFromCart(productStatusInCart._id);
-        setIsAddedToCart(false)
+        try {
+            await removeProductFromCartById(productStatusInCart._id)
+            removeProductFromCart(productStatusInCart._id);
+            setIsAddedToCart(false);
+        }
+        catch (error) {
+            ErrorHandler(error);
+        }
     }
 
     const onCommentCreate = async (commentInput) => {
-        await createComment(id, commentInput);
-        const comments = await getProductComments(id);
-        setProductComments(comments);
+        try {
+            await createComment(id, commentInput);
+            const comments = await getProductComments(id);
+            setProductComments(comments);
+        }
+        catch (error) {
+            ErrorHandler(error);
+        }
     }
 
 
     const onCommentDelete = async (commentId) => {
-        await deleteCommentById(commentId);
-        const comments = await getProductComments(id);
-        setProductComments(comments);
+        try {
+            await deleteCommentById(commentId);
+            const comments = await getProductComments(id);
+            setProductComments(comments);
+        }
+        catch (error) {
+            ErrorHandler(error);
+        }
     }
 
     const onCommentEdit = async (commentId, text) => {
-        await editUserCommentById(commentId, text, id)
-        const comments = await getProductComments(id);
-        setProductComments(comments);
+        try {
+            await editUserCommentById(commentId, text, id)
+            const comments = await getProductComments(id);
+            setProductComments(comments);
+        }
+        catch (error) {
+            ErrorHandler(error);
+        }
     }
 
 
