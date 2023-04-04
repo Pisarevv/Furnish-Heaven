@@ -39,7 +39,7 @@ npm i react-notifications-component
 
 1. Start the development backend server:
 - cd server
-- run node server.js
+- node server.js
 
 2. Start the development server:
 - cd client
