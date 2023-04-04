@@ -55,6 +55,8 @@ const Recycle = (props) => {
 
     const { isAuthenticated } = useAuthContext();
     const [userProducts, setTrendingProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [searchCriteria, setSearchCriteria] = useState();
     const { setLoading } = props;
 
     useEffect(() => {
@@ -63,6 +65,7 @@ const Recycle = (props) => {
                 window.scrollTo(0, 0);
                 const fetchedUserProducts = await getUserProducts();
                 setTrendingProducts(userProducts => fetchedUserProducts);
+                setFilteredProducts(filteredProducts => fetchedUserProducts);
                 setLoading(false);
                 Observe();
             }
@@ -72,17 +75,42 @@ const Recycle = (props) => {
         })()
     }, [])
 
+    useEffect(() => {
+        if (searchCriteria === "") {
+            setFilteredProducts(userProducts);
+        }
+        else {
+            setFilteredProducts(userProducts.filter(p => (p.model).toLowerCase().includes(searchCriteria.toLowerCase())));
+        }
+
+    }, [searchCriteria]);
+
+    const onSearchHandler = (e) => {
+        e.preventDefault();
+        setSearchCriteria(e.target.value);
+    }
+
+
 
 
     return (
         <section className="catalog">
-            <div className="container">
+
+            <div className="searchBox">
+                <input className="searchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search"></input>
+            </div>
+
+            <div className="createListing">
                 {isAuthenticated && <NavLink className="sell-btn" to="/create">Create listing</NavLink>}
+            </div>
+
+
+            <div className="container">
+
 
                 <div className="trending-container">
-                    <h3 className='hidden'>Latest users listings:</h3>
                     <div className='trendingProducts-container hidden'>
-                        {userProducts.map(x => <UserProductCard key={x._id} productInfo={x} />)}
+                        {filteredProducts.map(x => <UserProductCard key={x._id} productInfo={x} />)}
                     </div>
                 </div>
 

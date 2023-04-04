@@ -1,3 +1,14 @@
+/**
+ * StoreProductCard Component
+ * ---------------------
+ * This component displays basic information - Image,model and price
+ * about a store product as a card. When hovered over the "trending" icon
+ * description about the product is shown.
+ * A button that redirects to the product datails is 
+ * placed on the bottom of the card.
+ * ---------------------- 
+**/
+
 import { NavLink } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'

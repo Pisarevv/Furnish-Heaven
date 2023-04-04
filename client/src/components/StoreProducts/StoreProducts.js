@@ -9,7 +9,11 @@
  * 
  * States:
  * ----------------------
+ * - searchCriteria (string) : A string that the products will be filtered based if they contain in
+ *   in their "model"
  * - storeProducts (array): The collection holding the fetched store products from the server.
+ * - filteredProducts (array): The collection holding the filtered userProducts based on the input
+ *   search criteria
  * ---------------
  * 
  * Functions:
@@ -24,7 +28,7 @@
  *  - setLoading 
  *  This function removes the loading animation.
  * -----------------
-**/  
+**/
 
 import { useEffect, useState } from 'react';
 
@@ -41,36 +45,61 @@ import './StoreProducts.css'
 
 const StoreProducts = (props) => {
 
-    const [storeProducts,setStoreProducts] = useState([]);
+    const [storeProducts, setStoreProducts] = useState([]);
+    const [filteredProducts, setFilteredProducts] = useState([]);
+    const [searchCriteria, setSearchCriteria] = useState();
     const { setLoading } = props;
 
     useEffect(() => {
-      (async () => {
-        try {
-        const fetchedStoreProducts = await getAllStoreProducts();
-        setStoreProducts(storeProducts => fetchedStoreProducts);
-        setLoading(false);
-        Observe();
-        window.scrollTo(0, 0);
-        } 
-        catch (error) {
-            ErrorHandler(error);
+        (async () => {
+            try {
+                const fetchedStoreProducts = await getAllStoreProducts();
+                setStoreProducts(storeProducts => fetchedStoreProducts);
+                setFilteredProducts(filteredProducts => fetchedStoreProducts);
+                setLoading(false);
+                Observe();
+                window.scrollTo(0, 0);
+            }
+            catch (error) {
+                ErrorHandler(error);
+            }
+        })()
+    }, [])
+
+    useEffect(() => {
+        if (searchCriteria === "") {
+            setFilteredProducts(storeProducts);
         }
-      })()
-    },[])
-    
+        else {
+            setFilteredProducts(storeProducts.filter(p => (p.model).toLowerCase().includes(searchCriteria.toLowerCase())));
+            console.log(searchCriteria);
+        }
+
+    }, [searchCriteria]);
+
+    const onSearchHandler = (e) => {
+        e.preventDefault();
+        setSearchCriteria(e.target.value);
+    }
+
 
 
     return (
         <section className="catalog">
-            <div className="container">  
-            <div className="trending-container">
-                <h3 className='hidden'>Popular products:</h3>
-                <div className='trendingProducts-container hidden'>
-                    {storeProducts.map(x => <StoreProductCard key={x._id} productInfo = {x}/>)}             
-                </div>
+
+            <div className="searchBox">
+                <input className="searchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search"></input>
             </div>
-             
+
+            <div className="container">
+
+                <div className="trending-container">
+
+                    <div className='trendingProducts-container hidden'>
+                        {filteredProducts.map(x => <StoreProductCard key={x._id} productInfo={x} />)}
+                    </div>
+                </div>
+
             </div>
         </section>
     )
