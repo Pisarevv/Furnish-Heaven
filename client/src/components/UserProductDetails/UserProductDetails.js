@@ -1,11 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
+
 import { AuthContext } from "../../contexts/AuthContext";
 import { CartContext } from "../../contexts/CartContext";
+
 import { addProductToCartById, removeProductFromCartById } from "../../services/cartService";
 import { deleteUserProductById, getUserProductById } from "../../services/userProductsService";
-import "./UserProductDetails.css";
+
 import IsLoadingHOC from "../Common/IsLoadingHoc";
+
+import "./UserProductDetails.css";
 
 const UserProductDetails = (props) => {
 
@@ -26,18 +30,19 @@ const UserProductDetails = (props) => {
 
     useEffect(() => {
         (async () => {
-            const result = await getUserProductById(id)
-            setProductInfo(result);
+            const productData = await getUserProductById(id);
+            setProductInfo(productData);
             setProductStatusInCart(cart.find(p => p._productId === id))
             setIsAddedToCart(cart.some(p => p._productId === id))
+            setLoading(false);
         }
         )()
     }, [])
 
     useEffect(() => {
         (async () => {
-            const result = await getUserProductById(id)
-            setProductInfo(result);
+            const productData = await getUserProductById(id)
+            setProductInfo(productData);
             setProductStatusInCart(cart.find(p => p._productId === id))
             console.table(cart);
             console.log("Has changed")

@@ -55,78 +55,80 @@ import { AssignCartRecordIdToProductId } from '../../utils/Common';
 import CartProductCard from './CartProductCard';
 import './ShoppingCart.css';
 import IsLoadingHOC from '../Common/IsLoadingHoc';
+import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
 
 const ShoppingCart = (props) => {
 
     const [cartProducts, setCartProducts] = useState([]);
-    const { cart , removeProductFromCart} = useCartContext();
-    
-    const {setLoading} = props;
-    
+    const { cart, removeProductFromCart } = useCartContext();
+
+    const { setLoading } = props;
+
     const [totalPrice, setTotalPrice] = useState(0);
 
     const removeProduct = async (id) => {
-       await removeProductFromCartById(id);
-       removeProductFromCart(id);
-       setCartProducts(cartProducts => cartProducts.filter(p => p.cartRecId !== id));
+        await removeProductFromCartById(id);
+        removeProductFromCart(id);
+        setCartProducts(cartProducts => cartProducts.filter(p => p.cartRecId !== id));
     }
 
-    const modifyQuantity = (id,quantity) => {
+    const modifyQuantity = (id, quantity) => {
         let product = cartProducts.find(x => x.cartRecId == id);
         product.quantity = quantity;
         setCartProducts(cartProducts.slice())
-        console.log(cartProducts)
     }
 
     useEffect(() => {
         (async () => {
-            let allProducts = [];
-            const userProductIds = cart.filter(p => p.isStoreProduct === false).map(x => x._productId); 
-            const storeProductIds = cart.filter(p => p.isStoreProduct === true).map(x => x._productId); 
+            try {
+                let allProducts = [];
+                const userProductIds = cart.filter(p => p.isStoreProduct === false).map(x => x._productId);
+                const storeProductIds = cart.filter(p => p.isStoreProduct === true).map(x => x._productId);
 
-            //Taking the record Ids based on the products in the cart
-            let cardRecordIds = cart.map(x => { return { cartRecId :x._id , productId : x._productId}});
+                //Taking the record Ids based on the products in the cart
+                let cardRecordIds = cart.map(x => { return { cartRecId: x._id, productId: x._productId } });
 
-            if(userProductIds.length > 0)
-            {
-                let userProducts = await getAllUserProductsForCart(userProductIds);
-                userProducts = AssignCartRecordIdToProductId(cardRecordIds,userProducts);
-                userProducts = userProducts.map(product => ({ ...product, quantity: 1 }));
+                if (userProductIds.length > 0) {
+                    let userProducts = await getAllUserProductsForCart(userProductIds);
+                    userProducts = AssignCartRecordIdToProductId(cardRecordIds, userProducts);
+                    userProducts = userProducts.map(product => ({ ...product, quantity: 1 }));
 
-                allProducts = [...userProducts];
-            }  
-            if(storeProductIds.length > 0)
-            {
-                let storeProducts = await getAllStoreProductsForCart(storeProductIds);
-                storeProducts = AssignCartRecordIdToProductId(cardRecordIds,storeProducts);
-                storeProducts = storeProducts.map(product => ({ ...product, quantity: 1 }));
+                    allProducts = [...userProducts];
+                }
+                if (storeProductIds.length > 0) {
+                    let storeProducts = await getAllStoreProductsForCart(storeProductIds);
+                    storeProducts = AssignCartRecordIdToProductId(cardRecordIds, storeProducts);
+                    storeProducts = storeProducts.map(product => ({ ...product, quantity: 1 }));
 
-                allProducts = [...allProducts,...storeProducts];
+                    allProducts = [...allProducts, ...storeProducts];
+                }
+                setCartProducts(allProducts);
+                setLoading(false);
             }
-            setCartProducts(allProducts);
-            setLoading(false);
+            catch (error) {
+               ErrorHandler(error);
+            }
         }
         )()
     }, []);
 
     useEffect(() => {
-     let totalPriceOfAllProducts = cartProducts.map(x => x.price * x.quantity).reduce((acc,curr) => acc + curr ,0);
-     setTotalPrice(totalPriceOfAllProducts);
-  
-    },[cartProducts]);
+        let totalPriceOfAllProducts = cartProducts.map(x => x.price * x.quantity).reduce((acc, curr) => acc + curr, 0);
+        setTotalPrice(totalPriceOfAllProducts);
+    }, [cartProducts]);
 
 
     return (
         <div className="wrap cf">
             <div className="heading cf">
                 <h1>My Cart</h1>
-                <NavLink className="continue" to ="/">Continue Shopping</NavLink>
+                <NavLink className="continue" to="/">Continue Shopping</NavLink>
             </div>
             <div className="cart">
                 <ul className="cartWrap">
                     <li className="items odd">
                         {/* TODO: Add paragraph when there are no products  */}
-                    {cartProducts.map(p => <CartProductCard key={p._id} productInfo={p} removeProduct = {removeProduct} modifyQuantity = {modifyQuantity} />)}
+                        {cartProducts.map(p => <CartProductCard key={p._id} productInfo={p} removeProduct={removeProduct} modifyQuantity={modifyQuantity} />)}
                     </li>
 
                 </ul>

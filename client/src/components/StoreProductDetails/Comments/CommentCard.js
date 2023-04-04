@@ -1,6 +1,8 @@
-import "./CommentCard.css"
-import EdiText from 'react-editext';
 import { useState } from "react";
+
+import EdiText from 'react-editext';
+
+import "./CommentCard.css"
 
 const CommentCart = ({commentData, user, onCommentDelete,onCommentEdit}) => {
 

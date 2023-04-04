@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import "./AddComment.css"
 
 const AddComment = ({ onCommentCreate }) => {
@@ -12,8 +13,7 @@ const AddComment = ({ onCommentCreate }) => {
     const onCreateHandler = (e) => {
         e.preventDefault();
         onCommentCreate(commentInput);
-        setCommentInput("");
-        
+        setCommentInput(commentInput => "");  
     }
 
     return (
