@@ -1,3 +1,20 @@
+/**
+ * AuthContext 
+ * ---------------------
+ * React authentication context and provider,
+ * as well as a custom hook to access the authentication state and functions in any component.
+ * ---------------------- 
+ * 
+ * States:
+ * ----------------------
+ * - auth (object): This state uses the custom UseLocalStorage hook that
+ *   allows the state to persist even when the page is refreshed. 
+ * ---------------------
+ * 
+ * Functions: 
+ * - userLogin, userLogout - These functions are used to update the authentication state when a user logs in or logs out.   
+**/
+
 import { createContext, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
