@@ -1,8 +1,62 @@
-import { useContext, useEffect, useState } from "react";
+/**
+ * UserProductDetails Component
+ * ---------------------
+ * This component displays the detailed product description of the user listing
+ * containing its model, price, image, rating, year, price ,type and description.
+ * If the user is logged in he can add or remove the product from the cart.
+ * If the user is the owner of the product listing he can edit or remove it.
+ * ---------------------- 
+ * 
+ * States:
+ * ----------------------
+ * - productInfo (object): The object containing the product data fetched from the server.
+ * - isAddedToCart (bool) : State of the product in the user cart - is it added or not
+ * - id : String containing the current product Id.
+ * - IS_STATE_PRODUCT (bool) : Additional property stating that the product is not a 
+ *   user listing product. This property is later used in the cart service for filtering.
+ * - productStatusInCart (object) : This object contains information about the product in the 
+ *   shopping cart
+ * ---------------------
+ * 
+ * Contexts:
+ * ----------------
+ * - useAuthContext
+ *  In this component this context provides the "user" object.
+ *  The purpose of this object here is to identify if the user,
+ *  his cart, has and he previously commented.
+ *  
+ *  - useCartContext
+ *  In this component this context provides one object "cart" and two functions "addProductToCart", "removeProductFromCart".
+ *  The purpose of the cart object here is to identify if the current products is added to the user cart or not.
+ * -----------------
+ * 
+ * Functions:
+ * -----------------
+ *   //Functions manipulating the cart
+ * - addProductToCartById:
+ *   This function adds the current product based on its id to the user shopping cart.
+ * - removeProductFromCartById:
+ *   This function removes the current product based on its id to the user shopping cart.
+ *   //Function manipulating the product details
+ * - getStoreProductById
+ *   This function is fetches the details about the current product
+ *   //Functions manipulating the product comments
+ * - createComment, deleteCommentById, editUserCommentById, getProductComments functions are 
+ *   responsible for the CRUD operations for the comments on the product
+ * -----------------
+ * - ErrorHandler
+ *  This is a custom function that handles errors thrown by the REST api  
+ *  and based on the error shows the user notifications.
+ * - setLoading 
+ *  This function removes the loading animation.
+ * -----------------
+**/
+
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 
-import { AuthContext } from "../../contexts/AuthContext";
-import { CartContext } from "../../contexts/CartContext";
+import { useAuthContext } from "../../contexts/AuthContext";
+import { useCartContext } from "../../contexts/CartContext";
 
 import { ErrorHandler } from "../../utils/ErrorHandler/ErrorHandler";
 
@@ -16,8 +70,8 @@ import "./UserProductDetails.css";
 
 const UserProductDetails = (props) => {
 
-    const { user } = useContext(AuthContext);
-    const { cart, addProductToCart, removeProductFromCart } = useContext(CartContext);
+    const { user } = useAuthContext();
+    const { cart, addProductToCart, removeProductFromCart } = useCartContext();
     const IS_STORE_PRODUCT = false;
     const { setLoading } = props;
 
