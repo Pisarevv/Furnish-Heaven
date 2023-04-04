@@ -2,7 +2,7 @@
  * Catalog Component
  * ---------------------
  * This component displays the starting page of the website with 
- * the wellcoming slogans and showing the top 4 most trending products.
+ * the welcoming slogans and showing the top 4 most trending products.
  * Trending products are products that have more than 5 rating on them.
  * The catalog provides two buttons - a button to navigate to the store products page or 
  * user listing products
@@ -90,6 +90,7 @@ const Catalog = (props) => {
             catch (error) {
                 if (error === "Invalid access token") {
                     ErrorHandler(error)
+                    setLoading(false);
                     userLogout();
                     emptyCart();
                 };
