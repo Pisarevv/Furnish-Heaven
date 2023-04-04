@@ -1,3 +1,10 @@
+/**
+ * userProductsService 
+ * ---------------------
+ * The service responsible for the CRUD operations of the user products listings.
+ * ---------------------- 
+**/
+
 import * as api from "./api";
 
 export async function getUserProducts () {

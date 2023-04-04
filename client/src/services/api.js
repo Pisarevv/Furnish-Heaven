@@ -1,3 +1,10 @@
+/**
+ * userProductReducer 
+ * ---------------------
+ * The function handling the requests and responses to the server.
+ * ---------------------- 
+**/
+
 let target = "http://localhost:3030"
 
 async function request(method, url, data) {

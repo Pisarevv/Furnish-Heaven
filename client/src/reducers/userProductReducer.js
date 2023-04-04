@@ -1,3 +1,10 @@
+/**
+ * userProductReducer 
+ * ---------------------
+ * Reducer used in create and edit user listing storing their state.
+ * ---------------------- 
+**/
+
 function userProductReducer(state, action) {
 
     switch (action.type) {

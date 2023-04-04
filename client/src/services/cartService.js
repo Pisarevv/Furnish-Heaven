@@ -1,3 +1,10 @@
+/**
+ * cartService 
+ * ---------------------
+ * The service responsible for the CRUD operations of the user cart.
+ * ---------------------- 
+**/
+
 import { FormatCartSearchIds } from "../utils/Common";
 import * as api from "./api";
 

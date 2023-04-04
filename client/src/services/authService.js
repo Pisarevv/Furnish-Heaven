@@ -1,3 +1,10 @@
+/**
+ * authService 
+ * ---------------------
+ * The service responsible for the CRUD operations of the authentication.
+ * ---------------------- 
+**/
+
 import * as api from "./api"
 
 export const login = (email,password) => 

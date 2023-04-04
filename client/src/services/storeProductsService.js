@@ -1,3 +1,10 @@
+/**
+ * storeProductsService 
+ * ---------------------
+ * The service responsible for the CRUD operations of the store products.
+ * ---------------------- 
+**/
+
 import * as api from "./api";
 
 const minRating = 5;

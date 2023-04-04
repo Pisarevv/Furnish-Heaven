@@ -1,3 +1,10 @@
+/**
+ * commentService 
+ * ---------------------
+ * The service responsible for the CRUD operations of the user comments on the store products.
+ * ---------------------- 
+**/
+
 import * as api from "./api"
 
 export async function getProductComments(_productId){
