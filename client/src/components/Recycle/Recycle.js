@@ -11,7 +11,11 @@
  * 
  * States:
  * ----------------------
+ * - searchCriteria (string) : A string that the products will be filtered based if they contain in
+ *   in their "model"
  * - userProducts (array): The collection holding the fetched user products from the server.
+ * - filteredProducts (array): The collection holding the filtered userProducts based on the input
+ *   search criteria
  * ---------------
  * 
  * Contexts:
@@ -37,11 +41,11 @@
 **/
 
 import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 
 import { useAuthContext } from '../../contexts/AuthContext';
 
-import { getUserProducts } from '../../services/userProductsService';
+import { getAllUserProducts, getUserProducts } from '../../services/userProductsService';
 
 import Observe from '../../utils/Observer';
 import IsLoadingHOC from '../Common/IsLoadingHoc';
@@ -50,6 +54,7 @@ import UserProductCard from './UserProductCard';
 
 import './Recycle.css'
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
+import Pagination from '../Pagination/Pagination';
 
 const Recycle = (props) => {
 
@@ -59,11 +64,22 @@ const Recycle = (props) => {
     const [searchCriteria, setSearchCriteria] = useState();
     const { setLoading } = props;
 
+    //Pagination
+    const [itemsPerPage, setItemsPerPage] = useState(8);
+    const [userProductsCount, setUserProductsCount] = useState(0);
+    const [totalPages, setTotalPages] = useState();
+    const { page: currentPage } = useParams();
+
     useEffect(() => {
         (async () => {
             try {
                 window.scrollTo(0, 0);
-                const fetchedUserProducts = await getUserProducts();
+                const fetchedUserProductsInformation = await getAllUserProducts(Number(currentPage), itemsPerPage);
+                const fetchedUserProducts = fetchedUserProductsInformation.fetchedUserProducts;
+                const fetchedUserProductsCount = fetchedUserProductsInformation.userProductsCount;
+
+                setUserProductsCount(userProductsCount=> fetchedUserProductsCount);
+                
                 setTrendingProducts(userProducts => fetchedUserProducts);
                 setFilteredProducts(filteredProducts => fetchedUserProducts);
                 setLoading(false);
@@ -74,6 +90,26 @@ const Recycle = (props) => {
             }
         })()
     }, [])
+
+    useEffect(() => {
+        (async () => {
+            try {
+                window.scrollTo(0, 0);
+                const fetchedUserProductsInformation = await getAllUserProducts(Number(currentPage), itemsPerPage);
+                const fetchedUserProducts = fetchedUserProductsInformation.fetchedUserProducts;
+                const fetchedUserProductsCount = fetchedUserProductsInformation.userProductsCount;
+
+                setUserProductsCount(userProductsCount=> fetchedUserProductsCount);
+                
+                setTrendingProducts(userProducts => fetchedUserProducts);
+                setFilteredProducts(filteredProducts => fetchedUserProducts);
+                setLoading(false);
+            }
+            catch (error) {
+                ErrorHandler(error);
+            }
+        })()
+    }, [currentPage])
 
     useEffect(() => {
         if (searchCriteria === "") {
@@ -97,7 +133,7 @@ const Recycle = (props) => {
         <section className="catalog">
 
             <div className="searchBox">
-                <input className="searchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search"></input>
+                <input className="searchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search in this page"></input>
             </div>
 
             <div className="createListing">
@@ -105,7 +141,7 @@ const Recycle = (props) => {
             </div>
 
 
-            <div className="container">
+            <div className="recycle-container">
 
 
                 <div className="trending-container">
@@ -113,6 +149,15 @@ const Recycle = (props) => {
                         {filteredProducts.map(x => <UserProductCard key={x._id} productInfo={x} />)}
                     </div>
                 </div>
+
+                {userProductsCount > 0  &&
+                     <div>
+                     <Pagination
+                      pageInfo = {{ itemsCount : userProductsCount, itemsPerPage, currentPage}}
+                      setLoadingStatus = {setLoading}
+                      navigationPageName = {"recycle"}  />
+                 </div>}
+                   
 
             </div>
         </section>

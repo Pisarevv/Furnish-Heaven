@@ -7,9 +7,20 @@
 
 import * as api from "./api";
 
-export async function getUserProducts () {
-    let results = await api.get(`/data/userProducts?select=${encodeURIComponent("_id,model,price,imgUrl,rating")}`);
-    return results;
+export async function getAllUserProducts (page,pageSize) {
+    const targetPage = (page - 1 ) * pageSize;
+    let [fetchedUserProducts,userProductsCount] = await Promise.all([
+        api.get(`/data/userProducts?select=${encodeURIComponent("_id,model,price,imgUrl")}&offset=${targetPage}&pageSize=${pageSize}`),
+        api.get(`/data/userProducts?count`)
+    ])
+    // let results = await api.get(`/data/userProducts?select=${encodeURIComponent("_id,model,price,imgUrl,rating")}&offset=${targetPage}&pageSize=${pageSize}`);
+    return (
+        {
+        fetchedUserProducts,
+        userProductsCount 
+        }
+    )
+  
 }
 
 
