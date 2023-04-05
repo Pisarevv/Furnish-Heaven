@@ -68,9 +68,6 @@ const Pagination = ({ pageInfo, navigationPageName, setLoadingStatus }) => {
         setpageNumbersToDisplay(pageNumbersToDisplay => calculatePagesDisplayNumbering(totalPages, Number(currentPage)));
     }, [currentPage]);
 
-    console.log(pageNumbersToDisplay);
-
-
     const navigate = useNavigate();
 
     const goToNextPage = () => {
@@ -94,8 +91,8 @@ const Pagination = ({ pageInfo, navigationPageName, setLoadingStatus }) => {
             {currentPage != 1 && <li className="page__numbers" ><button onClick={() => goToPreviousPage()} ><FontAwesomeIcon icon={faLeftLong} /></button></li>}
 
             {pageNumbersToDisplay.map(p => p == currentPage
-                ? <li className="page__numbers active">{p} </li>
-                : <li className="page__numbers " onClick={gotoPage}>{p} </li>)}
+                ? <li className="page__numbers active" key = {p} >{p} </li>
+                : <li className="page__numbers " onClick={gotoPage} key = {p} >{p} </li>)}
 
             {currentPage != totalPages && <li className="page__numbers" ><button onClick={() => goToNextPage()} ><FontAwesomeIcon icon={faRightLong} /></button></li>}
 
