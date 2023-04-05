@@ -41,11 +41,9 @@ import Observe from '../../utils/Observer';
 import StoreProductCard from './StoreProductCard';
 import IsLoadingHOC from '../Common/IsLoadingHoc';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faCartShopping, faLeftLong, faRightLong, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
 
 import './StoreProducts.css'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Pagination from '../Pagination/Pagination';
 
 
@@ -57,6 +55,7 @@ const StoreProducts = (props) => {
 
     //Pagination
     const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [storeProductsCount, setStoreProductsCount] = useState(0);
     const [totalPages, setTotalPages] = useState();
     const { page: currentPage } = useParams();
    
@@ -71,7 +70,10 @@ const StoreProducts = (props) => {
                 const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
                 const storeProductsCount = fetchedStoreProductsInformation.storeProductsCount;
 
+                setStoreProductsCount(storeProductsCount=> storeProductsCount);
+
                 setTotalPages(Math.ceil(storeProductsCount / itemsPerPage));
+
                 setStoreProducts(storeProducts => fetchedStoreProducts);
                 setFilteredProducts(filteredProducts => fetchedStoreProducts);
             
@@ -85,7 +87,7 @@ const StoreProducts = (props) => {
         })()
     }, [])
 
-    console.log(totalPages);
+
 
     useEffect(() => {
         (async () => {
@@ -95,10 +97,11 @@ const StoreProducts = (props) => {
                 const fetchedStoreProductsInformation = await getAllStoreProducts(Number(currentPage), itemsPerPage);
                 const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
                 const storeProductsCount = fetchedStoreProductsInformation.storeProductsCount;
-
+                
+                setStoreProductsCount(storeProductsCount);
+                setTotalPages(totalPages => Math.ceil(storeProductsCount / itemsPerPage));
                 setStoreProducts(storeProducts => fetchedStoreProducts);
                 setFilteredProducts(filteredProducts => fetchedStoreProducts);
-                setTotalPages(totalPages => Math.ceil(storeProductsCount / itemsPerPage));
                 setLoading(false);
 
             }
@@ -142,12 +145,14 @@ const StoreProducts = (props) => {
                         {filteredProducts.map(x => <StoreProductCard key={x._id} productInfo={x} />)}
                     </div>
 
-                    <div>
-                        <Pagination
-                         pageInfo = {{ totalPages, currentPage}}
-                         setLoadingStatus = {setLoading}
-                         navigationPageName = {"products"}  />
-                    </div>
+                    {storeProductsCount > 0  &&
+                     <div>
+                     <Pagination
+                      pageInfo = {{ storeProductsCount, itemsPerPage, currentPage}}
+                      setLoadingStatus = {setLoading}
+                      navigationPageName = {"products"}  />
+                 </div>}
+                   
                 </div>
 
 
