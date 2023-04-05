@@ -35,8 +35,8 @@ function App() {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/logout' element={<Logout />} />
-              <Route path='/products' element={<StoreProducts/>}/>
-              <Route path='/recycle' element={<Recycle />} />
+              <Route path='/products/:page' element={<StoreProducts/>}/>
+              <Route path='/recycle/:page' element={<Recycle />} />
               <Route path='/about' element={<About />} />
               <Route path='/faq' element={<Faq />} />
               <Route path='/recycle/:id' element={<UserProductDetails />} />

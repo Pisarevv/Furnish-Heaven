@@ -41,24 +41,43 @@ import Observe from '../../utils/Observer';
 import StoreProductCard from './StoreProductCard';
 import IsLoadingHOC from '../Common/IsLoadingHoc';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowRight, faCartShopping, faLeftLong, faRightLong, faRightToBracket } from '@fortawesome/free-solid-svg-icons'
+
 import './StoreProducts.css'
+import { useNavigate, useParams } from 'react-router-dom';
+import Pagination from '../Pagination/Pagination';
+
 
 const StoreProducts = (props) => {
 
     const [storeProducts, setStoreProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [searchCriteria, setSearchCriteria] = useState();
+
+    //Pagination
+    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [totalPages, setTotalPages] = useState();
+    const { page: currentPage } = useParams();
+   
+
     const { setLoading } = props;
 
     useEffect(() => {
         (async () => {
             try {
-                const fetchedStoreProducts = await getAllStoreProducts();
+                window.scrollTo(0, 0);
+                const fetchedStoreProductsInformation = await getAllStoreProducts(Number(currentPage), itemsPerPage);
+                const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
+                const storeProductsCount = fetchedStoreProductsInformation.storeProductsCount;
+
+                setTotalPages(Math.ceil(storeProductsCount / itemsPerPage));
                 setStoreProducts(storeProducts => fetchedStoreProducts);
                 setFilteredProducts(filteredProducts => fetchedStoreProducts);
+            
                 setLoading(false);
                 Observe();
-                window.scrollTo(0, 0);
+
             }
             catch (error) {
                 ErrorHandler(error);
@@ -66,13 +85,35 @@ const StoreProducts = (props) => {
         })()
     }, [])
 
+    console.log(totalPages);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                window.scrollTo(0, 0);
+
+                const fetchedStoreProductsInformation = await getAllStoreProducts(Number(currentPage), itemsPerPage);
+                const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
+                const storeProductsCount = fetchedStoreProductsInformation.storeProductsCount;
+
+                setStoreProducts(storeProducts => fetchedStoreProducts);
+                setFilteredProducts(filteredProducts => fetchedStoreProducts);
+                setTotalPages(totalPages => Math.ceil(storeProductsCount / itemsPerPage));
+                setLoading(false);
+
+            }
+            catch (error) {
+                ErrorHandler(error);
+            }
+        })()
+    }, [currentPage])
+
     useEffect(() => {
         if (searchCriteria === "") {
             setFilteredProducts(storeProducts);
         }
         else {
             setFilteredProducts(storeProducts.filter(p => (p.model).toLowerCase().includes(searchCriteria.toLowerCase())));
-            console.log(searchCriteria);
         }
 
     }, [searchCriteria]);
@@ -81,6 +122,8 @@ const StoreProducts = (props) => {
         e.preventDefault();
         setSearchCriteria(e.target.value);
     }
+
+
 
 
 
@@ -98,9 +141,19 @@ const StoreProducts = (props) => {
                     <div className='trendingProducts-container hidden'>
                         {filteredProducts.map(x => <StoreProductCard key={x._id} productInfo={x} />)}
                     </div>
+
+                    <div>
+                        <Pagination
+                         pageInfo = {{ totalPages, currentPage}}
+                         setLoadingStatus = {setLoading}
+                         navigationPageName = {"products"}  />
+                    </div>
                 </div>
 
+
             </div>
+
+
         </section>
     )
 }
