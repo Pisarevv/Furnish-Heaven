@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// const currentPage = 1;
 
-function calculatePagesDisplayNumbering(totalPages,currentPage) {
+const AMOUNT_OF_PAGENUMBERS = 4;
+
+function calculatePagesDisplayNumbering(totalPages, currentPage) {
     let numbersArray = [];
-    if (totalPages < 4) {
+    if (totalPages <= AMOUNT_OF_PAGENUMBERS) {
 
         for (let i = 1; i <= totalPages; i++) {
             numbersArray.push(i);
@@ -16,29 +17,56 @@ function calculatePagesDisplayNumbering(totalPages,currentPage) {
         return numbersArray;
     }
     else {
-       for (let i = currentPage + 1 ; i  <=  currentPage + 3; i++) {
-            numbersArray.push(i);
+        if (currentPage == 1) {
+
+            for (let i = currentPage + 1; i < currentPage + AMOUNT_OF_PAGENUMBERS ; i++) {
+                numbersArray.push(i);
+            }
+            numbersArray.push(`..${totalPages}`);
+            numbersArray.unshift(1);
+            return numbersArray;
+
         }
 
-        numbersArray.unshift(1);
-        numbersArray.push(totalPages);
+        if(currentPage + AMOUNT_OF_PAGENUMBERS > totalPages){
+            for (let i = totalPages; i > totalPages - AMOUNT_OF_PAGENUMBERS; i--) {
+                numbersArray.push(i);
+            }
+            numbersArray.reverse();
+            numbersArray.unshift("1..");
 
+            return numbersArray;
+        }
+        else {
+            for (let i = currentPage; i < currentPage + AMOUNT_OF_PAGENUMBERS; i++) {
+                numbersArray.push(i);
+            }
 
-        return numbersArray;
+            numbersArray.unshift("1..");
+            numbersArray.push(`..${totalPages}`);
+            return numbersArray;
+        }
     }
 }
-
 
 const Pagination = ({ pageInfo, navigationPageName, setLoadingStatus }) => {
 
     const { storeProductsCount, itemsPerPage, currentPage } = pageInfo;
 
     const [pageNumbersToDisplay, setpageNumbersToDisplay] = useState([]);
+    const [totalPages, setTotalPages] = useState(0);
 
-        useEffect(() =>{
-            let totalPages = Number(storeProductsCount)/Number(itemsPerPage);
-            setpageNumbersToDisplay(calculatePagesDisplayNumbering(10,Number(currentPage)));
-        },[]);
+    useEffect(() => {
+        let totalPages = Math.ceil(Number(storeProductsCount) / Number(itemsPerPage));
+        setTotalPages(totalPages);
+        setpageNumbersToDisplay(pageNumbersToDisplay => calculatePagesDisplayNumbering(totalPages, Number(currentPage)));
+    }, []);
+
+    useEffect(() => {
+        let totalPages = Math.ceil(Number(storeProductsCount) / Number(itemsPerPage));
+        setTotalPages(totalPages);
+        setpageNumbersToDisplay(pageNumbersToDisplay => calculatePagesDisplayNumbering(totalPages, Number(currentPage)));
+    }, [currentPage]);
 
     console.log(pageNumbersToDisplay);
 
@@ -47,31 +75,30 @@ const Pagination = ({ pageInfo, navigationPageName, setLoadingStatus }) => {
 
     const goToNextPage = () => {
         setLoadingStatus(true);
-        navigate(`../${navigationPageName}/${Number(currentPage) + 1}`);
+        navigate(`..//${navigationPageName}/page/${Number(currentPage) + 1}`);
     }
 
     const goToPreviousPage = () => {
         setLoadingStatus(true);
-        navigate(`../${navigationPageName}/${Number(currentPage) - 1}`);
+        navigate(`..//${navigationPageName}/page/${Number(currentPage) - 1}`);
+    }
+
+    const gotoPage = (e) => {
+        setLoadingStatus(true);
+        navigate(`..//${navigationPageName}/page/${Number(e.target.textContent.replace("..", ""))}`);
     }
 
 
     return (
         <ul className="page">
-            <li className="page__numbers" ><button onClick={() => goToPreviousPage()} ><FontAwesomeIcon icon={faLeftLong} /></button></li>
-            
-            {pageNumbersToDisplay.map(p =>  p == currentPage 
-            ? <li className="page__numbers active">{p} </li> 
-            : <li className="page__numbers ">{p} </li>)}
-            {/* <li className="page__numbers">1</li>
-            <li className="page__numbers active">2</li>
-            <li className="page__numbers">3</li>
-            <li className="page__numbers">4</li>
-            <li className="page__numbers">5</li>
-            <li className="page__numbers">6</li>
-            <li className="page__dots">...</li>
-            <li className="page__numbers"> 4324</li> */}
-            <li className="page__numbers" ><button onClick={() => goToNextPage()} ><FontAwesomeIcon icon={faRightLong} /></button></li>
+            {currentPage != 1 && <li className="page__numbers" ><button onClick={() => goToPreviousPage()} ><FontAwesomeIcon icon={faLeftLong} /></button></li>}
+
+            {pageNumbersToDisplay.map(p => p == currentPage
+                ? <li className="page__numbers active">{p} </li>
+                : <li className="page__numbers " onClick={gotoPage}>{p} </li>)}
+
+            {currentPage != totalPages && <li className="page__numbers" ><button onClick={() => goToNextPage()} ><FontAwesomeIcon icon={faRightLong} /></button></li>}
+
         </ul>
     );
 
