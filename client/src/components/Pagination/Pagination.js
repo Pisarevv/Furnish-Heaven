@@ -51,19 +51,19 @@ function calculatePagesDisplayNumbering(totalPages, currentPage) {
 
 const Pagination = ({ pageInfo, navigationPageName, setLoadingStatus }) => {
 
-    const { storeProductsCount, itemsPerPage, currentPage } = pageInfo;
+    const { itemsCount, itemsPerPage, currentPage } = pageInfo;
 
     const [pageNumbersToDisplay, setpageNumbersToDisplay] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
-        let totalPages = Math.ceil(Number(storeProductsCount) / Number(itemsPerPage));
+        let totalPages = Math.ceil(Number(itemsCount) / Number(itemsPerPage));
         setTotalPages(totalPages);
         setpageNumbersToDisplay(pageNumbersToDisplay => calculatePagesDisplayNumbering(totalPages, Number(currentPage)));
     }, []);
 
     useEffect(() => {
-        let totalPages = Math.ceil(Number(storeProductsCount) / Number(itemsPerPage));
+        let totalPages = Math.ceil(Number(itemsCount) / Number(itemsPerPage));
         setTotalPages(totalPages);
         setpageNumbersToDisplay(pageNumbersToDisplay => calculatePagesDisplayNumbering(totalPages, Number(currentPage)));
     }, [currentPage]);

@@ -120,7 +120,7 @@ const UserProductDetails = (props) => {
         e.preventDefault();
         try {
             await deleteUserProductById(id);
-            navigate('/recycle');
+            navigate('/recycle/page/1');
         }
         catch (error) {
             ErrorHandler(error);

@@ -128,7 +128,7 @@ const CreateUserProduct = () => {
             ) {
                 let { category, description, imgUrl, model, price, type, year } = userProduct;
                 await createUserProduct({ category, description, imgUrl, model, price, type, year });
-                navigate("/recycle");
+                navigate("/recycle/page/1");
 
             }
             else {
@@ -184,7 +184,7 @@ const CreateUserProduct = () => {
                                 {userProduct.priceError && <p>{userProduct.priceError}</p>}
                             </div>
                             <button type="submit" className="float">Create listing</button>
-                            <NavLink className="float" to={`/recycle`}>Cancel</NavLink>
+                            <NavLink className="float" to={`/recycle/page/1`}>Cancel</NavLink>
                         </form>
                     </div>
                 </div>

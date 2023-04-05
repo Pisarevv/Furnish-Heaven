@@ -153,7 +153,7 @@ const EditUserProduct = (props) => {
             ) {
                 let { category, description, imgUrl, model, price, type, year } = userProduct;
                 await updateUserProductById(id, { category, description, imgUrl, model, price, type, year });
-                navigate('/recycle');
+                navigate('/recycle/page/1');
             }
 
             else {

@@ -70,9 +70,10 @@ const StoreProducts = (props) => {
                 
                 const fetchedStoreProductsInformation = await getAllStoreProducts(Number(currentPage), itemsPerPage);
                 const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
-                const storeProductsCount = fetchedStoreProductsInformation.storeProductsCount;
+                const fetchedStoreProductsCount = fetchedStoreProductsInformation.storeProductsCount;
 
-                setStoreProductsCount(storeProductsCount=> storeProductsCount);
+                setStoreProductsCount(storeProductsCount=> fetchedStoreProductsCount);
+                
                 setStoreProducts(storeProducts => fetchedStoreProducts);
                 setFilteredProducts(filteredProducts => fetchedStoreProducts);
             
@@ -92,7 +93,7 @@ const StoreProducts = (props) => {
         (async () => {
             try {
                 window.scrollTo(0, 0);
-                
+
                 const fetchedStoreProductsInformation = await getAllStoreProducts(Number(currentPage), itemsPerPage);
                 const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
                 const storeProductsCount = fetchedStoreProductsInformation.storeProductsCount;
@@ -146,7 +147,7 @@ const StoreProducts = (props) => {
                     {storeProductsCount > 0  &&
                      <div>
                      <Pagination
-                      pageInfo = {{ storeProductsCount, itemsPerPage, currentPage}}
+                      pageInfo = {{ itemsCount : storeProductsCount, itemsPerPage, currentPage}}
                       setLoadingStatus = {setLoading}
                       navigationPageName = {"products"}  />
                  </div>}

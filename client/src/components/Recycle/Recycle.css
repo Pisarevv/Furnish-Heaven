@@ -34,11 +34,11 @@ section {
   text-decoration: none;  
   border-radius: 25px;
 }
-.container {
+.recycle-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 3em;
 }
 
