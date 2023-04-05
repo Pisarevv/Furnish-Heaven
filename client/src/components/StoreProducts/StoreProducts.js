@@ -54,26 +54,25 @@ const StoreProducts = (props) => {
     const [searchCriteria, setSearchCriteria] = useState();
 
     //Pagination
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [itemsPerPage, setItemsPerPage] = useState(8);
     const [storeProductsCount, setStoreProductsCount] = useState(0);
-    const [totalPages, setTotalPages] = useState();
     const { page: currentPage } = useParams();
    
 
     const { setLoading } = props;
 
     useEffect(() => {
+       
+
         (async () => {
+            window.scrollTo(0, 0)
             try {
-                window.scrollTo(0, 0);
+                
                 const fetchedStoreProductsInformation = await getAllStoreProducts(Number(currentPage), itemsPerPage);
                 const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
                 const storeProductsCount = fetchedStoreProductsInformation.storeProductsCount;
 
                 setStoreProductsCount(storeProductsCount=> storeProductsCount);
-
-                setTotalPages(Math.ceil(storeProductsCount / itemsPerPage));
-
                 setStoreProducts(storeProducts => fetchedStoreProducts);
                 setFilteredProducts(filteredProducts => fetchedStoreProducts);
             
@@ -93,13 +92,12 @@ const StoreProducts = (props) => {
         (async () => {
             try {
                 window.scrollTo(0, 0);
-
+                
                 const fetchedStoreProductsInformation = await getAllStoreProducts(Number(currentPage), itemsPerPage);
                 const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
                 const storeProductsCount = fetchedStoreProductsInformation.storeProductsCount;
                 
                 setStoreProductsCount(storeProductsCount);
-                setTotalPages(totalPages => Math.ceil(storeProductsCount / itemsPerPage));
                 setStoreProducts(storeProducts => fetchedStoreProducts);
                 setFilteredProducts(filteredProducts => fetchedStoreProducts);
                 setLoading(false);
@@ -134,10 +132,10 @@ const StoreProducts = (props) => {
         <section className="catalog">
 
             <div className="searchBox">
-                <input className="searchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search"></input>
+                <input className="searchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search in this page"></input>
             </div>
 
-            <div className="container">
+            <div className="products-container">
 
                 <div className="trending-container">
 
