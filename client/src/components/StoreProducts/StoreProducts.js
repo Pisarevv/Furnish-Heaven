@@ -34,6 +34,7 @@
 **/
 
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
 
@@ -42,12 +43,11 @@ import { getAllStoreProducts } from '../../services/storeProductsService';
 import Observe from '../../utils/Observer';
 
 import StoreProductCard from './StoreProductCard';
+import Pagination from '../Pagination/Pagination';
+
 import IsLoadingHOC from '../Common/IsLoadingHoc';
 
-
 import './StoreProducts.css'
-import { useParams } from 'react-router-dom';
-import Pagination from '../Pagination/Pagination';
 
 
 const StoreProducts = (props) => {
