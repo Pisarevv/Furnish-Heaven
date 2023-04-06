@@ -16,6 +16,9 @@
  * - userProducts (array): The collection holding the fetched user products from the server.
  * - filteredProducts (array): The collection holding the filtered userProducts based on the input
  *   search criteria
+ * - itemsPerPage (number) : The number of products to show in one page
+ * - storeProductsCount(number) : The total amount of products available 
+ * - currentPage (number) : The number of the current page
  * ---------------
  * 
  * Contexts:
