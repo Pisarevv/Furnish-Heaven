@@ -57,29 +57,29 @@ const StoreProducts = (props) => {
     const [searchCriteria, setSearchCriteria] = useState();
 
     //Pagination
-    const [itemsPerPage, setItemsPerPage] = useState(9);
+    const [itemsPerPage, setItemsPerPage] = useState(8);
     const [storeProductsCount, setStoreProductsCount] = useState(0);
     const { page: currentPage } = useParams();
-   
+
 
     const { setLoading } = props;
 
     useEffect(() => {
-       
+
 
         (async () => {
             window.scrollTo(0, 0)
             try {
-                
+
                 const fetchedStoreProductsInformation = await getAllStoreProducts(Number(currentPage), itemsPerPage);
                 const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
                 const fetchedStoreProductsCount = fetchedStoreProductsInformation.storeProductsCount;
 
-                setStoreProductsCount(storeProductsCount=> fetchedStoreProductsCount);
-                
+                setStoreProductsCount(storeProductsCount => fetchedStoreProductsCount);
+
                 setStoreProducts(storeProducts => fetchedStoreProducts);
                 setFilteredProducts(filteredProducts => fetchedStoreProducts);
-            
+
                 setLoading(false);
                 Observe();
 
@@ -100,7 +100,7 @@ const StoreProducts = (props) => {
                 const fetchedStoreProductsInformation = await getAllStoreProducts(Number(currentPage), itemsPerPage);
                 const fetchedStoreProducts = fetchedStoreProductsInformation.fetchedStoreProducts;
                 const storeProductsCount = fetchedStoreProductsInformation.storeProductsCount;
-                
+
                 setStoreProductsCount(storeProductsCount);
                 setStoreProducts(storeProducts => fetchedStoreProducts);
                 setFilteredProducts(filteredProducts => fetchedStoreProducts);
@@ -136,8 +136,9 @@ const StoreProducts = (props) => {
         <section className="catalog">
 
             <div className="searchBox">
-                <input className="searchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search in this page"></input>
+                <input className="storeProductsSearchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search in this page"></input>
             </div>
+
 
             <div className="products-container">
 
@@ -147,16 +148,16 @@ const StoreProducts = (props) => {
                         {filteredProducts.map(x => <StoreProductCard key={x._id} productInfo={x} />)}
                     </div>
 
-                    {storeProductsCount > 0  &&
-                     <div>
-                     <Pagination 
-                      pageInfo = {{ itemsCount : storeProductsCount, itemsPerPage, currentPage}}
-                      setLoadingStatus = {setLoading}
-                      navigationPageName = {"products"}  />
-                 </div>}
-                   
+
                 </div>
 
+                {storeProductsCount > 0 &&
+                    <div>
+                        <Pagination
+                            pageInfo={{ itemsCount: storeProductsCount, itemsPerPage, currentPage }}
+                            setLoadingStatus={setLoading}
+                            navigationPageName={"products"} />
+                    </div>}
 
             </div>
 

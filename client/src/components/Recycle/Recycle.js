@@ -138,33 +138,31 @@ const Recycle = (props) => {
         <section className="catalog">
 
             <div className="searchBox">
-                <input className="searchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search in this page"></input>
+                <input className="userProductsSearchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search in this page"></input>
+                
             </div>
 
-            <div className="createListing">
-                {isAuthenticated && <NavLink className="sell-btn" to="/create">Create listing</NavLink>}
+            <div className="createListingButton">
+            {isAuthenticated && <NavLink className="sell-btn" to="/create">Create listing</NavLink>}
             </div>
 
 
             <div className="recycle-container">
-
-
                 <div className="trending-container">
                     <div className='trendingProducts-container hidden'>
                         {filteredProducts.map(x => <UserProductCard key={x._id} productInfo={x} />)}
                     </div>
                 </div>
+            </div>
 
-                {userProductsCount > 0  &&
+            {userProductsCount > 0  &&
                      <div>
                      <Pagination
                       pageInfo = {{ itemsCount : userProductsCount, itemsPerPage, currentPage}}
                       setLoadingStatus = {setLoading}
                       navigationPageName = {"recycle"}  />
                  </div>}
-                   
 
-            </div>
         </section>
     )
 }

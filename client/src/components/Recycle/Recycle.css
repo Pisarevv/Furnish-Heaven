@@ -23,6 +23,7 @@ section {
   background-attachment: fixed;
   display: flex;
   align-items: center;
+  flex-direction: column;
   justify-content: center;
     
 }
@@ -146,10 +147,13 @@ section {
     /* animation: slideInLeft 1.5s ease-in; */
   }
 
-  .searchInput {
-    position: absolute;
-    top: 9%;
-    left: 16.3%;
+  .searchBox {
+    align-self: flex-start;
+    padding-left: 130px;
+  }
+
+  .userProductsSearchInput {
+   
     transform:  translate(-50%,50%);
     background:#7FC37E;
     height: 40px;
@@ -165,8 +169,6 @@ section {
 
 }
 
-.createListing{
-  position: absolute;
-  top: 12%;
-  left: 81%;
+.createListingButton{
+  align-self: flex-end;
 }

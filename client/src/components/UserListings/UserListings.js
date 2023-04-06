@@ -53,15 +53,15 @@ const UserListings = (props) => {
     const { user } = useAuthContext();
 
     const [userListings, setUserListings] = useState([]);
-   
+
     const { setLoading } = props;
 
-  
+
     useEffect(() => {
         (async () => {
             try {
                 window.scrollTo(0, 0);
-                const fetchedUserListings = await getAllUserListings(user._id); 
+                const fetchedUserListings = await getAllUserListings(user._id);
                 setUserListings(userListings => fetchedUserListings);
                 setLoading(false);
                 Observe();
@@ -79,12 +79,12 @@ const UserListings = (props) => {
             <div className="recycle-container">
                 <div className="userListing-container">
                     <div className='userListingsProducts-container hidden'>
-                        {userListings.length > 0 ? 
-                        userListings.map(x => <UserProductCard key={x._id} productInfo={x} />)
-                        : <>
-                          <h3>You haven't created any listings yet.</h3>
-                        <NavLink className="sell-btn" to="/create">Create listing</NavLink>
-                        </>}
+                        {userListings.length > 0 ?
+                            userListings.map(x => <UserProductCard key={x._id} productInfo={x} />)
+                            : <div className="userMissingListings">
+                                <h3>You haven't created any listings yet. <NavLink className="sell-btn" to="/create">Create listing</NavLink></h3>
+                                
+                            </div>}
                     </div>
                 </div>
             </div>
