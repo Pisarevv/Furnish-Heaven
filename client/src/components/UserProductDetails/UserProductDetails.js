@@ -165,7 +165,7 @@ const UserProductDetails = (props) => {
                             <div className="details-product-left">
                                 <div className="details-product-details">
                                     <p>Category :{productInfo.category}</p>
-                                    <p>Model: {productInfo.model}</p>
+                                    <p>Model: {productInfo.model}</p>   
                                     <p>Collection year: {productInfo.year}</p>
                                     <p>{productInfo.description}</p>
                                     <p>Material: {productInfo.material}</p>

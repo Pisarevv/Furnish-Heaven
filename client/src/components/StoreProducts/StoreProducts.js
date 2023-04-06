@@ -146,7 +146,7 @@ const StoreProducts = (props) => {
 
                     {storeProductsCount > 0  &&
                      <div>
-                     <Pagination
+                     <Pagination 
                       pageInfo = {{ itemsCount : storeProductsCount, itemsPerPage, currentPage}}
                       setLoadingStatus = {setLoading}
                       navigationPageName = {"products"}  />

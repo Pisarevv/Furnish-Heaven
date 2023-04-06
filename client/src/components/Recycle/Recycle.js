@@ -67,7 +67,6 @@ const Recycle = (props) => {
     //Pagination
     const [itemsPerPage, setItemsPerPage] = useState(8);
     const [userProductsCount, setUserProductsCount] = useState(0);
-    const [totalPages, setTotalPages] = useState();
     const { page: currentPage } = useParams();
 
     useEffect(() => {
