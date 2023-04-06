@@ -1,0 +1,187 @@
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-300px);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+section {
+    padding:  50px 10%;
+    
+}
+
+.catalog{
+  width:  100%;
+  min-height: 100vh;
+  background-image: url(../../../public/images/catalogImg2.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right;
+  background-attachment: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+    
+}
+
+.catalog a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  color: #7FC37E;
+  text-decoration: none;  
+  border-radius: 25px;
+}
+.recycle-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3em;
+  text-align: center;
+}
+
+.catalog-text {
+    cursor:default
+}
+.catalog-text h1 {
+    font-size: 2.7rem;
+    color: rgb(39, 37, 37);
+
+}
+
+.catalog-text span {
+    color: #7FC37E;
+}
+
+.introduction-container {
+  cursor:default;
+  background-color: #8fc48e;
+  background-size: cover;
+  border-radius: 25px;
+  opacity: 90%;
+  width: 50%;
+  left: 5%;
+  padding-bottom: 40px;
+  /* animation: slideInLeft 1s ease-in; */
+}
+
+.introduction-container p{
+    font-size: 1.5rem;
+    color: white;
+    text-align: left;
+    padding: 10px 50px;
+  }
+
+  .explore-btn {
+    padding: 10px;
+    border-radius: 0.3rem;
+    font-size: 14px;
+    background-color: aliceblue;
+  }
+
+  .explore-btn:hover {
+    transition: all 0.3s ease 0s;
+    background-color: #0088a9;
+    color: white;
+  }
+
+
+  .resell-container {
+    cursor:default;
+    background-color: #7FC37E;
+    opacity: 90%;
+    background-size: cover;
+    border-radius: 25px;
+    width: 90%;
+    left: 5%;
+    padding-bottom: 40px;
+    /* animation: slideInLeft 1.5s ease-in; */
+  }
+
+  .resell-container  p{
+    font-size: 1.5rem;
+    color: white;
+    text-align: left;
+    padding: 10px 50px;
+  } 
+
+  .sell-btn {
+    padding: 10px;
+    border-radius: 0.3rem;
+    font-size: 14px;
+    background-color: aliceblue;
+    text-align: center;
+  }
+
+  .sell-btn:hover {
+    transition: all 0.3s ease 0s;
+    background-color: #0088a9;
+    color: white;
+    text-align: center;
+  }
+
+
+  .userListing-container {
+    flex-grow: 1;
+  }
+
+  .userListing-container h3{
+    font-size: 2.0rem;
+    color: rgb(39, 37, 37);
+    background-color: #7FC37E;
+    padding: 20px;
+    border-radius: 5rem;
+    opacity: 90%;
+    text-align: center;
+    /* animation: slideInLeft 1.5s ease-in; */
+  }
+
+  .userListing-container a{
+    font-size: 2.0rem;
+    color: rgb(39, 37, 37);
+    background-color: #7FC37E;
+    padding: 20px;
+    border-radius: 5rem;
+    opacity: 90%;
+    text-align: center;
+    /* animation: slideInLeft 1.5s ease-in; */
+  }
+
+
+  .userListingsProducts-container{
+
+    display: flex;
+    gap:6em;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    /* animation: slideInLeft 1.5s ease-in; */
+  }
+
+  .searchInput {
+    position: absolute;
+    top: 9%;
+    left: 16.3%;
+    transform:  translate(-50%,50%);
+    background:#7FC37E;
+    height: 40px;
+    border-radius: 40px;
+    padding: 10px;
+    width: 240px;
+    color : white;
+    border:none;
+    outline:none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+
+}
+
+.createListing{
+  position: absolute;
+  top: 12%;
+  left: 81%;
+}

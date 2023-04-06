@@ -54,10 +54,12 @@ const Navigation = () => {
                         isAuthenticated
                         ?
                         <><li><NavLink to="/logout">Logout</NavLink></li>
+                           <li><NavLink to="/myListings">My Listings</NavLink></li>
                             <span className="fa-layers fa-fw fa-2x" >
                                 <NavLink className="fas fa-envelope fa-sm" to="/cart"><FontAwesomeIcon icon={faCartShopping} /></NavLink>
                                 {cart.length > 0 && <span className="fa-layers-counter" >{cart.length}</span>}
                             </span>
+                            
                         </>
                         :
                         <><li><NavLink to="/register">Register</NavLink></li>

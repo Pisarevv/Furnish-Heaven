@@ -20,6 +20,7 @@ import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import PrivateGuard from './components/Common/PrivateGuard';
 import StoreProducts from './components/StoreProducts/StoreProducts';
 import StoreProductDetails from './components/StoreProductDetails/StoreProductDetails';
+import UserListings from './components/UserListings/UserListings';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
                 <Route path='/recycle/:id/edit' element={<EditUserProduct />} />
                 <Route path='/cart' element={<ShoppingCart />} />
                 <Route path='/create' element={<CreateUserProduct />} />
+                <Route path ='/myListings' element = {<UserListings/>} />
               </Route>
             </Routes>
           </main>

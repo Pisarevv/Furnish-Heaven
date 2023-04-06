@@ -40,3 +40,8 @@ export async function deleteUserProductById(id){
 export async function createUserProduct(data){
     await api.post('/data/userProducts',data);
 }
+
+export async function getAllUserListings(userId){
+    let result = await api.get(`/data/userProducts?select=${encodeURIComponent("_id,model,price,imgUrl,rating,description")}&where=${encodeURIComponent(`_ownerId="${userId}"`)}`);
+    return result;
+}
