@@ -48,16 +48,19 @@ import { NavLink, useParams } from 'react-router-dom';
 
 import { useAuthContext } from '../../contexts/AuthContext';
 
+import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
+
 import { getAllUserProducts, getUserProducts } from '../../services/userProductsService';
 
 import Observe from '../../utils/Observer';
 import IsLoadingHOC from '../Common/IsLoadingHoc';
 
 import UserProductCard from './UserProductCard';
+import Pagination from '../Pagination/Pagination';
 
 import './Recycle.css'
-import { ErrorHandler } from '../../utils/ErrorHandler/ErrorHandler';
-import Pagination from '../Pagination/Pagination';
+
+
 
 const Recycle = (props) => {
 
