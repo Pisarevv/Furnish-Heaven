@@ -1,15 +1,51 @@
-import { faLeftLong, faRightLong, } from '@fortawesome/free-solid-svg-icons'
+/**
+ * Pagination Component
+ * ---------------------
+ * This component creates the pagination element with 
+ * the functionallity to go trought different pages 
+ * and display all the available page numbers.
+ * The user can always see the first and last page number.
+ * ---------------------- 
+ * 
+ * States:
+ * ----------------------
+ * - pageNumbersToDisplay (array): Collection of numbers that shows available pages and witch
+ *  page the user is currently on and dynamically changes.
+ * - totalPages (int) : Number holding the total pages that can be created
+ *  based on the desired products per page and available products
+ * ----------------------
+ * 
+ * Functions:
+ * -----------------
+ * - calculatePagesDisplayNumber 
+ *  This function is calculates how to display the available 
+ *  pages on the page navigation numbers.
+ *  Example: (With 3 pages to show in navigation)
+ *  If user is on page 5 of total 10 : [1.. 5 6 7 ...10]
+ *  If user is on page 1 of total 4 : [1 2 3 4]
+ *  If user is on page 5 of 6 [1.. 4 5 6]
+ * 
+ * - goToNextPage
+ *  Function to navigating to next page
+ * - goToPreviousPage
+ *  Function to navigate to previous page
+ * - gotoPage 
+ *  Function to navigate to the page with the selected number
+ * -----------------
+**/
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLeftLong, faRightLong, } from '@fortawesome/free-solid-svg-icons'
 
-const AMOUNT_OF_PAGENUMBERS = 4;
 
-function calculatePagesDisplayNumbering(totalPages, currentPage) {
+const NUMER_OF_PAGES_TO_SHOW_IN_NAVIGATION = 4;
+
+function calculatePagesDisplayNumber(totalPages, currentPage) {
     let numbersArray = [];
-    if (totalPages <= AMOUNT_OF_PAGENUMBERS) {
+    if (totalPages <= NUMER_OF_PAGES_TO_SHOW_IN_NAVIGATION) {
 
         for (let i = 1; i <= totalPages; i++) {
             numbersArray.push(i);
@@ -19,7 +55,7 @@ function calculatePagesDisplayNumbering(totalPages, currentPage) {
     else {
         if (currentPage == 1) {
 
-            for (let i = currentPage + 1; i < currentPage + AMOUNT_OF_PAGENUMBERS ; i++) {
+            for (let i = currentPage + 1; i < currentPage + NUMER_OF_PAGES_TO_SHOW_IN_NAVIGATION ; i++) {
                 numbersArray.push(i);
             }
             numbersArray.push(`..${totalPages}`);
@@ -28,8 +64,8 @@ function calculatePagesDisplayNumbering(totalPages, currentPage) {
 
         }
 
-        if(currentPage + AMOUNT_OF_PAGENUMBERS > totalPages){
-            for (let i = totalPages; i > totalPages - AMOUNT_OF_PAGENUMBERS; i--) {
+        if(currentPage + NUMER_OF_PAGES_TO_SHOW_IN_NAVIGATION > totalPages){
+            for (let i = totalPages; i > totalPages - NUMER_OF_PAGES_TO_SHOW_IN_NAVIGATION; i--) {
                 numbersArray.push(i);
             }
             numbersArray.reverse();
@@ -38,7 +74,7 @@ function calculatePagesDisplayNumbering(totalPages, currentPage) {
             return numbersArray;
         }
         else {
-            for (let i = currentPage; i < currentPage + AMOUNT_OF_PAGENUMBERS; i++) {
+            for (let i = currentPage; i < currentPage + NUMER_OF_PAGES_TO_SHOW_IN_NAVIGATION; i++) {
                 numbersArray.push(i);
             }
 
@@ -59,13 +95,13 @@ const Pagination = ({ pageInfo, navigationPageName, setLoadingStatus }) => {
     useEffect(() => {
         let totalPages = Math.ceil(Number(itemsCount) / Number(itemsPerPage));
         setTotalPages(totalPages);
-        setpageNumbersToDisplay(pageNumbersToDisplay => calculatePagesDisplayNumbering(totalPages, Number(currentPage)));
+        setpageNumbersToDisplay(pageNumbersToDisplay => calculatePagesDisplayNumber(totalPages, Number(currentPage)));
     }, []);
 
     useEffect(() => {
         let totalPages = Math.ceil(Number(itemsCount) / Number(itemsPerPage));
         setTotalPages(totalPages);
-        setpageNumbersToDisplay(pageNumbersToDisplay => calculatePagesDisplayNumbering(totalPages, Number(currentPage)));
+        setpageNumbersToDisplay(pageNumbersToDisplay => calculatePagesDisplayNumber(totalPages, Number(currentPage)));
     }, [currentPage]);
 
     const navigate = useNavigate();
