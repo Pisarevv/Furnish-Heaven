@@ -54,7 +54,7 @@ const StoreProducts = (props) => {
     const [searchCriteria, setSearchCriteria] = useState();
 
     //Pagination
-    const [itemsPerPage, setItemsPerPage] = useState(8);
+    const [itemsPerPage, setItemsPerPage] = useState(9);
     const [storeProductsCount, setStoreProductsCount] = useState(0);
     const { page: currentPage } = useParams();
    
