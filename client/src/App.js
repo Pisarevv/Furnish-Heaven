@@ -1,26 +1,27 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+
+import { AuthProvider } from './contexts/AuthContext';
+import { CartProvider } from './contexts/CartContext';
 
 import Navigation from './components/Navigation/Navigation'
 import Catalog from './components/Catalog/Catalog'
-
-import './assets/App.css';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Footer from './components/Footer/Footer';
 import About from './components/About/About';
 import Faq from './components/Faq/Faq';
-import { AuthProvider } from './contexts/AuthContext';
 import Logout from './components/Logout/Logout';
 import Recycle from './components/Recycle/Recycle';
 import UserProductDetails from './components/UserProductDetails/UserProductDetails';
 import EditUserProduct from './components/EditUserProduct/EditUserProduct';
 import CreateUserProduct from './components/CreateUserProduct/CreateUserProduct';
-import { CartProvider } from './contexts/CartContext';
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import PrivateGuard from './components/Common/PrivateGuard';
 import StoreProducts from './components/StoreProducts/StoreProducts';
 import StoreProductDetails from './components/StoreProductDetails/StoreProductDetails';
 import UserListings from './components/UserListings/UserListings';
+
+import './assets/App.css';
 
 
 function App() {
