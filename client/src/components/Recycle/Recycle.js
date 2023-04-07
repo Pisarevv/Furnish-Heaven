@@ -137,12 +137,12 @@ const Recycle = (props) => {
     return (
         <section className="catalog">
 
-            <div className="searchBox">
+            <div className="searchBox hidden">
                 <input className="userProductsSearchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search in this page"></input>
                 
             </div>
 
-            <div className="createListingButton">
+            <div className="createListingButton hidden">
             {isAuthenticated && <NavLink className="sell-btn" to="/create">Create listing</NavLink>}
             </div>
 

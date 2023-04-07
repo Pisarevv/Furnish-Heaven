@@ -135,7 +135,7 @@ const StoreProducts = (props) => {
     return (
         <section className="catalog">
 
-            <div className="searchBox">
+            <div className="searchBox hidden">
                 <input className="storeProductsSearchInput" type="text" name="" value={searchCriteria} onChange={onSearchHandler} placeholder="Search in this page"></input>
             </div>
 
