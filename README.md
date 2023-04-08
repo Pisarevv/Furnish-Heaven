@@ -9,7 +9,7 @@ Furnish Heaven is an online furniture store featuring a wide range of high-quali
 
 ## Features 
 - Browse a variety of furniture items with detailed product descriptions and images
-- Creating products listings 
+- Creating or editing products listings 
 - Adding, editing or deleting comments to user listing
 - Manage shopping cart with the ability to add, update, or remove items
 - Secure user authentication 
