@@ -71,7 +71,7 @@ const Recycle = (props) => {
     const { setLoading } = props;
 
     //Pagination
-    const [itemsPerPage, setItemsPerPage] = useState(9);
+    const [itemsPerPage, setItemsPerPage] = useState(8);
     const [userProductsCount, setUserProductsCount] = useState(0);
     const { page: currentPage } = useParams();
 

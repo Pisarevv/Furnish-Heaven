@@ -128,6 +128,9 @@
 
 .details-product-wrapper .details-product-container .details-product-bottom .details-product-left .details-product-details {
      padding: 20px; 
+     font-family: "Montserrat", sans-serif;
+     font-weight: 500;
+     font-size: 13px;
     /* float: left; */
     /* width: calc(70% - 40px); */
 }
