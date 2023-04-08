@@ -11,53 +11,78 @@
 
 import { useState } from "react";
 
+import { ErrorHandler } from "../../../utils/ErrorHandler/ErrorHandler";
+
 import EdiText from 'react-editext';
 
 import "./CommentCard.css"
 
-const CommentCart = ({commentData, user, onCommentDelete,onCommentEdit}) => {
 
-    const {author,text,_createdOn,_id} =  commentData;
+const CommentCart = ({ commentData, user, onCommentDelete, onCommentEdit }) => {
 
-    const [editing, setEditing] = useState(false);
+  const { author, text, _createdOn, _id } = commentData;
 
-    const createdOnDate = new Date(_createdOn).toLocaleString();
-    
-    const handleSave = (value) => {
-      onCommentEdit(_id,value);
-      setEditing(false);
-    };
+  const [editing, setEditing] = useState(false);
 
-    const handleDelete = () => {
-      onCommentDelete(_id);
-    };
+  const createdOnDate = new Date(_createdOn).toLocaleString();
 
+  const handleSave = (value) => {
+    try {
+      let isCommentValid = validateComment(value);
+      if(isCommentValid){
+        onCommentEdit(_id, value);
+        setEditing(false);
+      }
+      else{
+        setEditing(true);
+        throw "Comment cannot be empty";
+        
+      }
+
+    }
+    catch (error) {
+     ErrorHandler(error);
+    }
    
-    return (
-        <div className="comment-card">
-        <div className="user-info">
-          <div className="user-name-date">
-            <h4 className="user-name">{author.email}</h4>
-            {<p className="comment-date">{createdOnDate}</p>}
-            
-          </div>
-          
+  };
+
+  const handleDelete = () => {
+    onCommentDelete(_id);
+  };
+
+  const validateComment = (input) => {
+    if (input === "") {
+      return false;
+    }
+    return true;
+  }
+
+
+  return (
+    <div className="comment-card">
+      <div className="user-info">
+        <div className="user-name-date">
+          <h4 className="user-name">{author.email}</h4>
+          {<p className="comment-date">{createdOnDate}</p>}
+
         </div>
-        {
-        user._id == author._id ? 
-           <EdiText className="edit-comment"
-           value={text}
-           type="text"
-           onSave={handleSave}
-           onCancel={handleDelete}
-           editing={editing}  
-         />  
-         :     
-        <p className="comment-text"> {text} </p> 
-         }
-            
+
       </div>
-    )
+      {
+        user._id == author._id ?
+          <EdiText className="edit-comment"
+            value={text}
+            type="text"
+            onSave={handleSave}
+            onCancel={handleDelete}
+            editing={editing}
+          />
+          :
+          <p className="comment-text"> {text} </p>
+      }
+
+    </div>
+  )
 }
 
 
