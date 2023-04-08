@@ -27,6 +27,11 @@ const errors = {
         title : "A user with the same email already exists",
         message : "Please use another email to register",
         type : "warning"
+    },
+    "Comment cannot be empty" : {
+        title : "Comment field cannot be empty",
+        message : "Please write your comment befor submiting",
+        type : "warning"
     }
 }
 
