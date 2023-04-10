@@ -24,42 +24,42 @@ import useLocalStorage from "../hooks/useLocalStorage";
 export const CartContext = createContext();
 
 export const CartProvider = ({
-    children
+  children
 }) => {
 
-    const [products,setProducts] = useLocalStorage('cart', [])
+  const [products, setProducts] = useLocalStorage('cart', [])
 
-    const addProductToCart = (productData) => {
-      if(products.length === 0){
-        if(Array.isArray(productData)){
-          setProducts(productData.slice());
-        }
-        else{
-          let newArray = [productData]
-          setProducts(newArray);
-        }
+  const addProductToCart = (productData) => {
+    if (products.length === 0) {
+      if (Array.isArray(productData)) {
+        setProducts(productData.slice());
       }
-      else{ 
-        setProducts([...products,productData].slice());
+      else {
+        let newArray = [productData]
+        setProducts(newArray);
       }
     }
-  
-    const removeProductFromCart = (id) => {
-      if(products.some(p => p._id === id)){
-        setProducts(products.filter(x => x._id !== id));
-      } 
+    else {
+      setProducts([...products, productData].slice());
     }
-  
-    const emptyCart = () => {
-      setProducts([])
-    }
-  
+  }
 
-    return (
-        <CartContext.Provider value = {{cart: products, addProductToCart, removeProductFromCart, emptyCart}}>
-            {children}
-        </CartContext.Provider>
-    );
+  const removeProductFromCart = (id) => {
+    if (products.some(p => p._id === id)) {
+      setProducts(products.filter(x => x._id !== id));
+    }
+  }
+
+  const emptyCart = () => {
+    setProducts([])
+  }
+
+
+  return (
+    <CartContext.Provider value={{ cart: products, addProductToCart, removeProductFromCart, emptyCart }}>
+      {children}
+    </CartContext.Provider>
+  );
 }
 
 
