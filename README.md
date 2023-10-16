@@ -27,12 +27,7 @@ https://github.com/Pisarevv/FurnitureStore.git
 2. Navigate to the project directory
 
 3. Install the dependencies
-npm install --save @fortawesome/free-solid-svg-icons
-npm install --save @fortawesome/react-fontawesome
-npm i react-router-dom
-npm i react-edit-text
-npm i react-loader-spinner
-npm i react-notifications-component
+- npm i
 
 
 ### Running the Application
